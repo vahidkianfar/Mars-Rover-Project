@@ -1,0 +1,80 @@
+﻿@startuml "MarsRover-Kata-UML.png"
+
+interface IVehicle
+{
++ INavigation NavigationSystem;
++ RunCommand();
+}
+interface IPlanet
+{
++ int XCoordinate;
++ int YCoordinate;
+}
+interface IDirection
+{
++  TurnLeft();
++  TurnRight();
++  Move();
+}
+interface INavigation
+{
++  NavigationCommands;
++  Move();
+
+}
+
+class PlanetMarsGrid implements IPlanet
+{
++ int XCoordinate;
++ int YCoordinate;
++ YMoveForward();
++ YMoveBackward();
++ XMoveForward();
++ XMoveBackward();
+}
+class East implements IDirection
+{
++  TurnLeft();
++  TurnRight();
++  Move();
+}
+class West implements IDirection
+{
++  TurnLeft();
++  TurnRight();
++  Move();
+}
+class North implements IDirection
+{
++  TurnLeft();
++  TurnRight();
++  Move();
+}
+class South implements IDirection
+{
++  TurnLeft();
++  TurnRight();
++  Move();
+}
+
+class MarsNavigator implements INavigation
+{
++  NavigationCommands;
++  Move()
+}
+class MarsRover implements IVehicle
+{
++  MarsNavigator NavigationSystem;
++  IPlanet PlanetMars;
++  IDirection DirectionSystem;
++  RunCommand();
+}
+IPlanet --> IDirection
+IVehicle --> INavigation
+IDirection  --> INavigation
+MarsRover --> MarsNavigator
+MarsRover --> IDirection
+MarsRover --> PlanetMarsGrid
+
+
+@enduml
