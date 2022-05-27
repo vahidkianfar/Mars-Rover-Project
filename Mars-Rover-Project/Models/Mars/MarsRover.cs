@@ -7,26 +7,27 @@ public class MarsRover: IVehicle
 {
     public int axisX { get; set; }
     public int axisY { get; set; }
-    public string direction { get; set; }
+    public char direction { get; set; }
     
     public MarsRover(string getInitialPosition)
     {
         var roverPosition = new PositionInterpreter(getInitialPosition);
         axisX = roverPosition.initialPosition[0];
         axisY = roverPosition.initialPosition[1];
-        SetDirection(roverPosition.initialDirection);
+        //SetDirection(roverPosition.initialDirection);
+        direction = roverPosition.initialDirection;
     }
 
-    private void SetDirection(char getDirection)
-    {
-        direction = getDirection switch
-        {
-            'N' => "North",
-            'E' => "East",
-            'S' => "South",
-            'W' => "West",
-            _ => direction
-        };
-    }
+    // private void SetDirection(char getDirection)
+    // {
+    //     direction = getDirection switch
+    //     {
+    //         'N' => "North",
+    //         'E' => "East",
+    //         'S' => "South",
+    //         'W' => "West",
+    //         _ => direction
+    //     };
+    // }
     
 }
