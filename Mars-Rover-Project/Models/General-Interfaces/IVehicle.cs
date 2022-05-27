@@ -2,5 +2,6 @@
 
 public interface IVehicle
 {
-    
+    public int axisX { get; set; }
+    public int axisY { get; set; }
 }
