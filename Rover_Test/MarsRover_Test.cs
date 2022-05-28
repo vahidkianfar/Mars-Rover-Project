@@ -1,4 +1,5 @@
 using Mars_Rover_Project.Models.Mars;
+using Mars_Rover_Project.Models.Navigation;
 using Mars_Rover_Project.Models.Position;
 using NUnit.Framework;
 
@@ -63,9 +64,16 @@ public class Tests
         rover.TurnLeft();
         rover.Move();
         rover.Move();
-        
         Assert.AreEqual(0, rover.axisX);
         Assert.AreEqual(0, rover.axisY);
         Assert.AreEqual("S", rover.direction);
+    }
+    
+    [Test]
+    public void ExecuteCommand_Must_Interpret_Command_Correctly()
+    {
+        MarsRover rover = new("1 2 N");
+        rover.ExecuteCommand("L");
+        Assert.AreEqual("W", rover.direction);
     }
 }

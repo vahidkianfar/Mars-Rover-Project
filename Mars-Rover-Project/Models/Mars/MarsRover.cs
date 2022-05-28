@@ -10,7 +10,6 @@ public class MarsRover: IVehicle
     public int axisY { get; set; }
     public string direction { get; set; }
     
-    
     public MarsRover(string getInitialPosition)
     {
         var roverPosition = new PositionInterpreter(getInitialPosition);
@@ -18,27 +17,6 @@ public class MarsRover: IVehicle
         axisY = roverPosition.initialPosition[1];
         direction=roverPosition.initialDirection;
     }
-    
-    // public void Move(string getMovement)
-    // {
-    //     var movement = new NavigationInterpreter(getMovement);
-    //     var movementList = movement.movementList;
-    //     foreach (var movementItem in movementList)
-    //     {
-    //         switch (movementItem)
-    //         {
-    //             case "L":
-    //                 TurnLeft();
-    //                 break;
-    //             case "R":
-    //                 TurnRight();
-    //                 break;
-    //             case "M":
-    //                 MoveForward();
-    //                 break;
-    //         }
-    //     }
-    // }
 
     public void TurnLeft()=>ChangeDirection.TurnLeft(this);
     
@@ -46,4 +24,10 @@ public class MarsRover: IVehicle
     public void TurnRight()=>ChangeDirection.TurnRight(this);
 
     public void Move()=>MoveForward.RunCommand(this);
+    
+    public void ExecuteCommand(string getMovement)
+    {
+        var executable = NavigationInterpreter.SetNavigation(getMovement);
+        executable.RunCommand(this);
+    }
 }
