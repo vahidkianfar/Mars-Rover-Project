@@ -10,8 +10,8 @@ public class NavigationInterpreter
 {
     private static readonly Dictionary<string, INavigation> NavigationDictionary = new()
     {
-        { "L", new MoveLeft() },
-        { "R", new MoveRight() },
+        { "L", new NavigateLeft() },
+        { "R", new NavigateRight() },
         { "M", new NavigateForward() }
     };
 

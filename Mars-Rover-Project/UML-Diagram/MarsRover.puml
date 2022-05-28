@@ -27,6 +27,7 @@ class MarsRover implements IVehicle
 {
 + int axisX
 + int axisY
++ MarsPlateau marsPlateau
 + string direction
 + MarsRover(string getInitialPosition)
 + ExecuteCommand(string getMovement)
@@ -40,12 +41,12 @@ class MarsPlateau implements ISurface
 + int Width_Y
 + MarsPlateau(string gridSize)
 }
-class MoveLeft implements INavigation
+class NavigateLeft implements INavigation
 {
 + RunCommand(IVehicle marsRover)
 }
 
-class MoveRight implements INavigation
+class NavigateRight implements INavigation
 {
 + RunCommand(IVehicle marsRover)
 }
@@ -74,6 +75,26 @@ class MoveForward
 {
 + RunCommand(IVehicle marsRover)
 }
+INavigation --> IVehicle
+MarsRover <--> ChangeDirection
+MarsRover <--> MoveForward
+MarsRover --> MarsPlateau
+MarsRover <--> NavigateForward
+MarsRover --> NavigationInterpreter
+MarsRover <--> PositionInterpreter
 
-ChangeDirection <--> MarsRover
+
+NavigateLeft --> IVehicle
+NavigateRight --> IVehicle
+NavigateForward --> IVehicle
+
+NavigationInterpreter --> INavigation
+
+
+
+
+
+
+
+
 @enduml

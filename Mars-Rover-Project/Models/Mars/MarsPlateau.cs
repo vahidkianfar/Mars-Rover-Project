@@ -5,7 +5,6 @@ public class MarsPlateau:ISurface
 {
     public int Lenght_X { get; set; }
     public int Width_Y { get; set; }
-
     public MarsPlateau(string gridSize)
     {
         var marsGrids = gridSize.Split(' ');

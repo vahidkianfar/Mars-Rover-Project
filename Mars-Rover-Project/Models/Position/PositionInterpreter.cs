@@ -7,7 +7,7 @@ public class PositionInterpreter:IPosition
 
     private void SetPositionAndDirection(string getPositionAndDirection)
     {
-       //CheckValidation
+       //Checking for Validation
         var positionArray = getPositionAndDirection.Split(" ");
         initialPosition = new List<int>
         {
