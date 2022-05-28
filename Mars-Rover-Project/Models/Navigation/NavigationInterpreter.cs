@@ -22,6 +22,5 @@ public class NavigationInterpreter
             return NavigationDictionary[navCommands.ToString()];
         }
         throw new ArgumentException("Invalid Navigation Command");
-       
     }
 }

@@ -1,6 +1,4 @@
-﻿using Mars_Rover_Project.Models.General_Interfaces;
-using Mars_Rover_Project.Models.Mars;
-
+﻿using Mars_Rover_Project.Models.Mars;
 namespace Mars_Rover_Project.Models.Position;
 
 public static class ChangeDirection
@@ -28,5 +26,4 @@ public static class ChangeDirection
             _ => marsRover.direction
         };
     }
-    
 }

@@ -17,14 +17,9 @@ public class MarsRover: IVehicle
         axisY = roverPosition.initialPosition[1];
         direction=roverPosition.initialDirection;
     }
-
     public void TurnLeft()=>ChangeDirection.TurnLeft(this);
-    
-    
     public void TurnRight()=>ChangeDirection.TurnRight(this);
-
     public void Move()=>MoveForward.RunCommand(this);
-    
     public void ExecuteCommand(string getMovement)
     {
         foreach (var executable in getMovement.Select(NavigationInterpreter.SetNavigation))

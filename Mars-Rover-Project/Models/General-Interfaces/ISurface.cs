@@ -4,5 +4,4 @@ public interface ISurface
 {
     public int Lenght_X { get; set; }
     public int Width_Y { get; set; }
-    
 }

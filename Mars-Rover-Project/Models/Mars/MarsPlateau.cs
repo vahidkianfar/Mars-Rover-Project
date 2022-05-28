@@ -1,5 +1,4 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
-
 namespace Mars_Rover_Project.Models.Mars;
 
 public class MarsPlateau:ISurface
@@ -13,6 +12,4 @@ public class MarsPlateau:ISurface
         Lenght_X = int.Parse(marsGrids[0]);
         Width_Y = int.Parse(marsGrids[1]);
     }
-   
-    
 }

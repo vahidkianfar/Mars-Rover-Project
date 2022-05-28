@@ -1,5 +1,4 @@
 ﻿namespace Mars_Rover_Project.Models.Position;
-
 public class PositionInterpreter:IPosition
 {
     public List<int> initialPosition { get; set; }
@@ -16,6 +15,5 @@ public class PositionInterpreter:IPosition
             Convert.ToInt32(positionArray[1])
         };
         initialDirection = positionArray[2];
-        
     }
 }
