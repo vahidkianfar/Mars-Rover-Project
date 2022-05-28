@@ -3,7 +3,7 @@
 public class PositionInterpreter:IPosition
 {
     public List<int> initialPosition { get; set; }
-    public char initialDirection { get; private set; }
+    public string initialDirection { get; private set; }
     public PositionInterpreter(string getPositionAndDirection)=>SetPosition(getPositionAndDirection);
 
     private void SetPosition(string getPositionAndDirection)
@@ -15,7 +15,7 @@ public class PositionInterpreter:IPosition
             Convert.ToInt32(positionArray[0]),
             Convert.ToInt32(positionArray[1])
         };
-        initialDirection = char.Parse(positionArray[2]);
+        initialDirection = positionArray[2];
         
     }
 }

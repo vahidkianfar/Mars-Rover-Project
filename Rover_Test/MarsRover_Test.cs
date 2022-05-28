@@ -19,21 +19,13 @@ public class Tests
         Assert.AreEqual(5, plateau.Width_Y);
     }
     
-   
-    [Test]
-    
-    public void PositionInterpreter_Should_Interpret_Direction_Correctly()
-    {
-        var roverPosition = new PositionInterpreter("1 2 N");
-        Assert.AreEqual('N', roverPosition.initialDirection);
-    }
-    
     [Test]
     public void PositionInterpreter_Should_Interpret_Position_Correctly()
     {
         var roverPosition = new PositionInterpreter("1 2 N");
         Assert.AreEqual(1, roverPosition.initialPosition[0]);
         Assert.AreEqual(2, roverPosition.initialPosition[1]);
+        Assert.AreEqual("N", roverPosition.initialDirection);
     }
     [Test]
     
@@ -42,6 +34,18 @@ public class Tests
         MarsRover rover = new("1 2 N");
         Assert.AreEqual(1, rover.axisX);
         Assert.AreEqual(2, rover.axisY);
-        Assert.AreEqual('N', rover.direction);
+        Assert.AreEqual("N", rover.direction);
     }
+    
+    [Test]
+    
+    public void Change_Rover_Direction()
+    {
+        MarsRover rover = new("1 2 N");
+        rover.TurnLeft();
+        Assert.AreEqual("W", rover.direction);
+        
+    }
+    
+    
 }
