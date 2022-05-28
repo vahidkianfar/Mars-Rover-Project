@@ -70,10 +70,19 @@ public class Tests
     }
     
     [Test]
-    public void ExecuteCommand_Must_Interpret_Command_Correctly()
+    public void ExecuteCommand_Must_Interpret_Command_Only_Direction_Correctly()
     {
         MarsRover rover = new("1 2 N");
         rover.ExecuteCommand("LLL");
         Assert.AreEqual("E", rover.direction);
+    }
+    [Test]
+    public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly()
+    {
+        MarsRover rover = new("1 2 N");
+        rover.ExecuteCommand("LLLM");
+        Assert.AreEqual("E", rover.direction);
+        Assert.AreEqual(2, rover.axisX);
+        Assert.AreEqual(2, rover.axisY);
     }
 }

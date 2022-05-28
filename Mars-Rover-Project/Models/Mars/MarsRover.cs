@@ -9,7 +9,7 @@ public class MarsRover: IVehicle
     public int axisX { get; set; }
     public int axisY { get; set; }
     public string direction { get; set; }
-    
+    private readonly MarsPlateau _marsPlateau;
     public MarsRover(string getInitialPosition)
     {
         var roverPosition = new PositionInterpreter(getInitialPosition);
