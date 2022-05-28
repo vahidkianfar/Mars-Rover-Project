@@ -27,11 +27,7 @@ public class MarsRover: IVehicle
     
     public void ExecuteCommand(string getMovement)
     {
-        foreach (var command in getMovement)
-        {
-            var executable = NavigationInterpreter.SetNavigation(command);
+        foreach (var executable in getMovement.Select(NavigationInterpreter.SetNavigation))
             executable.RunCommand(this);
-        }
-        
     }
 }
