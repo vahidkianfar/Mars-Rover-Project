@@ -4,5 +4,5 @@ public interface IVehicle
 {
     public void TurnLeft();
     public void TurnRight();
-    public void MoveForward();
+    public void Move();
 }

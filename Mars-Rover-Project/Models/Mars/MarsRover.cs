@@ -40,60 +40,10 @@ public class MarsRover: IVehicle
     //     }
     // }
 
-    public void TurnLeft()
-    {
-        switch (direction)
-        {
-            case "N":
-                direction = "W";
-                break;
-            case "E":
-                direction = "N";
-                break;
-            case "S":
-                direction = "E";
-                break;
-            case "W":
-                direction = "S";
-                break;
-        }
-    }
+    public void TurnLeft()=>ChangeDirection.TurnLeft(this);
     
-    public void TurnRight()
-    {
-        switch (direction)
-        {
-            case "N":
-                direction = "E";
-                break;
-            case "E":
-                direction = "S";
-                break;
-            case "S":
-                direction = "W";
-                break;
-            case "W":
-                direction = "N";
-                break;
-        }
-    }
     
-    public void MoveForward()
-    {
-        switch (direction)
-        {
-            case "N":
-                axisY++;
-                break;
-            case "E":
-                axisX++;
-                break;
-            case "S":
-                axisY--;
-                break;
-            case "W":
-                axisX--;
-                break;
-        }
-    }
+    public void TurnRight()=>ChangeDirection.TurnRight(this);
+
+    public void Move()=>MoveForward.RunCommand(this);
 }

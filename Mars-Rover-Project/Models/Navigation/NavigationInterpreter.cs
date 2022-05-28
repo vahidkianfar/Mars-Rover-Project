@@ -1,4 +1,6 @@
-﻿namespace Mars_Rover_Project.Models.Navigation;
+﻿using Mars_Rover_Project.Models.Position;
+
+namespace Mars_Rover_Project.Models.Navigation;
 
 public class NavigationInterpreter
 {
@@ -6,7 +8,7 @@ public class NavigationInterpreter
     {
         { "L", new MoveLeft() },
         { "R", new MoveRight() },
-        { "M", new MoveForward() }
+        { "M", new NavigateForward() }
     };
    
 }
