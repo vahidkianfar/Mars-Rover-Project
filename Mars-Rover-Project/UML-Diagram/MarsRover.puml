@@ -24,15 +24,56 @@ interface INavigation
 }
 
 class MarsRover implements IVehicle
+{
++ int axisX
++ int axisY
++ string direction
++ MarsRover(string getInitialPosition)
++ ExecuteCommand(string getMovement)
++ TurnLeft()
++ TurnRight()
++ MoveForward()
+}
 class MarsPlateau implements ISurface
+{
++ int Lenght_X
++ int Width_Y
++ MarsPlateau(string gridSize)
+}
 class MoveLeft implements INavigation
+{
++ RunCommand(IVehicle marsRover)
+}
+
 class MoveRight implements INavigation
+{
++ RunCommand(IVehicle marsRover)
+}
 class PositionInterpreter implements IPosition
-
+{
++ List<int> initialPosition
++ string initialDirection
+- SetPositionAndDirection(string getPositionAndDirection)
+}
 class NavigateForward implements INavigation
-class NavigationInterface
+{
++ RunCommand((IVehicle marsRover)
+}
+class NavigationInterpreter
+{
+- Dictionary<string, INavigation> NavigationDictionary
++ SetNavigation(charNavCommands)
+}
 class ChangeDirection
+{
++ TurnLeft(MarsRover marsRover)
++ TurnRight(MarsRover marsRover)
+}
+
 class MoveForward
+{
++ RunCommand(IVehicle marsRover)
+}
 
-
+ChangeDirection <--> MarsRover
 @enduml
