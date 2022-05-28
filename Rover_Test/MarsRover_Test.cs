@@ -44,8 +44,16 @@ public class Tests
         MarsRover rover = new("1 2 N");
         rover.TurnLeft();
         Assert.AreEqual("W", rover.direction);
-        
     }
     
+    [Test]
+    
+    public void Move_Rover_Forward()
+    {
+        MarsRover rover = new("1 2 N");
+        rover.MoveForward();
+        Assert.AreEqual(1, rover.axisX);
+        Assert.AreEqual(3, rover.axisY);
+    }
     
 }
