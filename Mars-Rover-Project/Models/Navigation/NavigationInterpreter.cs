@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Design;
+using System.Security.Cryptography;
 using Mars_Rover_Project.Models.General_Interfaces;
 using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.Position;
@@ -14,7 +15,13 @@ public class NavigationInterpreter
         { "M", new NavigateForward() }
     };
 
-    public static INavigation SetNavigation(string navCommands)=>NavigationDictionary[navCommands];
-    
-
-} 
+    public static INavigation SetNavigation(char navCommands)
+    {
+        if (NavigationDictionary.ContainsKey(navCommands.ToString()))
+        {
+            return NavigationDictionary[navCommands.ToString()];
+        }
+        throw new ArgumentException("Invalid Navigation Command");
+       
+    }
+}

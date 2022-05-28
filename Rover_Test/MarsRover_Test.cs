@@ -73,7 +73,7 @@ public class Tests
     public void ExecuteCommand_Must_Interpret_Command_Correctly()
     {
         MarsRover rover = new("1 2 N");
-        rover.ExecuteCommand("L");
-        Assert.AreEqual("W", rover.direction);
+        rover.ExecuteCommand("LLL");
+        Assert.AreEqual("E", rover.direction);
     }
 }
