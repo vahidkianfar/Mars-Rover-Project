@@ -24,7 +24,7 @@ public class MarsRover: IVehicle
     public void Move()=>MoveForward.RunCommand(this);
     public void ExecuteCommand(string getMovement)
     {
-        if (!ValidateChecker.CommandValidator(getMovement)) 
+        if (!Validator.CommandValidator(getMovement)) 
             throw new ArgumentException("Invalid Command", nameof(getMovement));
         
         foreach (var executable in getMovement.Select(NavigationInterpreter.SetNavigation))
@@ -33,27 +33,27 @@ public class MarsRover: IVehicle
 
     public void SetPlateau(MarsPlateau marsPlateau)
     {
-        if (!ValidateChecker.DeploymentPositionValidator(GetAxisX(), GetAxisY(), marsPlateau))
+        if (!Validator.DeploymentPositionValidator(GetAxisX(), GetAxisY(), marsPlateau))
             throw new ArgumentException("Deployment Positions are not Valid");
         _marsPlateau = marsPlateau;
     }
     
     public void SetAxisX(int axisX)
     {
-        if(!ValidateChecker.AxisValidator(axisX) && axisX<=_marsPlateau.Lenght_X)
+        if(!Validator.AxisValidator(axisX) && axisX<=_marsPlateau.Lenght_X)
             throw new ArgumentException("Invalid Axis X", nameof(axisX));
         _axisX = axisX;
     }
     public void SetAxisY(int axisY)
     {
-        if(!ValidateChecker.AxisValidator(axisY) && axisY<=_marsPlateau.Width_Y)
+        if(!Validator.AxisValidator(axisY) && axisY<=_marsPlateau.Width_Y)
             throw new ArgumentException("Invalid Axis Y", nameof(axisY));
         _axisY = axisY;
     }
 
     public void SetDirection(string direction)
     {
-        if(!ValidateChecker.DirectionValidator(direction))
+        if(!Validator.DirectionValidator(direction))
             throw new ArgumentException("Invalid Direction", nameof(direction));
         _direction = direction;
     }
