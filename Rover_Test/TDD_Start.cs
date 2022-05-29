@@ -105,7 +105,6 @@ public class Tests
         MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         rover.SetPlateau(plateau);
-
         Assert.Throws<ArgumentException>(() => rover.ExecuteCommand("LMLMLMLMMMMMMMMM"));
     }
 }

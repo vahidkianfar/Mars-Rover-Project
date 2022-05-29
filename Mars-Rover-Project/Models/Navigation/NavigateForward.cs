@@ -3,6 +3,6 @@
 namespace Mars_Rover_Project.Models.Navigation;
 
 public class NavigateForward : INavigation
-{ 
-    public void RunCommand(IVehicle marsRover)=>marsRover.Move();
+{
+    public void RunCommand(IVehicle marsRover) => marsRover.Move();
 }

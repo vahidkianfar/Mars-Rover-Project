@@ -25,7 +25,7 @@ public class MarsRover: IVehicle
     public void ExecuteCommand(string getMovement)
     {
         if (!Validator.CommandValidator(getMovement)) 
-            throw new ArgumentException("Invalid Command", nameof(getMovement));
+            throw new ArgumentException("Invalid movement Command", nameof(getMovement));
         
         foreach (var executable in getMovement.Select(NavigationInterpreter.SetNavigation))
              executable.RunCommand(this);

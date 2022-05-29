@@ -20,7 +20,7 @@ public class MoveForward
             case "W" when marsRover.GetAxisX() > 0: marsRover.SetAxisX(marsRover.GetAxisX()-1);
                 break;
             default:
-                throw new ArgumentException("Out of Boundary", nameof(marsRover.GetDirection));
+                throw new ArgumentException("Movement failed!, Rover should not go further than plateau boundaries");
         }
     }
 }
