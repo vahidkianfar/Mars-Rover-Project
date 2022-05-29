@@ -26,4 +26,12 @@ public class ChangeDirection
         else if(marsRover.GetDirection()=="S") marsRover.SetDirection("W");
         else if(marsRover.GetDirection()=="W") marsRover.SetDirection("N");
     }
+    
+    public void TurnAround(MarsRover marsRover)
+    {
+        if(marsRover.GetDirection()=="N") marsRover.SetDirection("S");
+        else if(marsRover.GetDirection()=="E") marsRover.SetDirection("W");
+        else if(marsRover.GetDirection()=="S") marsRover.SetDirection("N");
+        else if(marsRover.GetDirection()=="W") marsRover.SetDirection("E");
+    }
 }

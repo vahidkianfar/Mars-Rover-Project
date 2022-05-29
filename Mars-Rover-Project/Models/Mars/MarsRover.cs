@@ -25,6 +25,7 @@ public class MarsRover: IVehicle
     
     public void TurnLeft()=>_changeDirection.TurnLeft(this);
     public void TurnRight()=>_changeDirection.TurnRight(this);
+    public void TurnAround()=>_changeDirection.TurnAround(this);
     public void Move()=>_movingTheRover.MoveForward(this);
     public void ExecuteCommand(string getMovement)
     {

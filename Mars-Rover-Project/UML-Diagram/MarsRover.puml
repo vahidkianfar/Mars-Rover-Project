@@ -41,6 +41,7 @@ class MarsRover implements IVehicle
 + ExecuteCommand(string getMovement)
 + TurnLeft()
 + TurnRight()
++ TurnAround()
 + MoveForward()
 }
 class MarsPlateau implements ISurface
@@ -77,6 +78,7 @@ class ChangeDirection
 {
 + TurnLeft(MarsRover marsRover)
 + TurnRight(MarsRover marsRover)
++ TurnAround(MarsRover marsRover)
 }
 
 class MovingTheRover implements IMovementDirection
