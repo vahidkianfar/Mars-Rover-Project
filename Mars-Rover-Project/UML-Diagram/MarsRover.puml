@@ -97,6 +97,17 @@ class Validator
 + RectangularPlateauValidator(string plateauSize)
 + PositionValidator()
 }
+
+class ReadFromFile
+{
++ DirectoryInfo directory
++ Read()
+}
+class WriteOnFile
+{
+- string _path
+- Write()
+}
 INavigation --> IVehicle
 MarsRover <--> ChangeDirection
 MarsRover <--> MovingTheRover

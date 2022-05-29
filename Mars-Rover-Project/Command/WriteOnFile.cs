@@ -2,16 +2,16 @@
 
 public class WriteOnFile
 {
-    private string _fileName{get;set;}
+    private string _path{get;set;}
     private string _content{get;set;}
     
-    public WriteOnFile(string fileName, string content)
+    public WriteOnFile(string path, string content)
     {
-        _fileName = fileName;
+        _path = path;
         _content = content;
     }
 
-    public void Write()=>File.WriteAllText(_fileName, _content);
+    public void Write()=>File.WriteAllText(_path, _content);
     
 }
  
