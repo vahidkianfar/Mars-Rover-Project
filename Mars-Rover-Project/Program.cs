@@ -1,4 +1,5 @@
-﻿using Mars_Rover_Project.Models.Mars;
+﻿using Mars_Rover_Project.Command;
+using Mars_Rover_Project.Models.Mars;
 
 Console.WriteLine("\n***Mars Rover Controller***\n");
 
@@ -13,12 +14,15 @@ switch (choice)
     case 1:
     {
         try
-        { 
+        { //file path is hardcoded for now!
+            //You can find it in Project folder --> ...\Command\Instructions.text
             var directoryInfo = 
                 Directory.GetParent(
                         Directory.GetParent(
-                                Directory.GetParent(Directory.GetCurrentDirectory())?.ToString() ?? string.Empty)
-                            ?.ToString() ?? string.Empty);
+                                Directory.GetParent
+                                    (Directory.GetCurrentDirectory())?.ToString()
+                                ?? string.Empty)?.ToString() ?? string.Empty);
+            
             var lines = File.ReadAllLines(directoryInfo + "\\Command\\Instructions.txt");
             var instructions = lines.ToList();
 
@@ -36,6 +40,11 @@ switch (choice)
 
             Console.Write("Second ");
             rover2.GetCurrentPosition();
+            
+            var writer = new WriteOnFile(directoryInfo + "\\Command\\Output.txt",
+                "First Rover "+rover1.GetCurrentPositionForFile() + "\n" + "Second Rover "+rover2.GetCurrentPositionForFile());
+            writer.Execute();
+            
         }
         catch (Exception ex)
         {

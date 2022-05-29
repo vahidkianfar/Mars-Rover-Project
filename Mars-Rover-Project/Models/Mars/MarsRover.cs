@@ -68,4 +68,6 @@ public class MarsRover: IVehicle
     public string GetDirection()=>_direction;
     public MarsPlateau GetMarsPlateau()=>_marsPlateau;
     public void GetCurrentPosition()=>Console.WriteLine($"Rover position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
+    
+    public string GetCurrentPositionForFile()=>$"Position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
 }
