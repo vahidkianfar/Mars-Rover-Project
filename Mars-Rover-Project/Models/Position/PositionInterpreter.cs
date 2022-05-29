@@ -7,12 +7,10 @@ public class PositionInterpreter:IPosition
 {
     public List<int> initialPosition { get; set; }
     public string initialDirection { get; private set; }
-    private MarsPlateau plateau { get; set; }
-    public PositionInterpreter(string getPositionAndDirection)=>SetPositionAndDirection(getPositionAndDirection, plateau);
+    public PositionInterpreter(string getPositionAndDirection)=>SetPositionAndDirection(getPositionAndDirection);
 
-    private void SetPositionAndDirection(string getPositionAndDirection, MarsPlateau plateau)
+    private void SetPositionAndDirection(string getPositionAndDirection)
     {
-       
         var positionArray = getPositionAndDirection.Split(" ");
 
         initialPosition = new List<int>

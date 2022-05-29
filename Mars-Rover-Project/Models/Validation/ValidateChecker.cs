@@ -13,7 +13,7 @@ public class ValidateChecker
                                                              direction.ToUpper() == "W";
     
     public static bool DeploymentPositionValidator(int xCoordinate, int yCoordinate, MarsPlateau plateau)=>
-        xCoordinate >= 0 && xCoordinate <= plateau.Lenght_X && yCoordinate >= 0 && yCoordinate <= plateau.Width_Y;
+        xCoordinate >= 0 && xCoordinate <= plateau.GetLenght() && yCoordinate >= 0 && yCoordinate <= plateau.GetWidth();
     public static bool RectangularPlateauValidator(string plateauSize) => Regex.IsMatch(plateauSize, @"^[0-9]{1,2} [0-9]{1,2}$");
 
 }

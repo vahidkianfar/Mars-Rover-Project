@@ -15,4 +15,6 @@ public class MarsPlateau:ISurface
         Lenght_X = int.Parse(marsGrids[0]);
         Width_Y = int.Parse(marsGrids[1]);
     }
+    public int GetLenght()=> Lenght_X;
+    public int GetWidth()=> Width_Y;
 }
