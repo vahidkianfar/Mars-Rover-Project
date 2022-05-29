@@ -23,6 +23,14 @@ interface INavigation
 + void RunCommand(IVehicle marsRover)
 }
 
+interface IMovementDirection
+{
++ void MoveForward()
++ void MoveBackward()
++ void MoveLeft()
++ void MoveRight()
+}
+
 class MarsRover implements IVehicle
 {
 + int axisX
@@ -71,9 +79,12 @@ class ChangeDirection
 + TurnRight(MarsRover marsRover)
 }
 
-class MoveForward
+class MovingTheRover implements IMovementDirection
 {
-+ RunCommand(IVehicle marsRover)
++ MoveForward(MarsRover marsRover)
++ MoveBackward(MarsRover marsRover)
++ MoveLeft(MarsRover marsRover)
++ MoveRight(MarsRover marsRover)
 }
 class Validator
 {
@@ -86,7 +97,7 @@ class Validator
 }
 INavigation --> IVehicle
 MarsRover <--> ChangeDirection
-MarsRover <--> MoveForward
+MarsRover <--> MovingTheRover
 MarsRover <--> NavigateForward
 MarsRover <--> PositionInterpreter
 MarsRover --> MarsPlateau

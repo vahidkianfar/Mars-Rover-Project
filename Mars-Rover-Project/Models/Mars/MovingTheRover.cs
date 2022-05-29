@@ -1,11 +1,10 @@
-﻿using Mars_Rover_Project.Models.Mars;
-using Mars_Rover_Project.Models.Navigation;
+﻿using Mars_Rover_Project.Models.General_Interfaces;
 
-namespace Mars_Rover_Project.Models.Position;
+namespace Mars_Rover_Project.Models.Mars;
 
-public class MoveForward
+public class MovingTheRover:IMovementDirection
 {
-    public static void RunCommand(MarsRover marsRover)
+    public void MoveForward(MarsRover marsRover)
     {
         switch (marsRover.GetDirection())
         {
@@ -22,5 +21,18 @@ public class MoveForward
             default:
                 throw new ArgumentException("Movement failed!, Rover should not go further than plateau boundaries");
         }
+    }
+
+    public void MoveBackward(MarsRover marsRover)
+    {
+        throw new NotImplementedException();
+    }
+    public void MoveLeft(MarsRover marsRover)
+    {
+        throw new NotImplementedException();
+    }
+    public void MoveRight(MarsRover marsRover)
+    {
+        throw new NotImplementedException();
     }
 }

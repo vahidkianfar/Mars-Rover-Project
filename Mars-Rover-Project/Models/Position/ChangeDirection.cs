@@ -1,9 +1,9 @@
 ﻿using Mars_Rover_Project.Models.Mars;
 namespace Mars_Rover_Project.Models.Position;
 
-public static class ChangeDirection
+public class ChangeDirection
 {
-    public static void TurnLeft(MarsRover marsRover)
+    public void TurnLeft(MarsRover marsRover)
     {
         if(marsRover.GetDirection()=="N") marsRover.SetDirection("W");
         else if(marsRover.GetDirection()=="E") marsRover.SetDirection("N");
@@ -19,7 +19,7 @@ public static class ChangeDirection
         // };
     }
     
-    public static void TurnRight(MarsRover marsRover)
+    public void TurnRight(MarsRover marsRover)
     {
         if(marsRover.GetDirection()=="N") marsRover.SetDirection("E");
         else if(marsRover.GetDirection()=="E") marsRover.SetDirection("S");
