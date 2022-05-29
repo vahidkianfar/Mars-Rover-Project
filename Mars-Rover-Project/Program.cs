@@ -14,16 +14,11 @@ switch (choice)
     case 1:
     {
         try
-        { //file path is hardcoded for now!
-            //You can find it in Project folder --> ...\Command\Instructions.text
-            var directoryInfo = 
-                Directory.GetParent(
-                        Directory.GetParent(
-                                Directory.GetParent
-                                    (Directory.GetCurrentDirectory())?.ToString()
-                                ?? string.Empty)?.ToString() ?? string.Empty);
+        { 
+            //Instruction text file is in Project folder --> ...\Command\Instructions.text
             
-            var lines = File.ReadAllLines(directoryInfo + "\\Command\\Instructions.txt");
+            var readFile = new ReadFromFile();
+            var lines = readFile.Read();
             var instructions = lines.ToList();
 
             var plateau = new MarsPlateau(instructions[0]);
@@ -41,9 +36,11 @@ switch (choice)
             Console.Write("Second ");
             rover2.GetCurrentPosition();
             
-            var writer = new WriteOnFile(directoryInfo + "\\Command\\Output.txt",
+            var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\Output.txt",
                 "First Rover "+rover1.GetCurrentPositionForFile() + "\n" + "Second Rover "+rover2.GetCurrentPositionForFile());
-            writer.Execute();
+            writer.Write();
+            
+            Console.WriteLine("\nOutput file has been created!");
             
         }
         catch (Exception ex)

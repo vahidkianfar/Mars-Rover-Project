@@ -2,8 +2,8 @@
 
 public class WriteOnFile
 {
-    public string _fileName{get;set;}
-    public string _content{get;set;}
+    private string _fileName{get;set;}
+    private string _content{get;set;}
     
     public WriteOnFile(string fileName, string content)
     {
@@ -11,9 +11,7 @@ public class WriteOnFile
         _content = content;
     }
 
-    public void Execute()
-    {
-        File.WriteAllText(_fileName, _content);
-    }
+    public void Write()=>File.WriteAllText(_fileName, _content);
+    
 }
  
