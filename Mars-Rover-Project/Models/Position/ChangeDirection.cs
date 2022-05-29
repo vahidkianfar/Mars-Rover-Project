@@ -5,25 +5,25 @@ public static class ChangeDirection
 {
     public static void TurnLeft(MarsRover marsRover)
     {
-        marsRover.direction = marsRover.direction switch
-        {
-            "N" => "W",
-            "E" => "N",
-            "S" => "E",
-            "W" => "S",
-            _ => marsRover.direction
-        };
+        if(marsRover.GetDirection()=="N") marsRover.SetDirection("W");
+        else if(marsRover.GetDirection()=="E") marsRover.SetDirection("N");
+        else if(marsRover.GetDirection()=="S") marsRover.SetDirection("E");
+        else if(marsRover.GetDirection()=="W") marsRover.SetDirection("S");
+        // marsRover.direction = marsRover.direction switch
+        // {
+        //     "N" => "W",
+        //     "E" => "N",
+        //     "S" => "E",
+        //     "W" => "S",
+        //     _ => marsRover.direction
+        // };
     }
     
     public static void TurnRight(MarsRover marsRover)
     {
-        marsRover.direction = marsRover.direction switch
-        {
-            "N" => "E",
-            "E" => "S",
-            "S" => "W",
-            "W" => "N",
-            _ => marsRover.direction
-        };
+        if(marsRover.GetDirection()=="N") marsRover.SetDirection("E");
+        else if(marsRover.GetDirection()=="E") marsRover.SetDirection("S");
+        else if(marsRover.GetDirection()=="S") marsRover.SetDirection("W");
+        else if(marsRover.GetDirection()=="W") marsRover.SetDirection("N");
     }
 }

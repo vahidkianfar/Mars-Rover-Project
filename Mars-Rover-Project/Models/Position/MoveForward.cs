@@ -7,20 +7,20 @@ public class MoveForward
 {
     public static void RunCommand(MarsRover marsRover)
     {
-        switch (marsRover.direction)
+        switch (marsRover.GetDirection())
         {
-            case "N" when marsRover.axisY < marsRover.marsPlateau.Width_Y:
-                marsRover.axisY++;
+            case "N" when marsRover.GetAxisY() < marsRover.GetMarsPlateau().Width_Y:
+                marsRover.SetAxisY(marsRover.GetAxisY() + 1);
                 break;
-            case "E" when marsRover.axisX < marsRover.marsPlateau.Lenght_X:
-                marsRover.axisX++;
+            case "E" when marsRover.GetAxisX() < marsRover.GetMarsPlateau().Lenght_X:
+                marsRover.SetAxisX(marsRover.GetAxisX()+1);
                 break;
-            case "S" when marsRover.axisY > 0: marsRover.axisY--;
+            case "S" when marsRover.GetAxisY() > 0: marsRover.SetAxisY(marsRover.GetAxisY() - 1);
                 break;
-            case "W" when marsRover.axisX > 0: marsRover.axisX--;
+            case "W" when marsRover.GetAxisX() > 0: marsRover.SetAxisX(marsRover.GetAxisX()-1);
                 break;
             default:
-                throw new ArgumentException("Out of Boundary", nameof(marsRover.direction));
+                throw new ArgumentException("Out of Boundary", nameof(marsRover.GetDirection));
         }
     }
 }

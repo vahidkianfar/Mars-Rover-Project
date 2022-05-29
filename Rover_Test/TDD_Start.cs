@@ -34,9 +34,9 @@ public class Tests
     public void Create_Rover_With_Specific_Position()
     {
         MarsRover rover = new("1 2 N");
-        Assert.AreEqual(1, rover.axisX);
-        Assert.AreEqual(2, rover.axisY);
-        Assert.AreEqual("N", rover.direction);
+        Assert.AreEqual(1, rover.GetAxisX());
+        Assert.AreEqual(2, rover.GetAxisY());
+        Assert.AreEqual("N", rover.GetDirection());
     }
     
     [Test]
@@ -44,48 +44,41 @@ public class Tests
     {
         MarsRover rover = new("1 2 N");
         rover.TurnLeft();
-        Assert.AreEqual("W", rover.direction);
+        Assert.AreEqual("W", rover.GetDirection());
     }
     
     [Test]
     public void Move_Rover_Forward()
     {
-        MarsRover rover = new("1 2 N");
         MarsPlateau plateau = new("5 5");
-        rover.marsPlateau = plateau;
-        
-        Console.WriteLine(rover.axisX + " " + rover.axisY + " " + rover.direction);
+        MarsRover rover = new("1 2 N");
+        rover.SetPlateau(plateau);
         rover.Move();
-        
-        Console.WriteLine(rover.axisX + " " + rover.axisY + " " + rover.direction);
-        Assert.AreEqual(1, rover.axisX);
-        Assert.AreEqual(3, rover.axisY);
+        Assert.AreEqual(1, rover.GetAxisX());
+        Assert.AreEqual(3, rover.GetAxisY());
     }
     
     [Test]
     public void Rover_Must_Go_To_Point_0_0_and_Direction_South()
     {
         MarsPlateau plateau3 = new("6 6");
-        MarsRover rover3 = new("1 2 N")
-        {
-            marsPlateau = plateau3
-        };
-        Console.WriteLine(rover3.axisX + " " + rover3.axisY + " " + rover3.direction);
+        MarsRover rover3 = new("1 2 N");
+        rover3.SetPlateau(plateau3);
+        Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.TurnLeft();
-        Console.WriteLine(rover3.axisX + " " + rover3.axisY + " " + rover3.direction);
+        Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.Move();
-        Console.WriteLine(rover3.axisX + " " + rover3.axisY + " " + rover3.direction);
+        Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.TurnLeft();
-        Console.WriteLine(rover3.axisX + " " + rover3.axisY + " " + rover3.direction);
+        Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
+        rover3.Move();
+        Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.Move();
         
-        Console.WriteLine(rover3.axisX + " " + rover3.axisY + " " + rover3.direction);
-        rover3.Move();
-        
-        Console.WriteLine(rover3.axisX + " " + rover3.axisY + " " + rover3.direction);
-        Assert.AreEqual(0, rover3.axisX);
-        Assert.AreEqual(0, rover3.axisY);
-        Assert.AreEqual("S", rover3.direction);
+        Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
+        Assert.AreEqual(0, rover3.GetAxisX());
+        Assert.AreEqual(0, rover3.GetAxisY());
+        Assert.AreEqual("S", rover3.GetDirection());
     }
     
     [Test]
@@ -93,29 +86,25 @@ public class Tests
     {
         MarsRover rover = new("1 2 N");
         rover.ExecuteCommand("LLL");
-        Assert.AreEqual("E", rover.direction);
+        Assert.AreEqual("E", rover.GetDirection());
     }
     [Test]
     public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly()
     {
         MarsPlateau plateau = new("5 5");
-        MarsRover rover = new("1 2 N")
-        {
-            marsPlateau = plateau
-        };
+        MarsRover rover = new("1 2 N");
+        rover.SetPlateau(plateau);
         rover.ExecuteCommand("LMLMLMLMM");
-        Assert.AreEqual("N", rover.direction);
-        Assert.AreEqual(1, rover.axisX);
-        Assert.AreEqual(3, rover.axisY);
+        Assert.AreEqual("N", rover.GetDirection());
+        Assert.AreEqual(1, rover.GetAxisX());
+        Assert.AreEqual(3, rover.GetAxisY());
     }
     [Test]
     public void Rover_Should_Handle_Out_of_Boundaries_Error()
     {
         MarsPlateau plateau = new("5 5");
-        MarsRover rover = new("1 2 N")
-        {
-            marsPlateau = plateau
-        };
+        MarsRover rover = new("1 2 N");
+        rover.SetPlateau(plateau);
 
         Assert.Throws<ArgumentException>(() => rover.ExecuteCommand("LMLMLMLMMMMMMMMM"));
     }

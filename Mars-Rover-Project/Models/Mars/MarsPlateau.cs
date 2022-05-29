@@ -1,4 +1,6 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
+using Mars_Rover_Project.Models.Validation;
+
 namespace Mars_Rover_Project.Models.Mars;
 
 public class MarsPlateau:ISurface
@@ -7,6 +9,8 @@ public class MarsPlateau:ISurface
     public int Width_Y { get; set; }
     public MarsPlateau(string gridSize)
     {
+        if(!ValidateChecker.RectangularPlateauValidator(gridSize))
+            throw new ArgumentException("Invalid grid size", nameof(gridSize));
         var marsGrids = gridSize.Split(' ');
         Lenght_X = int.Parse(marsGrids[0]);
         Width_Y = int.Parse(marsGrids[1]);

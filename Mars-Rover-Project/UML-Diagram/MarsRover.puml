@@ -75,13 +75,23 @@ class MoveForward
 {
 + RunCommand(IVehicle marsRover)
 }
+class ValidateChecker
+{
++ DeploymentPositionValidator(int xCoordinate, int yCoordinate, MarsPlateau plateau)
++ CommandValidator(string inputCommand)
++ DirectionValidator(string direction)
++ AxisValidator(int axis)
++ RectangularPlateauValidator(string plateauSize)
++ PositionValidator()
+}
 INavigation --> IVehicle
 MarsRover <--> ChangeDirection
 MarsRover <--> MoveForward
-MarsRover --> MarsPlateau
 MarsRover <--> NavigateForward
-MarsRover --> NavigationInterpreter
 MarsRover <--> PositionInterpreter
+MarsRover --> MarsPlateau
+MarsRover --> NavigationInterpreter
+MarsRover --> ValidateChecker
 
 
 NavigateLeft --> IVehicle
@@ -89,6 +99,8 @@ NavigateRight --> IVehicle
 NavigateForward --> IVehicle
 
 NavigationInterpreter --> INavigation
+
+MarsPlateau --> ValidateChecker
 
 
 
