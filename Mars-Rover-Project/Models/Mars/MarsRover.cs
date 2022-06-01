@@ -9,10 +9,9 @@ public class MarsRover: IVehicle
 {
     private int _axisX { get; set; }
     private int _axisY { get; set; }
+    private MovingTheRover _movingTheRover { get; }
+    private ChangeDirection _changeDirection { get; }
     public ChangeDirection.Direction roverDirection { get; set; }
-    private MovingTheRover _movingTheRover { get; set; }
-    private ChangeDirection _changeDirection { get; set; }
-    private MissionControl _missionControl { get; set; }
     public MarsRover(string getInitialPosition)
     {
         var roverPosition = new PositionInterpreter(getInitialPosition);
