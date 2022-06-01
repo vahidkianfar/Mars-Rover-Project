@@ -50,9 +50,8 @@ public class Tests
     [Test]
     public void Move_Rover_Forward()
     {
-        MarsPlateau plateau = new("5 5");
+        MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("1 2 N");
-        //rover.SetPlateau(plateau);
         MissionControl.Plateau = plateau;
         rover.Move();
         Assert.AreEqual(1, rover.GetAxisX());
@@ -62,9 +61,8 @@ public class Tests
     [Test]
     public void Rover_Must_Go_To_Point_0_0_and_Direction_South()
     {
-        MarsPlateau plateau3 = new("6 6");
+        MarsPlateau? plateau3 = new("6 6");
         MarsRover rover3 = new("1 2 N");
-        //rover3.SetPlateau(plateau3);
         MissionControl.Plateau = plateau3;
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.TurnLeft();
@@ -93,9 +91,8 @@ public class Tests
     [Test]
     public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly_For_First_Rover()
     {
-        MarsPlateau plateau = new("5 5");
+        MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("1 2 N");
-        //rover.SetPlateau(plateau);
         MissionControl.Plateau = plateau;
         rover.ExecuteCommand("LMLMLMLMM");
         Assert.AreEqual(ChangeDirection.Direction.N, rover.GetDirection());
@@ -105,10 +102,10 @@ public class Tests
     [Test]
     public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly_For_Second_Rover()
     {
-        MarsPlateau plateau = new("5 5");
+        MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("3 3 E");
-        //rover.SetPlateau(plateau);
-        MissionControl.Plateau = plateau;
+        var missionControl = new MissionControl(rover,plateau);
+        missionControl.DeployRover(rover,plateau);
         rover.ExecuteCommand("MMRMMRMRRM");
         Assert.AreEqual(ChangeDirection.Direction.E, rover.GetDirection());
         Assert.AreEqual(5, rover.GetAxisX());
@@ -117,10 +114,10 @@ public class Tests
     [Test]
     public void Rover_Should_Handle_Out_of_Boundaries_Error()
     {
-        MarsPlateau plateau = new("5 5");
+        MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("1 2 N");
-        //rover.SetPlateau(plateau);
-        MissionControl.Plateau = plateau;
+        var missionControl = new MissionControl(rover,plateau);
+        missionControl.DeployRover(rover,plateau);
         Assert.Throws<ArgumentException>(() => rover.ExecuteCommand("LMLMLMLMMMMMMMMM"));
     }
 }

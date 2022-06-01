@@ -9,10 +9,10 @@ public class MovingTheRover:IMovementDirection
     {
         switch (marsRover.GetDirection())
         {
-            case ChangeDirection.Direction.N when marsRover.GetAxisY() < MissionControl.GetMarsPlateau().Width_Y:
+            case ChangeDirection.Direction.N when marsRover.GetAxisY() < MissionControl.GetMarsPlateauDetails()!.Width_Y:
                 marsRover.SetAxisY(marsRover.GetAxisY() + 1);
                 break;
-            case ChangeDirection.Direction.E when marsRover.GetAxisX() < MissionControl.GetMarsPlateau().Lenght_X:
+            case ChangeDirection.Direction.E when marsRover.GetAxisX() < MissionControl.GetMarsPlateauDetails()!.Lenght_X:
                 marsRover.SetAxisX(marsRover.GetAxisX()+1);
                 break;
             case ChangeDirection.Direction.S when marsRover.GetAxisY() > 0: marsRover.SetAxisY(marsRover.GetAxisY() - 1);
