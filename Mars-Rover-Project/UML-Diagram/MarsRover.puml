@@ -44,6 +44,17 @@ class MarsRover implements IVehicle
 + TurnAround()
 + MoveForward()
 }
+class MissionControl
+{
++ MarsRover marsRover
++ MarsPlateau marsPlateau
+
++ CollisionDetection()
++ DeployRover()
++ SetMissionPlateau()
++ GetMarsPlateau()
+
+}
 class MarsPlateau implements ISurface
 {
 + int Lenght_X
@@ -111,7 +122,6 @@ class WriteOnFile
 INavigation --> IVehicle
 MarsRover <--> ChangeDirection
 MarsRover <--> MovingTheRover
-MarsRover <--> NavigateForward
 MarsRover <--> PositionInterpreter
 MarsRover --> MarsPlateau
 MarsRover --> NavigationInterpreter
@@ -125,6 +135,11 @@ NavigateForward --> IVehicle
 NavigationInterpreter --> INavigation
 
 MarsPlateau --> Validator
+
+MissionControl --> MarsRover
+MissionControl --> MarsPlateau
+MissionControl --> Validator
+MissionControl --> MovingTheRover
 
 
 @enduml

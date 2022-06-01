@@ -10,7 +10,7 @@ public class MarsRover: IVehicle
     private int _axisX { get; set; }
     private int _axisY { get; set; }
     public ChangeDirection.Direction _direction { get; set; }
-    private MarsPlateau _marsPlateau { get; set; }
+    //private MarsPlateau _marsPlateau { get; set; }
     private MovingTheRover _movingTheRover { get; set; }
     private ChangeDirection _changeDirection { get; set; }
     public MarsRover(string getInitialPosition)
@@ -36,22 +36,22 @@ public class MarsRover: IVehicle
              executable.RunCommand(this);
     }
 
-    public void SetPlateau(MarsPlateau marsPlateau)
-    {
-        if (!Validator.DeploymentPositionValidator(GetAxisX(), GetAxisY(), marsPlateau))
-            throw new ArgumentException("Deployment Positions are not Valid");
-        _marsPlateau = marsPlateau;
-    }
+    // public void SetPlateau(MarsPlateau marsPlateau)
+    // {
+    //     if (!Validator.DeploymentPositionValidator(GetAxisX(), GetAxisY(), marsPlateau))
+    //         throw new ArgumentException("Deployment Positions are not Valid");
+    //     _marsPlateau = marsPlateau;
+    // }
     
     public void SetAxisX(int axisX)
     {
-        if(!Validator.AxisValidator(axisX) && axisX<=_marsPlateau.Lenght_X)
+        if(!Validator.AxisValidator(axisX) && axisX<=MissionControl.Plateau.Lenght_X)
             throw new ArgumentException("Invalid Axis X", nameof(axisX));
         _axisX = axisX;
     }
     public void SetAxisY(int axisY)
     {
-        if(!Validator.AxisValidator(axisY) && axisY<=_marsPlateau.Width_Y)
+        if(!Validator.AxisValidator(axisY) && axisY<=MissionControl.Plateau.Width_Y)
             throw new ArgumentException("Invalid Axis Y", nameof(axisY));
         _axisY = axisY;
     }
@@ -69,7 +69,7 @@ public class MarsRover: IVehicle
     public int GetAxisX()=>_axisX;
     public int GetAxisY()=>_axisY;
     public Enum? GetDirection()=>_direction;
-    public MarsPlateau GetMarsPlateau()=>_marsPlateau;
+    //public MarsPlateau GetMarsPlateau()=>_marsPlateau;
     public void GetCurrentPositionForConsole()=>Console.WriteLine($"Rover position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
     public string GetCurrentPositionForFile()=>$"Position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
 }

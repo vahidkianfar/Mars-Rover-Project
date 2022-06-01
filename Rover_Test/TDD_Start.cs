@@ -52,7 +52,8 @@ public class Tests
     {
         MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
-        rover.SetPlateau(plateau);
+        //rover.SetPlateau(plateau);
+        MissionControl.Plateau = plateau;
         rover.Move();
         Assert.AreEqual(1, rover.GetAxisX());
         Assert.AreEqual(3, rover.GetAxisY());
@@ -63,7 +64,8 @@ public class Tests
     {
         MarsPlateau plateau3 = new("6 6");
         MarsRover rover3 = new("1 2 N");
-        rover3.SetPlateau(plateau3);
+        //rover3.SetPlateau(plateau3);
+        MissionControl.Plateau = plateau3;
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.TurnLeft();
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
@@ -93,7 +95,8 @@ public class Tests
     {
         MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
-        rover.SetPlateau(plateau);
+        //rover.SetPlateau(plateau);
+        MissionControl.Plateau = plateau;
         rover.ExecuteCommand("LMLMLMLMM");
         Assert.AreEqual(ChangeDirection.Direction.N, rover.GetDirection());
         Assert.AreEqual(1, rover.GetAxisX());
@@ -104,7 +107,8 @@ public class Tests
     {
         MarsPlateau plateau = new("5 5");
         MarsRover rover = new("3 3 E");
-        rover.SetPlateau(plateau);
+        //rover.SetPlateau(plateau);
+        MissionControl.Plateau = plateau;
         rover.ExecuteCommand("MMRMMRMRRM");
         Assert.AreEqual(ChangeDirection.Direction.E, rover.GetDirection());
         Assert.AreEqual(5, rover.GetAxisX());
@@ -115,7 +119,8 @@ public class Tests
     {
         MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
-        rover.SetPlateau(plateau);
+        //rover.SetPlateau(plateau);
+        MissionControl.Plateau = plateau;
         Assert.Throws<ArgumentException>(() => rover.ExecuteCommand("LMLMLMLMMMMMMMMM"));
     }
 }

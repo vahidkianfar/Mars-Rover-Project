@@ -32,13 +32,21 @@ switch (choice)
 
             var plateau = new MarsPlateau(instructions[0]);
             var rover1 = new MarsRover(instructions[1]);
-            rover1.SetPlateau(plateau);
+            //rover1.SetPlateau(plateau);
+            var missionControl1 = new MissionControl(rover1, plateau);
+            
+            missionControl1.SetMissionPlateau(rover1, plateau);
+            missionControl1.DeployRover(rover1, plateau);
 
 
             var rover2 = new MarsRover(instructions[3]);
-            rover2.SetPlateau(plateau);
+            //rover2.SetPlateau(plateau);
+            var missionControl2 = new MissionControl(rover2, plateau);
+            
+            missionControl2.SetMissionPlateau(rover2, plateau);
+            missionControl2.DeployRover(rover2, plateau);
 
-            if (MissionControl.CollisionDetected(rover1, rover2))
+            if (MissionControl.CollisionDetection(rover1, rover2))
             {
                 
                 throw new Exception(
@@ -47,13 +55,13 @@ switch (choice)
             else
             {
                 rover1.ExecuteCommand(instructions[2]);
-                if (MissionControl.CollisionDetected(rover1, rover2))
+                if (MissionControl.CollisionDetection(rover1, rover2))
                     throw new Exception(
                         "Collision detected: Rover2 cannot be deployed over Rover1's block, Mission aborted!");
                 else
                 {
                     rover2.ExecuteCommand(instructions[4]);
-                    if (MissionControl.CollisionDetected(rover1, rover2))
+                    if (MissionControl.CollisionDetection(rover1, rover2))
                         throw new Exception("Collision detected: Rover 1 and Rover 2 cannot have the same destination, Mission aborted!");
 
                     else
@@ -100,7 +108,12 @@ switch (choice)
                 Console.Write("Enter the Deployment Position of first Rover (e.g \"1 2 N\"): ");
                 var rover1Deployment = Console.ReadLine()!;
                 var rover1 = new MarsRover(rover1Deployment);
-                rover1.SetPlateau(plateau);
+               // rover1.SetPlateau(plateau);
+               var missionControl1 = new MissionControl(rover1, plateau);
+            
+               missionControl1.SetMissionPlateau(rover1, plateau);
+               missionControl1.DeployRover(rover1, plateau);
+               
                 Console.Write("Enter movement instructions for first Rover (e.g \"LMLMLMLMM\"): ");
                 var roverMovement = Console.ReadLine()!;
 
@@ -108,7 +121,11 @@ switch (choice)
                 Console.Write("Enter the Deployment Position of second Rover (e.g \"3 3 E\"): ");
                 var rover2Deployment = Console.ReadLine()!;
                 var rover2 = new MarsRover(rover2Deployment);
-                rover2.SetPlateau(plateau);
+                //rover2.SetPlateau(plateau);
+                var missionControl2 = new MissionControl(rover2, plateau);
+            
+                missionControl2.SetMissionPlateau(rover2, plateau);
+                missionControl2.DeployRover(rover2, plateau);
                 Console.Write("Enter movement instructions for second Rover (e.g \"MMRMMRMRRM\"): ");
                 var rover2Movement = Console.ReadLine()!;
                 Console.Write("\nLoading");
@@ -119,7 +136,7 @@ switch (choice)
                 }
                 Console.Write(" Done!\n");
 
-                if (MissionControl.CollisionDetected(rover1, rover2))
+                if (MissionControl.CollisionDetection(rover1, rover2))
                 {
                     throw new Exception(
                         "Collision detected: Rovers cannot be deployed on the same position, Mission aborted!");
@@ -127,14 +144,14 @@ switch (choice)
                 else
                 {
                     rover1.ExecuteCommand(roverMovement);
-                    if (MissionControl.CollisionDetected(rover1, rover2))
+                    if (MissionControl.CollisionDetection(rover1, rover2))
                         throw new Exception(
                             "Collision detected: Rover2 cannot be deployed over Rover1's block, Mission aborted!");
 
                     else
                     {
                         rover2.ExecuteCommand(rover2Movement);
-                        if (MissionControl.CollisionDetected(rover1, rover2))
+                        if (MissionControl.CollisionDetection(rover1, rover2))
                             throw new Exception(
                                 "Collision detected: Rover1 and Rover2 cannot have the same destination, Mission aborted!");
                         else
