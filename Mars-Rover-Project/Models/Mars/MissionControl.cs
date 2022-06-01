@@ -32,4 +32,5 @@ public class MissionControl
     public void TurnRight()=>Rover!.TurnRight();
     public void TurnAround()=>Rover!.TurnAround();
     public void Move()=>Rover!.Move();
+    public void ExecuteCommand(string getMovement)=>Rover!.ExecuteCommand(getMovement);
 }

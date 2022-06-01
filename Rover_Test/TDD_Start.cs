@@ -146,4 +146,19 @@ public class Tests
         Assert.AreEqual(0, rover.GetAxisX());
         Assert.AreEqual(2, rover.GetAxisY());
     }
+
+    [Test]
+    
+        public void MissionControl_Should_Execute_Command_For_Rover()
+        {
+            MarsPlateau? plateau = new("5 5");
+            MarsRover rover = new("1 2 N");
+            var missionControl = new MissionControl();
+            missionControl.DeployRover(rover,plateau);
+            missionControl.ExecuteCommand("LMLMLMLMM");
+            Assert.AreEqual(ChangeDirection.Direction.N, rover.roverDirection);
+            Assert.AreEqual(1, rover.GetAxisX());
+            Assert.AreEqual(3, rover.GetAxisY());
+        }
+    
 }
