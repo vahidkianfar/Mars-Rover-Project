@@ -15,16 +15,16 @@ public class ChangeDirection
         switch (marsRover.GetDirection())
         {
             case Direction.N:
-                marsRover._direction+=3;
+                marsRover.roverDirection+=3;
                 break;
             case Direction.E:
-                marsRover._direction--;
+                marsRover.roverDirection--;
                 break;
             case Direction.S:
-                marsRover._direction--;
+                marsRover.roverDirection--;
                 break;
             case Direction.W:
-                marsRover._direction--;
+                marsRover.roverDirection--;
                 break;
         }
     }
@@ -34,16 +34,16 @@ public class ChangeDirection
         switch (marsRover.GetDirection())
         {
             case Direction.N:
-                marsRover._direction++;
+                marsRover.roverDirection++;
                 break;
             case Direction.E:
-                marsRover._direction++;
+                marsRover.roverDirection++;
                 break;
             case Direction.S:
-                marsRover._direction++;
+                marsRover.roverDirection++;
                 break;
             case Direction.W:
-                marsRover._direction-=3;
+                marsRover.roverDirection-=3;
                 break;
         }
     }
@@ -53,16 +53,16 @@ public class ChangeDirection
         switch (marsRover.GetDirection())
         {
             case Direction.N:
-                marsRover._direction += 2;
+                marsRover.roverDirection += 2;
                 break;
             case Direction.E:
-                marsRover._direction += 2;
+                marsRover.roverDirection += 2;
                 break;
             case Direction.S:
-                marsRover._direction += 2;
+                marsRover.roverDirection += 2;
                 break;
             case Direction.W:
-                marsRover._direction += 2;
+                marsRover.roverDirection += 2;
                 break;
         }
     }

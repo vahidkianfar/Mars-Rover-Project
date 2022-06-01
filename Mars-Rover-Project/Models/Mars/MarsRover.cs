@@ -9,7 +9,7 @@ public class MarsRover: IVehicle
 {
     private int _axisX { get; set; }
     private int _axisY { get; set; }
-    public ChangeDirection.Direction _direction { get; set; }
+    public ChangeDirection.Direction roverDirection { get; set; }
     private MovingTheRover _movingTheRover { get; set; }
     private ChangeDirection _changeDirection { get; set; }
     public MarsRover(string getInitialPosition)
@@ -29,39 +29,34 @@ public class MarsRover: IVehicle
     public void ExecuteCommand(string getMovement)
     {
         if (!Validator.CommandValidator(getMovement)) 
-            throw new ArgumentException("Invalid movement Command", nameof(getMovement));
+            throw new ArgumentException("Invalid movement Command");
         
         foreach (var executable in getMovement.Select(NavigationInterpreter.SetNavigation))
              executable.RunCommand(this);
     }
-    
-    
     public void SetAxisX(int axisX)
     {
         if(MissionControl.Plateau != null && !Validator.AxisValidator(axisX) && axisX<=MissionControl.Plateau.Lenght_X)
-            throw new ArgumentException("Invalid Axis X", nameof(axisX));
+            throw new ArgumentException("Invalid Axis X");
         _axisX = axisX;
     }
     public void SetAxisY(int axisY)
     {
         if(MissionControl.Plateau != null && !Validator.AxisValidator(axisY) && axisY<=MissionControl.Plateau.Width_Y)
-            throw new ArgumentException("Invalid Axis Y", nameof(axisY));
+            throw new ArgumentException("Invalid Axis Y");
         _axisY = axisY;
     }
-
-
     private void SetDirection(string direction)
     {
         if (!Validator.DirectionValidator(direction))
-            throw new ArgumentException("Invalid Direction", nameof(direction));
+            throw new ArgumentException("Invalid Direction");
         
-        _direction = Enum.Parse(typeof(ChangeDirection.Direction), direction) is ChangeDirection.Direction 
+        roverDirection = Enum.Parse(typeof(ChangeDirection.Direction), direction) is ChangeDirection.Direction 
             ? (ChangeDirection.Direction)Enum.Parse(typeof(ChangeDirection.Direction), direction) : 0;
-      
     }
     public int GetAxisX()=>_axisX;
     public int GetAxisY()=>_axisY;
-    public Enum? GetDirection()=>_direction;
+    public Enum? GetDirection()=>roverDirection;
     public void GetCurrentPositionForConsole()=>Console.WriteLine($"Rover position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
     public string GetCurrentPositionForFile()=>$"Position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
 }
