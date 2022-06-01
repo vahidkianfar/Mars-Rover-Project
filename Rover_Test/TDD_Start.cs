@@ -123,7 +123,18 @@ public class Tests
     }
     
     [Test]
-    public void MissionControl_Should_Turn_The_Rover()
+    public void MissionControl_Should_Turn_The_Rover_Direction()
+    {
+        MarsPlateau? plateau = new("5 5");
+        MarsRover rover = new("1 2 N");
+        var missionControl = new MissionControl();
+        missionControl.DeployRover(rover,plateau);
+        missionControl.TurnLeft();
+        Assert.AreEqual(ChangeDirection.Direction.W, rover.roverDirection);
+    }
+    
+    [Test]
+    public void MissionControl_Should_Turn_The_Rover_Direction_and_Move_The_Rover_Correctly()
     {
         MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("1 2 N");
