@@ -54,7 +54,7 @@ switch (choice)
                 {
                     rover2.ExecuteCommand(instructions[4]);
                     if (MissionControl.CollisionDetected(rover1, rover2))
-                        throw new Exception("Collision detected: Rover 1 and Rover 2 cannot have a same destination, Mission aborted!");
+                        throw new Exception("Collision detected: Rover 1 and Rover 2 cannot have the same destination, Mission aborted!");
 
                     else
                     {
@@ -136,7 +136,7 @@ switch (choice)
                         rover2.ExecuteCommand(rover2Movement);
                         if (MissionControl.CollisionDetected(rover1, rover2))
                             throw new Exception(
-                                "Collision detected: Rover1 and Rover2 cannot have a same destination, Mission aborted!");
+                                "Collision detected: Rover1 and Rover2 cannot have the same destination, Mission aborted!");
                         else
                         {
                             Console.Beep();
