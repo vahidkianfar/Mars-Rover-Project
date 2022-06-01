@@ -9,7 +9,7 @@ public class MarsRover: IVehicle
 {
     private int _axisX { get; set; }
     private int _axisY { get; set; }
-    private string _direction { get; set; }
+    public ChangeDirection.Direction _direction { get; set; }
     private MarsPlateau _marsPlateau { get; set; }
     private MovingTheRover _movingTheRover { get; set; }
     private ChangeDirection _changeDirection { get; set; }
@@ -18,7 +18,7 @@ public class MarsRover: IVehicle
         var roverPosition = new PositionInterpreter(getInitialPosition);
         SetAxisX(roverPosition.initialPosition[0]);
         SetAxisY(roverPosition.initialPosition[1]);
-        SetDirection(_direction=roverPosition.initialDirection);
+        SetDirection(roverPosition.initialDirection);
         _movingTheRover = new MovingTheRover();
         _changeDirection= new ChangeDirection();
     }
@@ -56,18 +56,24 @@ public class MarsRover: IVehicle
         _axisY = axisY;
     }
 
-    public void SetDirection(string direction)
+
+    private void SetDirection(string direction)
     {
-        if(!Validator.DirectionValidator(direction))
-            throw new ArgumentException("Invalid Direction", nameof(direction));
-        _direction = direction;
+        // if (!Validator.DirectionValidator(direction))
+        //     throw new ArgumentException("Invalid Direction", nameof(direction));
+        //_direction = direction;
+
+        _direction = Enum.Parse(typeof(ChangeDirection.Direction), direction) is ChangeDirection.Direction 
+            ? (ChangeDirection.Direction)Enum.Parse(typeof(ChangeDirection.Direction), direction) : 0;
+      
     }
-    
+
     public int GetAxisX()=>_axisX;
     public int GetAxisY()=>_axisY;
-    public string GetDirection()=>_direction;
+    public Enum? GetDirection()=>_direction;
     public MarsPlateau GetMarsPlateau()=>_marsPlateau;
     public void GetCurrentPosition()=>Console.WriteLine($"Rover position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
     
     public string GetCurrentPositionForFile()=>$"Position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
 }
+

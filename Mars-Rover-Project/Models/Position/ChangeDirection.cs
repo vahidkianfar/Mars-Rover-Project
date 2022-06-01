@@ -3,35 +3,67 @@ namespace Mars_Rover_Project.Models.Position;
 
 public class ChangeDirection
 {
+    public enum Direction
+    {
+        N=1,
+        E,
+        S,
+        W
+    } 
     public void TurnLeft(MarsRover marsRover)
     {
-        if(marsRover.GetDirection()=="N") marsRover.SetDirection("W");
-        else if(marsRover.GetDirection()=="E") marsRover.SetDirection("N");
-        else if(marsRover.GetDirection()=="S") marsRover.SetDirection("E");
-        else if(marsRover.GetDirection()=="W") marsRover.SetDirection("S");
-        // marsRover.direction = marsRover.direction switch
-        // {
-        //     "N" => "W",
-        //     "E" => "N",
-        //     "S" => "E",
-        //     "W" => "S",
-        //     _ => marsRover.direction
-        // };
+        switch (marsRover.GetDirection())
+        {
+            case Direction.N:
+                marsRover._direction+=3;
+                break;
+            case Direction.E:
+                marsRover._direction--;
+                break;
+            case Direction.S:
+                marsRover._direction--;
+                break;
+            case Direction.W:
+                marsRover._direction--;
+                break;
+        }
     }
     
     public void TurnRight(MarsRover marsRover)
     {
-        if(marsRover.GetDirection()=="N") marsRover.SetDirection("E");
-        else if(marsRover.GetDirection()=="E") marsRover.SetDirection("S");
-        else if(marsRover.GetDirection()=="S") marsRover.SetDirection("W");
-        else if(marsRover.GetDirection()=="W") marsRover.SetDirection("N");
+        switch (marsRover.GetDirection())
+        {
+            case Direction.N:
+                marsRover._direction++;
+                break;
+            case Direction.E:
+                marsRover._direction++;
+                break;
+            case Direction.S:
+                marsRover._direction++;
+                break;
+            case Direction.W:
+                marsRover._direction-=3;
+                break;
+        }
     }
     
     public void TurnAround(MarsRover marsRover)
     {
-        if(marsRover.GetDirection()=="N") marsRover.SetDirection("S");
-        else if(marsRover.GetDirection()=="E") marsRover.SetDirection("W");
-        else if(marsRover.GetDirection()=="S") marsRover.SetDirection("N");
-        else if(marsRover.GetDirection()=="W") marsRover.SetDirection("E");
+        switch (marsRover.GetDirection())
+        {
+            case Direction.N:
+                marsRover._direction += 2;
+                break;
+            case Direction.E:
+                marsRover._direction += 2;
+                break;
+            case Direction.S:
+                marsRover._direction += 2;
+                break;
+            case Direction.W:
+                marsRover._direction += 2;
+                break;
+        }
     }
 }

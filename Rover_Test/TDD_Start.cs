@@ -36,7 +36,7 @@ public class Tests
         MarsRover rover = new("1 2 N");
         Assert.AreEqual(1, rover.GetAxisX());
         Assert.AreEqual(2, rover.GetAxisY());
-        Assert.AreEqual("N", rover.GetDirection());
+        Assert.AreEqual(ChangeDirection.Direction.N, rover.GetDirection());
     }
     
     [Test]
@@ -44,7 +44,7 @@ public class Tests
     {
         MarsRover rover = new("1 2 N");
         rover.TurnLeft();
-        Assert.AreEqual("W", rover.GetDirection());
+        Assert.AreEqual(ChangeDirection.Direction.W, rover.GetDirection());
     }
     
     [Test]
@@ -78,7 +78,7 @@ public class Tests
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         Assert.AreEqual(0, rover3.GetAxisX());
         Assert.AreEqual(0, rover3.GetAxisY());
-        Assert.AreEqual("S", rover3.GetDirection());
+        Assert.AreEqual(ChangeDirection.Direction.S, rover3.GetDirection());
     }
     
     [Test]
@@ -86,18 +86,29 @@ public class Tests
     {
         MarsRover rover = new("1 2 N");
         rover.ExecuteCommand("LLL");
-        Assert.AreEqual("E", rover.GetDirection());
+        Assert.AreEqual(ChangeDirection.Direction.E, rover.GetDirection());
     }
     [Test]
-    public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly()
+    public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly_For_First_Rover()
     {
         MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         rover.SetPlateau(plateau);
         rover.ExecuteCommand("LMLMLMLMM");
-        Assert.AreEqual("N", rover.GetDirection());
+        Assert.AreEqual(ChangeDirection.Direction.N, rover.GetDirection());
         Assert.AreEqual(1, rover.GetAxisX());
         Assert.AreEqual(3, rover.GetAxisY());
+    }
+    [Test]
+    public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly_For_Second_Rover()
+    {
+        MarsPlateau plateau = new("5 5");
+        MarsRover rover = new("3 3 E");
+        rover.SetPlateau(plateau);
+        rover.ExecuteCommand("MMRMMRMRRM");
+        Assert.AreEqual(ChangeDirection.Direction.E, rover.GetDirection());
+        Assert.AreEqual(5, rover.GetAxisX());
+        Assert.AreEqual(1, rover.GetAxisY());
     }
     [Test]
     public void Rover_Should_Handle_Out_of_Boundaries_Error()
