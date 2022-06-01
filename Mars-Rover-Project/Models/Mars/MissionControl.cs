@@ -13,16 +13,8 @@ public class MissionControl
         Rover = rover;
         Plateau = plateau;
     }
-
     public static bool CollisionDetection(MarsRover? rover1, MarsRover? rover2) =>
         rover2 != null && rover1 != null && rover1.GetAxisX() == rover2.GetAxisX() && rover1.GetAxisY() == rover2.GetAxisY();
-    
-    // public void DeployRover(MarsRover? rover, MarsPlateau? plateau)
-    // {
-    //     Rover = rover;
-    //     Plateau = plateau;
-    // }
-    
     public void DeployRover(MarsRover? rover, MarsPlateau? marsPlateau)
     {
         if (rover != null && !Validator.DeploymentPositionValidator(rover.GetAxisX(), rover.GetAxisY(), marsPlateau))
