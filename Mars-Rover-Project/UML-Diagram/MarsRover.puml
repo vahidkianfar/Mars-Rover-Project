@@ -35,8 +35,8 @@ class MarsRover implements IVehicle
 {
 + int axisX
 + int axisY
-+ MarsPlateau marsPlateau
-+ string direction
++ ChangeDirection.Direction direction
+
 + MarsRover(string getInitialPosition)
 + ExecuteCommand(string getMovement)
 + TurnLeft()

@@ -33,12 +33,12 @@ switch (choice)
             var plateau = new MarsPlateau(instructions[0]);
             var rover1 = new MarsRover(instructions[1]);
          
-            var missionControl1 = new MissionControl(rover1, plateau);
+            var missionControl1 = new MissionControl();
             missionControl1.DeployRover(rover1, plateau);
             
             var rover2 = new MarsRover(instructions[3]);
             
-            var missionControl2 = new MissionControl(rover2, plateau);
+            var missionControl2 = new MissionControl();
             missionControl2.DeployRover(rover2, plateau);
             
             if (MissionControl.CollisionDetection(rover1, rover2))
@@ -104,7 +104,7 @@ switch (choice)
                 var rover1Deployment = Console.ReadLine()!;
                 var rover1 = new MarsRover(rover1Deployment);
                
-               var missionControl1 = new MissionControl(rover1, plateau);
+               var missionControl1 = new MissionControl();
                missionControl1.DeployRover(rover1, plateau);
               
                
@@ -116,7 +116,7 @@ switch (choice)
                 var rover2Deployment = Console.ReadLine()!;
                 var rover2 = new MarsRover(rover2Deployment);
               
-                var missionControl2 = new MissionControl(rover2, plateau);
+                var missionControl2 = new MissionControl();
                 missionControl2.DeployRover(rover2, plateau);
                 
                 Console.Write("Enter movement instructions for second Rover (e.g \"MMRMMRMRRM\"): ");

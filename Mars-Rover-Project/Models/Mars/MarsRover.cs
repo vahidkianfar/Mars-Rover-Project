@@ -12,14 +12,15 @@ public class MarsRover: IVehicle
     public ChangeDirection.Direction roverDirection { get; set; }
     private MovingTheRover _movingTheRover { get; set; }
     private ChangeDirection _changeDirection { get; set; }
+    private MissionControl _missionControl { get; set; }
     public MarsRover(string getInitialPosition)
     {
         var roverPosition = new PositionInterpreter(getInitialPosition);
         SetAxisX(roverPosition.initialPosition[0]);
         SetAxisY(roverPosition.initialPosition[1]);
         SetDirection(roverPosition.initialDirection);
-        _movingTheRover = new MovingTheRover();
-        _changeDirection= new ChangeDirection();
+         _movingTheRover = new MovingTheRover();
+         _changeDirection= new ChangeDirection();
     }
     
     public void TurnLeft()=>_changeDirection.TurnLeft(this);

@@ -53,6 +53,7 @@ public class Tests
         MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         MissionControl.Plateau = plateau;
+        
         rover.Move();
         Assert.AreEqual(1, rover.GetAxisX());
         Assert.AreEqual(3, rover.GetAxisY());
@@ -104,7 +105,7 @@ public class Tests
     {
         MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("3 3 E");
-        var missionControl = new MissionControl(rover,plateau);
+        var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
         rover.ExecuteCommand("MMRMMRMRRM");
         Assert.AreEqual(ChangeDirection.Direction.E, rover.GetDirection());
@@ -116,8 +117,22 @@ public class Tests
     {
         MarsPlateau? plateau = new("5 5");
         MarsRover rover = new("1 2 N");
-        var missionControl = new MissionControl(rover,plateau);
+        var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
         Assert.Throws<ArgumentException>(() => rover.ExecuteCommand("LMLMLMLMMMMMMMMM"));
+    }
+    
+    [Test]
+    public void MissionControl_Should_Turn_The_Rover()
+    {
+        MarsPlateau? plateau = new("5 5");
+        MarsRover rover = new("1 2 N");
+        var missionControl = new MissionControl();
+        missionControl.DeployRover(rover,plateau);
+        missionControl.TurnLeft();
+        missionControl.Move();
+        Assert.AreEqual(ChangeDirection.Direction.W, rover.roverDirection);
+        Assert.AreEqual(0, rover.GetAxisX());
+        Assert.AreEqual(2, rover.GetAxisY());
     }
 }
