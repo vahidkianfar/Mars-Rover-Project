@@ -59,21 +59,18 @@ public class MarsRover: IVehicle
 
     private void SetDirection(string direction)
     {
-        // if (!Validator.DirectionValidator(direction))
-        //     throw new ArgumentException("Invalid Direction", nameof(direction));
-        //_direction = direction;
-
+        if (!Validator.DirectionValidator(direction))
+            throw new ArgumentException("Invalid Direction", nameof(direction));
+        
         _direction = Enum.Parse(typeof(ChangeDirection.Direction), direction) is ChangeDirection.Direction 
             ? (ChangeDirection.Direction)Enum.Parse(typeof(ChangeDirection.Direction), direction) : 0;
       
     }
-
     public int GetAxisX()=>_axisX;
     public int GetAxisY()=>_axisY;
     public Enum? GetDirection()=>_direction;
     public MarsPlateau GetMarsPlateau()=>_marsPlateau;
-    public void GetCurrentPosition()=>Console.WriteLine($"Rover position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
-    
+    public void GetCurrentPositionForConsole()=>Console.WriteLine($"Rover position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
     public string GetCurrentPositionForFile()=>$"Position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
 }
 
