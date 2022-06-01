@@ -1,16 +1,19 @@
 ﻿using Mars_Rover_Project.Command;
 using Mars_Rover_Project.Models.Mars;
+using System.Drawing;
+using Mars_Rover_Project.Models.Position;
+using Mars_Rover_Project.Models.UI;
+using Spectre.Console;
+using Color = System.Drawing.Color;
 
-
-Console.WriteLine("\n***Mars Rover Controller***\n");
-
-Console.WriteLine("Please choice an option:");
+Console.WriteLine("*** Mars Rover Controller ***");
+Console.WriteLine("\nPlease choice an option:");
 Console.WriteLine("1. Read instructions from file");
 Console.WriteLine("2. Read instructions from console (manually)");
 Console.Write("\nEnter your choice: ");
-var choice = Convert.ToInt32(Console.ReadLine());
+if(int.TryParse(Console.ReadLine(), out var choice))
 
-switch (choice)
+    switch (choice)
 {
     case 1:
     {
@@ -18,7 +21,7 @@ switch (choice)
         {
             
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
-            Console.Write("\nLoading");
+            Console.Write("\nLoading ");
             for(var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
             {
                 Thread.Sleep(100);
@@ -96,30 +99,31 @@ switch (choice)
         {
             try
             {
-                Console.Write("Enter the Plateau size (e.g \"5 5\"): ");
+                InstructionExample.InputExampleForPlateauSize();
                 var plateauSize = Console.ReadLine()!;
-                
                 var plateau = new MarsPlateau(plateauSize);
-                Console.Write("Enter the Deployment Position of first Rover (e.g \"1 2 N\"): ");
+
+                InstructionExample.InputExampleForDeploymentPosition();
                 var rover1Deployment = Console.ReadLine()!;
                 var rover1 = new MarsRover(rover1Deployment);
                
                var missionControl1 = new MissionControl();
                missionControl1.DeployRover(rover1, plateau);
               
+               // var drawTable= new DrawPlateau();
+               // var table = drawTable.CreateLiveTable(plateau.Lenght_X, plateau.Width_Y, rover1.GetAxisX(),rover1.GetAxisY());
+               // AnsiConsole.Write(table);
                
-                Console.Write("Enter movement instructions for first Rover (e.g \"LMLMLMLMM\"): ");
+                InstructionExample.InputExampleForInstructionFirstRover();
                 var roverMovement = Console.ReadLine()!;
 
-
-                Console.Write("Enter the Deployment Position of second Rover (e.g \"3 3 E\"): ");
+                InstructionExample.InputExampleForSecondDeploymentPosition();
                 var rover2Deployment = Console.ReadLine()!;
                 var rover2 = new MarsRover(rover2Deployment);
               
                 var missionControl2 = new MissionControl();
                 missionControl2.DeployRover(rover2, plateau);
-                
-                Console.Write("Enter movement instructions for second Rover (e.g \"MMRMMRMRRM\"): ");
+                InstructionExample.InputExampleForInstructionSecondRover();
                 var rover2Movement = Console.ReadLine()!;
                 Console.Write("\nLoading");
                 for(var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
@@ -176,4 +180,16 @@ switch (choice)
             }
         }
     }
+    default:
+            try
+            {
+                if (int.TryParse(args[0], out var number))
+                    throw new Exception("Invalid choice, please enter a valid number");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            break;
 }
+else Console.WriteLine("Invalid choice, please enter a valid number");
