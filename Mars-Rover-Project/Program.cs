@@ -38,27 +38,27 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             else
             {
                 missionControl.ExecuteCommand(0,instructions[2].ToString());
-                if (MissionControl.CollisionDetection(rover1, rover2))
+                if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                     CollisionMessages.CollisionMessageForDeploymentSecondRover();
                 
                 else
                 {
                     missionControl.ExecuteCommand(1,instructions[4].ToString());
-                    if (MissionControl.CollisionDetection(rover1, rover2))
+                    if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                         CollisionMessages.CollisionMessageForSameDestination();
                     
                     else
                     {
                         InstructionExample.BeepSoundForSuccess();
                         Console.Write("\nFirst ");
-                        rover1.GetCurrentPositionForConsole();
+                        missionControl.GetRoverDetails(0)?.GetCurrentPositionForConsole();
 
                         Console.Write("Second ");
-                        rover2.GetCurrentPositionForConsole();
+                        missionControl.GetRoverDetails(1)?.GetCurrentPositionForConsole();
 
                         var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\Output.txt",
-                            "First Rover " + rover1.GetCurrentPositionForFile() + "\n" + "Second Rover " +
-                            rover2.GetCurrentPositionForFile());
+                            "First Rover " + missionControl.GetRoverDetails(0)?.GetCurrentPositionForFile() + "\n" + "Second Rover " +
+                            missionControl.GetRoverDetails(1)?.GetCurrentPositionForFile());
                         writer.Write();
 
                         Console.WriteLine("\nOutput file has been created!");
@@ -69,7 +69,9 @@ if(int.TryParse(Console.ReadLine(), out var choice))
         catch (Exception ex)
         {
             InstructionExample.BeepSoundForError();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nSystem Message:--> {0} <--", ex.Message);
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         break;
@@ -85,11 +87,11 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 UserInputs.GrabPlateauSize();
 
                 InstructionExample.InputExampleForDeploymentPosition();
-                var rover1Deployment = Console.ReadLine()!;
-                var rover1 = new MarsRover(rover1Deployment);
+                
+                UserInputs.GrabRoverPosition();
 
                 var missionControl = new MissionControl();
-                missionControl.DeployRover(rover1, UserInputs.userPlateau);
+                missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
               
                // var drawTable= new DrawPlateau();
                // var table = drawTable.CreateLiveTable(plateau.Lenght_X, plateau.Width_Y, rover1.GetAxisX(),rover1.GetAxisY());
@@ -99,39 +101,38 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var rover1Movement = Console.ReadLine()!;
 
                 InstructionExample.InputExampleForSecondDeploymentPosition();
-                var rover2Deployment = Console.ReadLine()!;
-                var rover2 = new MarsRover(rover2Deployment);
+                UserInputs.GrabRoverPosition();
               
                 
-                missionControl.DeployRover(rover2, UserInputs.userPlateau);
+                missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
                 InstructionExample.InputExampleForInstructionSecondRover();
                 var rover2Movement = Console.ReadLine()!;
                 InstructionExample.ProgressBar();
 
-                if (MissionControl.CollisionDetection(rover1, rover2))
+                if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                     CollisionMessages.CollisionMessageForSamePosition();
                 
                 else
                 {
                     missionControl.ExecuteCommand(0,rover1Movement);
-                    if (MissionControl.CollisionDetection(rover1, rover2))
+                    if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                         CollisionMessages.CollisionMessageForDeploymentSecondRover();
                     
 
                     else
                     {
                         missionControl.ExecuteCommand(1,rover2Movement);
-                        if (MissionControl.CollisionDetection(rover1, rover2))
+                        if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                             CollisionMessages.CollisionMessageForSameDestination();
                         
                         else
                         {
                             InstructionExample.BeepSoundForSuccess();
                             Console.Write("\nFirst ");
-                            rover1.GetCurrentPositionForConsole();
+                            missionControl.GetRoverDetails(0)?.GetCurrentPositionForConsole();
 
                             Console.Write("Second ");
-                            rover2.GetCurrentPositionForConsole();
+                            missionControl.GetRoverDetails(1)?.GetCurrentPositionForConsole();
                             Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
                             if (Console.ReadKey().Key == ConsoleKey.Q)
                                 Environment.Exit(0);
@@ -142,8 +143,10 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             }
             catch (Exception ex)
             {
-                //InstructionExample.BeepSoundForError();
+                InstructionExample.BeepSoundForError();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nSystem Message:--> {0} <--", ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
                 if (Console.ReadKey().Key == ConsoleKey.Q)
                     Environment.Exit(0);
@@ -166,5 +169,3 @@ else
 {
     Console.WriteLine("Invalid choice, please enter a valid number");
 }
-
- 

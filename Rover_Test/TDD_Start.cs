@@ -2,6 +2,7 @@ using System;
 using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.Navigation;
 using Mars_Rover_Project.Models.Position;
+using Mars_Rover_Project.Models.UI;
 using NUnit.Framework;
 
 namespace MarsRover_Test;
