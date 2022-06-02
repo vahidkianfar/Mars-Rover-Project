@@ -6,4 +6,5 @@ public interface IVehicle
     public void TurnLeft();
     public void TurnRight();
     public void Move();
+    public void ExecuteCommand(string getMovement);
 }

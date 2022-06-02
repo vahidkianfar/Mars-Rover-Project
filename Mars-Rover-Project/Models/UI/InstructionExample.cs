@@ -22,7 +22,7 @@ public class InstructionExample
 
     public static void ProgressBar()
     {
-        Clear();
+        //Clear();
         Write("\nLoading");
         for (var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
         {

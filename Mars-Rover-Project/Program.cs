@@ -25,26 +25,25 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             var plateau = new MarsPlateau(instructions[0]);
             var rover1 = new MarsRover(instructions[1]);
          
-            var missionControl1 = new MissionControl();
-            missionControl1.DeployRover(rover1, plateau);
+            var missionControl = new MissionControl();
+            missionControl.DeployRover(rover1, plateau);
             
             var rover2 = new MarsRover(instructions[3]);
             
-            var missionControl2 = new MissionControl();
-            missionControl2.DeployRover(rover2, plateau);
+            missionControl.DeployRover(rover2, plateau);
             
             if (MissionControl.CollisionDetection(rover1, rover2))
                 CollisionMessages.CollisionMessageForSamePosition();
             
             else
             {
-                rover1.ExecuteCommand(instructions[2]);
+                missionControl.ExecuteCommand(0,instructions[2].ToString());
                 if (MissionControl.CollisionDetection(rover1, rover2))
                     CollisionMessages.CollisionMessageForDeploymentSecondRover();
                 
                 else
                 {
-                    rover2.ExecuteCommand(instructions[4]);
+                    missionControl.ExecuteCommand(1,instructions[4].ToString());
                     if (MissionControl.CollisionDetection(rover1, rover2))
                         CollisionMessages.CollisionMessageForSameDestination();
                     
@@ -89,8 +88,8 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var rover1Deployment = Console.ReadLine()!;
                 var rover1 = new MarsRover(rover1Deployment);
 
-                var missionControl1 = new MissionControl();
-                missionControl1.DeployRover(rover1, UserInputs.userPlateau);
+                var missionControl = new MissionControl();
+                missionControl.DeployRover(rover1, UserInputs.userPlateau);
               
                // var drawTable= new DrawPlateau();
                // var table = drawTable.CreateLiveTable(plateau.Lenght_X, plateau.Width_Y, rover1.GetAxisX(),rover1.GetAxisY());
@@ -103,8 +102,8 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var rover2Deployment = Console.ReadLine()!;
                 var rover2 = new MarsRover(rover2Deployment);
               
-                var missionControl2 = new MissionControl();
-                missionControl2.DeployRover(rover2, UserInputs.userPlateau);
+                
+                missionControl.DeployRover(rover2, UserInputs.userPlateau);
                 InstructionExample.InputExampleForInstructionSecondRover();
                 var rover2Movement = Console.ReadLine()!;
                 InstructionExample.ProgressBar();
@@ -114,14 +113,14 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 
                 else
                 {
-                    rover1.ExecuteCommand(rover1Movement);
+                    missionControl.ExecuteCommand(0,rover1Movement);
                     if (MissionControl.CollisionDetection(rover1, rover2))
                         CollisionMessages.CollisionMessageForDeploymentSecondRover();
                     
 
                     else
                     {
-                        rover2.ExecuteCommand(rover2Movement);
+                        missionControl.ExecuteCommand(1,rover2Movement);
                         if (MissionControl.CollisionDetection(rover1, rover2))
                             CollisionMessages.CollisionMessageForSameDestination();
                         
