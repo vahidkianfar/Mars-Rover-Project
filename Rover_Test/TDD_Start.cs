@@ -149,8 +149,8 @@ public class Tests
 
     [Test]
     
-        public void MissionControl_Should_Execute_Command_For_Rover()
-        {
+    public void MissionControl_Should_Execute_Command_For_Rover()
+    {
             MarsPlateau? plateau = new("5 5");
             MarsRover rover = new("1 2 N");
             var missionControl = new MissionControl();
@@ -159,6 +159,16 @@ public class Tests
             Assert.AreEqual(ChangeDirection.Direction.N, rover.roverDirection);
             Assert.AreEqual(1, rover.GetAxisX());
             Assert.AreEqual(3, rover.GetAxisY());
-        }
+    }
+        
+    [Test]
+    
+    public void MarsRover_Should_Turn_180_Degree()
+    {
+        MarsRover rover = new("1 2 N");
+        rover.TurnAround();
+        Assert.AreEqual(ChangeDirection.Direction.S, rover.roverDirection);
+    } 
+    
     
 }
