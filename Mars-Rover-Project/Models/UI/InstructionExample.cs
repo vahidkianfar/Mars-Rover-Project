@@ -32,12 +32,10 @@ public class InstructionExample
         Console.ForegroundColor = ConsoleColor.White;
     }
 
-    
-
     public static void BeepSoundForError()
     {
-        var freq = 200;
-        var duration = 500;
+        const int freq = 200;
+        const int duration = 500;
         var counter = 0;
         while (counter < 3)
         {
@@ -48,7 +46,9 @@ public class InstructionExample
 
     public static void BeepSoundForSuccess()
     {
-        Console.Beep(4000, 500);
+        const int freq = 4000;
+        const int duration = 500;
+        Console.Beep(freq, duration);
     }
     
    
