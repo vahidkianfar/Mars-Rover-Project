@@ -1,13 +1,8 @@
 ﻿using Mars_Rover_Project.Command;
 using Mars_Rover_Project.Models.Mars;
-using System.Drawing;
-using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
-using Spectre.Console;
-using Color = System.Drawing.Color;
 
-var userInput= new UserInputs();
-Console.WriteLine("*** Mars Rover Controller ***");
+Console.WriteLine("\n*** Mars Rover Controller ***");
 Console.WriteLine("\nPlease choice an option:");
 Console.WriteLine("1. Read instructions from file");
 Console.WriteLine("2. Read instructions from console (manually)");
@@ -20,7 +15,6 @@ if(int.TryParse(Console.ReadLine(), out var choice))
     {
         try
         {
-            
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
             InstructionExample.ProgressBar();
 
@@ -53,8 +47,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     rover2.ExecuteCommand(instructions[4]);
                     if (MissionControl.CollisionDetection(rover1, rover2))
                         CollisionMessages.CollisionMessageForSameDestination();
-                        
-
+                    
                     else
                     {
                         InstructionExample.BeepSoundForSuccess();
@@ -161,7 +154,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
     default:
             try
             {
-                if (int.TryParse(args[0], out var number))
+                if (int.TryParse(args[0], out _))
                     throw new Exception("Invalid choice, please enter a valid number");
             }
             catch (Exception)

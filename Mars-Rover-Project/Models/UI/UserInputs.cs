@@ -4,8 +4,8 @@ namespace Mars_Rover_Project.Models.UI;
 
 public class UserInputs
 {
-    public static MarsPlateau userPlateau{get;set;}
-    public static List<MarsRover> userRover{get;set;}
+    public static MarsPlateau? userPlateau{get;set;}
+    public static MarsRover? userRover{get;set;}
     public static void GrabPlateauSize()
     {
         var plateauSize = Console.ReadLine()!;
@@ -17,6 +17,6 @@ public class UserInputs
     {
         var roverPosition = Console.ReadLine()!;
         var rover = new MarsRover(roverPosition);
-        userRover.Add(rover);
+        userRover=rover;
     }
 }

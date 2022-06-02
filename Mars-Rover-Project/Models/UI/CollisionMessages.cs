@@ -1,5 +1,8 @@
-﻿namespace Mars_Rover_Project.Models.UI;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace Mars_Rover_Project.Models.UI;
+
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public class CollisionMessages
 {
     public static void CollisionMessageForSamePosition()

@@ -6,7 +6,7 @@ namespace Mars_Rover_Project.Models.Mars;
 public class MissionControl
 {
     public bool IsMissionComplete { get; set; }
-    private static MarsRover? Rover { get; set; }
+    public static MarsRover? Rover { get; set; }
     public static MarsPlateau? Plateau { get; set; }
     
     public static bool CollisionDetection(MarsRover? rover1, MarsRover? rover2) =>
