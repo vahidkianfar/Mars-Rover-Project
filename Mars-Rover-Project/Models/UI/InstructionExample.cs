@@ -23,10 +23,13 @@ public class InstructionExample
         for (var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
         {
             Thread.Sleep(100);
-            Console.Write("==");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(" ▄ ");
         }
+        Console.ForegroundColor = ConsoleColor.Green;
 
         Console.Write(" Done!\n");
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
     

@@ -26,7 +26,9 @@ public class CollisionMessages
     {
         var sequence = Enumerable.Range(0, 3).ToList();
 
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\n ▄ ▄ ▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄ ▄ ▄ SOS code has been sent to the Mars Rover Team.  ▄ ▄ ▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄ ▄ ▄  \n");
+        Console.ForegroundColor = ConsoleColor.White;
 
         sequence.ForEach(e => Console.Beep(650, 50));
 
