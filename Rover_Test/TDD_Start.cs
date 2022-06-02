@@ -170,5 +170,14 @@ public class Tests
         Assert.AreEqual(ChangeDirection.Direction.S, rover.roverDirection);
     } 
     
+    [Test]
+    
+    public void MarsRover_Should_Turn_180_Degree_With_B_Command()
+    {
+        MarsRover rover = new("1 2 N");
+        rover.ExecuteCommand("B");
+        Assert.AreEqual(ChangeDirection.Direction.S, rover.roverDirection);
+    } 
+    
     
 }
