@@ -6,6 +6,7 @@ using Mars_Rover_Project.Models.UI;
 using Spectre.Console;
 using Color = System.Drawing.Color;
 
+var userInput= new UserInputs();
 Console.WriteLine("*** Mars Rover Controller ***");
 Console.WriteLine("\nPlease choice an option:");
 Console.WriteLine("1. Read instructions from file");
@@ -21,13 +22,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
         {
             
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
-            Console.Write("\nLoading ");
-            for(var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
-            {
-                Thread.Sleep(100);
-                Console.Write("==");
-            }
-            Console.Write(" Done!\n");
+            InstructionExample.ProgressBar();
 
             var readFile = new ReadFromFile();
             var lines = readFile.Read();
@@ -45,26 +40,24 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             missionControl2.DeployRover(rover2, plateau);
             
             if (MissionControl.CollisionDetection(rover1, rover2))
-            {
-                
-                throw new Exception(
-                    "Collision detected: Rovers cannot be deployed on the same position, Mission aborted!");
-            }
+                CollisionMessages.CollisionMessageForSamePosition();
+            
             else
             {
                 rover1.ExecuteCommand(instructions[2]);
                 if (MissionControl.CollisionDetection(rover1, rover2))
-                    throw new Exception(
-                        "Collision detected: Rover2 cannot be deployed over Rover1's block, Mission aborted!");
+                    CollisionMessages.CollisionMessageForDeploymentSecondRover();
+                
                 else
                 {
                     rover2.ExecuteCommand(instructions[4]);
                     if (MissionControl.CollisionDetection(rover1, rover2))
-                        throw new Exception("Collision detected: Rover 1 and Rover 2 cannot have the same destination, Mission aborted!");
+                        CollisionMessages.CollisionMessageForSameDestination();
+                        
 
                     else
                     {
-                        Console.Beep();
+                        InstructionExample.BeepSoundForSuccess();
                         Console.Write("\nFirst ");
                         rover1.GetCurrentPositionForConsole();
 
@@ -83,10 +76,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
         }
         catch (Exception ex)
         {
-            Console.Beep();
-            Console.Beep();
-            Console.Beep();
-            Console.Beep();
+            InstructionExample.BeepSoundForError();
             Console.WriteLine("\nSystem Message:--> {0} <--", ex.Message);
         }
 
@@ -100,60 +90,51 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             try
             {
                 InstructionExample.InputExampleForPlateauSize();
-                var plateauSize = Console.ReadLine()!;
-                var plateau = new MarsPlateau(plateauSize);
+                UserInputs.GrabPlateauSize();
 
                 InstructionExample.InputExampleForDeploymentPosition();
                 var rover1Deployment = Console.ReadLine()!;
                 var rover1 = new MarsRover(rover1Deployment);
-               
-               var missionControl1 = new MissionControl();
-               missionControl1.DeployRover(rover1, plateau);
+
+                var missionControl1 = new MissionControl();
+                missionControl1.DeployRover(rover1, UserInputs.userPlateau);
               
                // var drawTable= new DrawPlateau();
                // var table = drawTable.CreateLiveTable(plateau.Lenght_X, plateau.Width_Y, rover1.GetAxisX(),rover1.GetAxisY());
                // AnsiConsole.Write(table);
                
                 InstructionExample.InputExampleForInstructionFirstRover();
-                var roverMovement = Console.ReadLine()!;
+                var rover1Movement = Console.ReadLine()!;
 
                 InstructionExample.InputExampleForSecondDeploymentPosition();
                 var rover2Deployment = Console.ReadLine()!;
                 var rover2 = new MarsRover(rover2Deployment);
               
                 var missionControl2 = new MissionControl();
-                missionControl2.DeployRover(rover2, plateau);
+                missionControl2.DeployRover(rover2, UserInputs.userPlateau);
                 InstructionExample.InputExampleForInstructionSecondRover();
                 var rover2Movement = Console.ReadLine()!;
-                Console.Write("\nLoading");
-                for(var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
-                {
-                    Thread.Sleep(100);
-                    Console.Write("==");
-                }
-                Console.Write(" Done!\n");
+                InstructionExample.ProgressBar();
 
                 if (MissionControl.CollisionDetection(rover1, rover2))
-                {
-                    throw new Exception(
-                        "Collision detected: Rovers cannot be deployed on the same position, Mission aborted!");
-                }
+                    CollisionMessages.CollisionMessageForSamePosition();
+                
                 else
                 {
-                    rover1.ExecuteCommand(roverMovement);
+                    rover1.ExecuteCommand(rover1Movement);
                     if (MissionControl.CollisionDetection(rover1, rover2))
-                        throw new Exception(
-                            "Collision detected: Rover2 cannot be deployed over Rover1's block, Mission aborted!");
+                        CollisionMessages.CollisionMessageForDeploymentSecondRover();
+                    
 
                     else
                     {
                         rover2.ExecuteCommand(rover2Movement);
                         if (MissionControl.CollisionDetection(rover1, rover2))
-                            throw new Exception(
-                                "Collision detected: Rover1 and Rover2 cannot have the same destination, Mission aborted!");
+                            CollisionMessages.CollisionMessageForSameDestination();
+                        
                         else
                         {
-                            Console.Beep();
+                            InstructionExample.BeepSoundForSuccess();
                             Console.Write("\nFirst ");
                             rover1.GetCurrentPositionForConsole();
 
@@ -169,10 +150,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             }
             catch (Exception ex)
             {
-                Console.Beep();
-                Console.Beep();
-                Console.Beep();
-                Console.Beep();
+                //InstructionExample.BeepSoundForError();
                 Console.WriteLine("\nSystem Message:--> {0} <--", ex.Message);
                 Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
                 if (Console.ReadKey().Key == ConsoleKey.Q)
@@ -186,10 +164,15 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 if (int.TryParse(args[0], out var number))
                     throw new Exception("Invalid choice, please enter a valid number");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Invalid choice, please enter a valid number");
             }
             break;
 }
-else Console.WriteLine("Invalid choice, please enter a valid number");
+else
+{
+    Console.WriteLine("Invalid choice, please enter a valid number");
+}
+
+ 
