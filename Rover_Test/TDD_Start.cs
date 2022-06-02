@@ -61,7 +61,7 @@ public class Tests
     }
     
     [Test]
-    public void Rover_Must_Go_To_Point_0_0_and_Direction_South()
+    public void Rover_Must_Go_To_Point_0_0_and_Direction_South_With_Details()
     {
         MarsPlateau? plateau3 = new("6 6");
         MarsRover rover3 = new("1 2 N");
@@ -109,7 +109,7 @@ public class Tests
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
         rover.ExecuteCommand("MMRMMRMRRM");
-        Assert.AreEqual(ChangeDirection.Direction.E, rover.GetDirection());
+        Assert.AreEqual(ChangeDirection.Direction.E, missionControl.GetRoverDetails(0)?.GetDirection());
         Assert.AreEqual(5, rover.GetAxisX());
         Assert.AreEqual(1, rover.GetAxisY());
     }
@@ -120,7 +120,7 @@ public class Tests
         MarsRover rover = new("1 2 N");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
-        Assert.Throws<ArgumentException>(() => rover.ExecuteCommand("LMLMLMLMMMMMMMMM"));
+        Assert.Throws<ArgumentException>(() => missionControl.GetRoverDetails(0)?.ExecuteCommand("LMLMLMLMMMMMMMMM"));
     }
     
     [Test]
@@ -131,7 +131,7 @@ public class Tests
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
         missionControl.TurnLeft(0);
-        Assert.AreEqual(ChangeDirection.Direction.W, rover.roverDirection);
+        Assert.AreEqual(ChangeDirection.Direction.W, missionControl.GetRoverDetails(0)?.GetDirection());
     }
     
     [Test]
@@ -143,7 +143,7 @@ public class Tests
         missionControl.DeployRover(rover,plateau);
         missionControl.TurnLeft(0);
         missionControl.Move(0);
-        Assert.AreEqual(ChangeDirection.Direction.W, rover.roverDirection);
+        Assert.AreEqual(ChangeDirection.Direction.W, missionControl.GetRoverDetails(0)?.GetDirection());
         Assert.AreEqual(0, rover.GetAxisX());
         Assert.AreEqual(2, rover.GetAxisY());
     }
@@ -158,7 +158,7 @@ public class Tests
             missionControl.DeployRover(rover,plateau);
             
             missionControl.ExecuteCommand(0,"LMLMLMLMM");
-            Assert.AreEqual(ChangeDirection.Direction.N, rover.roverDirection);
+            Assert.AreEqual(ChangeDirection.Direction.N, missionControl.GetRoverDetails(0)?.GetDirection());
             Assert.AreEqual(1, rover.GetAxisX());
             Assert.AreEqual(3, rover.GetAxisY());
     }
@@ -179,7 +179,16 @@ public class Tests
         MarsRover rover = new("1 2 N");
         rover.ExecuteCommand("B");
         Assert.AreEqual(ChangeDirection.Direction.S, rover.roverDirection);
-    } 
+    }
+    [Test]
     
-    
+    public void MissionControl_Should_Turn_The_Rover_180_Degree_With_B_Command()
+    {
+        MarsPlateau? plateau = new("5 5");
+        MarsRover rover = new("1 2 N");
+        var missionControl = new MissionControl();
+        missionControl.DeployRover(rover,plateau);
+        missionControl.ExecuteCommand(0,"B");
+        Assert.AreEqual(ChangeDirection.Direction.S, missionControl.GetRoverDetails(0)?.GetDirection());
+    }
 }
