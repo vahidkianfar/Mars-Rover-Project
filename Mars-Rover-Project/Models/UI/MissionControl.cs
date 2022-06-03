@@ -29,5 +29,5 @@ public class MissionControl
     public void TurnRight(int roverNumber)=>_roverList?[roverNumber]?.TurnRight();
     public void TurnAround(int roverNumber)=>_roverList?[roverNumber]?.TurnAround();
     public void Move(int roverNumber)=>_roverList?[roverNumber]?.Move();
-    public void ExecuteCommand(int roverNumber, string? getMovement)=>_roverList?[roverNumber]?.ExecuteCommand(getMovement);
+    public void ExecuteCommand(int roverNumber, string? getMovement)=>_roverList?[roverNumber]?.ExecuteCommand(getMovement?.ToUpper());
 }

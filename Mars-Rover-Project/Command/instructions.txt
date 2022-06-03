@@ -1,5 +1,5 @@
 7 5
 2 2 N
-LM
+LMM
 3 3 E
-MR
+BM

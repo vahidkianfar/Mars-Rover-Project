@@ -28,7 +28,7 @@ public class UserInputs
     public void GrabMovementInstructions()
     {
         var commands = Console.ReadLine()!;
-        userCommands?.Add(commands);
+        userCommands?.Add(commands.ToUpper());
     }
 
     public void Conversion(int plateauLenght, int plateauWidth, int rover1Lenght, int rover1Width,

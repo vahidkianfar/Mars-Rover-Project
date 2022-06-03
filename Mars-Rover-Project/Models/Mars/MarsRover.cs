@@ -32,7 +32,7 @@ public class MarsRover: IVehicle
         if (!Validator.CommandValidator(getMovement)) 
             throw new ArgumentException("Invalid movement Command");
         
-        foreach (var executable in getMovement.Select(NavigationInterpreter.SetNavigation))
+        foreach (var executable in getMovement!.ToUpper().Select(NavigationInterpreter.SetNavigation))
              executable.RunCommand(this);
     }
     public void SetAxisX(int axisX)

@@ -41,13 +41,13 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             
             else
             {
-                missionControl.ExecuteCommand(0,instructions[2]);
+                missionControl.ExecuteCommand(0,instructions[2]?.ToUpper());
                 if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                     CollisionMessages.CollisionMessageForDeploymentSecondRover();
                 
                 else
                 {
-                    missionControl.ExecuteCommand(1,instructions[4]);
+                    missionControl.ExecuteCommand(1,instructions[4]?.ToUpper());
                     if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                         CollisionMessages.CollisionMessageForSameDestination();
                     
