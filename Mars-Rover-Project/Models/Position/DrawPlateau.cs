@@ -30,8 +30,9 @@ public class DrawPlateau
           ctx.Refresh();
           await Task.Delay(delayTable);
         }
-
+        
         var counter = 0;
+        
         while(counter<roverCounter)
         {
           table.UpdateCell(plateauWidth - missionControl.GetRoverDetails(counter)!.GetAxisY(),
@@ -44,8 +45,6 @@ public class DrawPlateau
         table.Title = new TableTitle("\nFinal position of Rovers");
         table.Caption = new TableTitle("Plateau");
       });
-    
     return table;
-  
   }
 }

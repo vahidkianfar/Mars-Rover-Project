@@ -9,9 +9,7 @@ public class MissionControl
     public bool IsMissionComplete { get; set; }
     public static List<IVehicle?>? _roverList;
     public static ISurface? Plateau { get; set; }
-
     public MissionControl()=>_roverList = new List<IVehicle?>();
-
     private static bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) =>
         rover2 != null && rover1 != null && rover1.GetAxisX() == rover2.GetAxisX() 
         && rover1.GetAxisY() == rover2.GetAxisY();

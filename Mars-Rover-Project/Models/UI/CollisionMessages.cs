@@ -24,26 +24,17 @@ public class CollisionMessages
         SOSMorseCode();
     }
     
-    
     private static void SOSMorseCode()
     {
         var sequence = Enumerable.Range(0, 3).ToList();
-
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\n ▄ ▄ ▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄ ▄ ▄ SOS code has been sent to the Mars Rover Team.  ▄ ▄ ▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄ ▄ ▄  \n");
         Console.ForegroundColor = ConsoleColor.White;
-
         sequence.ForEach(e => Console.Beep(650, 50));
-
         Thread.Sleep(100);
-
         sequence.ForEach(e => Console.Beep(650, 200));
-
         Thread.Sleep(100);
-
         sequence.ForEach(e => Console.Beep(650, 50));
-
         Thread.Sleep(500);
-
     }
 }

@@ -6,12 +6,9 @@ public class UserInputs
 {
     public static MarsPlateau? userPlateau { get; private set; }
     public static MarsRover? userRover { get; private set; }
-
     public List<string?>? userCommands;
-
     public UserInputs()=> userCommands = new List<string?>();
-
-
+    
     public static void GrabPlateauSize()
     {
         var plateauSize = Console.ReadLine()!;
@@ -25,6 +22,7 @@ public class UserInputs
         var rover = new MarsRover(roverPosition);
         userRover = rover;
     }
+    
     public void GrabMovementInstructions()
     {
         var commands = Console.ReadLine()!;

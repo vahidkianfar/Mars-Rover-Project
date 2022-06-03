@@ -9,16 +9,10 @@ public class InstructionExample
     public static void InputExampleForPlateauSize() => Write("Enter the Plateau size (e.g \"5 5\"): ");
 
     public static void InputExampleForDeploymentPosition() =>
-        Write("Enter the Deployment Position of first Rover (e.g \"1 2 N\"): ");
-
-    public static void InputExampleForSecondDeploymentPosition() =>
-        Write("Enter the Deployment Position of second Rover (e.g \"3 3 E\"): ");
-
+        Write("Enter the Deployment Position of the Rover (e.g \"1 1 N\"): ");
+    
     public static void InputExampleForInstructionFirstRover() =>
-        Write("Enter movement instructions for the first Rover (e.g \"LMLMLMLMM\"): ");
-
-    public static void InputExampleForInstructionSecondRover() =>
-        Write("Enter movement instructions for second Rover (e.g \"MMRMMRMRRM\"): ");
+        Write("Enter movement instructions for the Rover (e.g \"RLMB\"): ");
 
     public static void ProgressBar()
     {

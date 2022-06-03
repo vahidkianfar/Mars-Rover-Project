@@ -61,4 +61,3 @@ public class MarsRover: IVehicle
     public void GetCurrentPositionForConsole()=>Console.WriteLine($"position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
     public string GetCurrentPositionForFile()=>$"position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
 }
-
