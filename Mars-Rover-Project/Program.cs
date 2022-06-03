@@ -1,4 +1,6 @@
-﻿using Mars_Rover_Project.Command;
+﻿using System.Diagnostics.Metrics;
+using Mars_Rover_Project.Command;
+using Mars_Rover_Project.Models.General_Interfaces;
 using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
@@ -57,16 +59,16 @@ if(int.TryParse(Console.ReadLine(), out var choice))
 
                         Console.WriteLine("\nOutput file has been created!");
 
-                        var drawTable= new DrawPlateau();
-                        await drawTable.LiveTable
-                        (
-                            Convert.ToInt32(instructions[0]!.Split(' ')[0]),
-                            Convert.ToInt32(instructions[0]!.Split(' ')[1]),
-                            missionControl.GetRoverDetails(0)!.GetAxisX(),
-                            missionControl.GetRoverDetails(0)!.GetAxisY(), 
-                            missionControl.GetRoverDetails(1)!.GetAxisX(),
-                            missionControl.GetRoverDetails(1)!.GetAxisY()
-                        );
+                        // var drawTable= new DrawPlateau();
+                        // await drawTable.LiveTable
+                        // (
+                        //     Convert.ToInt32(instructions[0]!.Split(' ')[0]),
+                        //     Convert.ToInt32(instructions[0]!.Split(' ')[1]),
+                        //     missionControl.GetRoverDetails(0)!.GetAxisX(),
+                        //     missionControl.GetRoverDetails(0)!.GetAxisY(), 
+                        //     missionControl.GetRoverDetails(1)!.GetAxisX(),
+                        //     missionControl.GetRoverDetails(1)!.GetAxisY()
+                        // );
 
                     }
                 }
@@ -93,67 +95,66 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var user = new UserInputs();
                 InstructionExample.InputExampleForPlateauSize();
                 UserInputs.GrabPlateauSize();
+                Console.Write("\nEnter the number of Rovers: ");
+                var roverCounter = Convert.ToInt32(Console.ReadLine()!);
+                var roverCounterForTable=roverCounter;
+                while (roverCounter>0)
+                {
+                    InstructionExample.InputExampleForDeploymentPosition();
+                    UserInputs.GrabRoverPosition();
+                
+                    missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
+                
+                    InstructionExample.InputExampleForInstructionFirstRover();
+                    user.GrabMovementInstructions();
 
-                InstructionExample.InputExampleForDeploymentPosition();
-                UserInputs.GrabRoverPosition();
-                
-                missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
-                
-                InstructionExample.InputExampleForInstructionFirstRover();
-                user.GrabMovementInstructions();
-                
-                InstructionExample.InputExampleForSecondDeploymentPosition();
-                UserInputs.GrabRoverPosition();
-                
-                missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
-                
-                InstructionExample.InputExampleForInstructionSecondRover();
-                user.GrabMovementInstructions();
+                    roverCounter--;
+                }
                 
                 InstructionExample.ProgressBar();
 
-                if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
+                if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
                     CollisionMessages.CollisionMessageForSamePosition();
                 
                 else
                 {
-                    missionControl.ExecuteCommand(0,user.userCommands?[0]);
-                    if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
-                        CollisionMessages.CollisionMessageForDeploymentSecondRover();
-                    
-                    else
+                    for(var commandCounter=0; commandCounter<user.userCommands!.Count; commandCounter++)
                     {
-                        missionControl.ExecuteCommand(1,user.userCommands?[1]);
-                        if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
-                            CollisionMessages.CollisionMessageForSameDestination();
-                        
-                        else
+                        missionControl.ExecuteCommand(commandCounter,user.userCommands![commandCounter]);
+                        if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
                         {
-                            InstructionExample.BeepSoundForSuccess();
-                            Console.Write("\nFirst ");
-                            missionControl.GetRoverDetails(0)?.GetCurrentPositionForConsole();
+                            CollisionMessages.CollisionMessageForDeploymentSecondRover();
+                            break;
+                        }
 
-                            Console.Write("Second ");
-                            missionControl.GetRoverDetails(1)?.GetCurrentPositionForConsole();
-                            
-                            var drawTable= new DrawPlateau();
-                            await drawTable.LiveTable
-                                (
-                                UserInputs.userPlateau!.Lenght_X, 
-                                UserInputs.userPlateau.Width_Y, 
-                                missionControl.GetRoverDetails(0)!.GetAxisX(),
-                                missionControl.GetRoverDetails(0)!.GetAxisY(),
-                                missionControl.GetRoverDetails(1)!.GetAxisX(),
-                                missionControl.GetRoverDetails(1)!.GetAxisY()
-                                );
-
-                            Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
-                            if (Console.ReadKey().Key == ConsoleKey.Q)
-                                Environment.Exit(0);
+                        if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                        {
+                            CollisionMessages.CollisionMessageForSameDestination();
+                            break;
                         }
                     }
+                    
+                    InstructionExample.BeepSoundForSuccess();
 
-                }
+                    for(var positionCounter=0; positionCounter<MissionControl._roverList!.Count; positionCounter++)
+                    {
+                        Console.Write("\nRover " + (positionCounter+1) + " ");
+                        MissionControl._roverList![positionCounter]?.GetCurrentPositionForConsole();
+                    }
+                    
+                    var drawTable= new DrawPlateau();
+                    await drawTable.LiveTable
+                        (
+                        UserInputs.userPlateau!.Lenght_X, 
+                        UserInputs.userPlateau.Width_Y, 
+                        missionControl,
+                        roverCounterForTable
+                        );
+
+                    Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
+                    if (Console.ReadKey().Key == ConsoleKey.Q)
+                        Environment.Exit(0);
+                } 
             }
             catch (Exception ex)
             {

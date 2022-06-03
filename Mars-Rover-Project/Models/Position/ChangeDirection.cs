@@ -60,10 +60,10 @@ public class ChangeDirection
                 marsRover.roverDirection += 2;
                 break;
             case Direction.S:
-                marsRover.roverDirection += 2;
+                marsRover.roverDirection -= 2;
                 break;
             case Direction.W:
-                marsRover.roverDirection += 2;
+                marsRover.roverDirection -= 2;
                 break;
         }
     }

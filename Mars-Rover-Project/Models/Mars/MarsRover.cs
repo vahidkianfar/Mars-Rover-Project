@@ -18,7 +18,7 @@ public class MarsRover: IVehicle
         var roverPosition = new PositionInterpreter(getInitialPosition);
         SetAxisX(roverPosition.initialPosition[0]);
         SetAxisY(roverPosition.initialPosition[1]);
-        SetDirection(roverPosition.initialDirection);
+        SetDirection(roverPosition.initialDirection!);
          _movingTheRover = new MovingTheRover();
          _changeDirection= new ChangeDirection();
     }
@@ -57,8 +57,8 @@ public class MarsRover: IVehicle
     }
     public int GetAxisX()=>_axisX;
     public int GetAxisY()=>_axisY;
-    public Enum? GetDirection()=>roverDirection;
-    public void GetCurrentPositionForConsole()=>Console.WriteLine($"Rover position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
-    public string GetCurrentPositionForFile()=>$"Position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
+    public Enum GetDirection()=>roverDirection;
+    public void GetCurrentPositionForConsole()=>Console.WriteLine($"position: {GetAxisX()} {GetAxisY()} {GetDirection()}");
+    public string GetCurrentPositionForFile()=>$"position: {GetAxisX()} {GetAxisY()} {GetDirection()}";
 }
 

@@ -1,5 +1,6 @@
-﻿using Spectre.Console;
-using static Spectre.Console.BoxBorder;
+﻿using Mars_Rover_Project.Models.General_Interfaces;
+using Mars_Rover_Project.Models.UI;
+using Spectre.Console;
 
 namespace Mars_Rover_Project.Models.Position;
 
@@ -27,9 +28,9 @@ public class DrawPlateau
     return table;
   }
   
-  public async Task<Table> LiveTable(int plateauLenght, int plateauWidth, int rover1Lenght, int rover1Width, int rover2Lenght, int rover2Width)
+  public async Task<Table> LiveTable(int plateauLenght, int plateauWidth, MissionControl missionControl, int roverCounter)
   {
-    var table = new Table().LeftAligned().BorderColor(Color.Aquamarine3);
+    var table = new Table().LeftAligned().BorderColor(Color.Blue);
     var delay = 100;
     await AnsiConsole.Live(table)
       .AutoClear(false)
@@ -50,14 +51,34 @@ public class DrawPlateau
           ctx.Refresh();
           await Task.Delay(delay);
         }
+
+        var counter = 0;
+        while(counter<roverCounter)
+        {
+          table.UpdateCell(plateauWidth - missionControl.GetRoverDetails(counter).GetAxisY(),
+            missionControl.GetRoverDetails(counter).GetAxisX()+1, $"[red]R{counter+1}[/]");
+          ctx.Refresh();
+          await Task.Delay(delay);
+          counter++;
+        }
+        // {
+        //   table.UpdateCell(plateauWidth-missionControl.GetRoverDetails(counter)!.GetAxisY(), missionControl.GetRoverDetails(counter)!.GetAxisX()+1, "[red]R[/]");
+        //   ctx.Refresh();
+        //   await Task.Delay(delay);
+        // }
         
-        table.UpdateCell(plateauWidth-rover1Width, rover1Lenght+1, "[red]R1[/]");
-        ctx.Refresh();
-        await Task.Delay(delay);
+        // table.UpdateCell(plateauWidth-missionControl.GetRoverDetails(0)!.GetAxisY(), missionControl.GetRoverDetails(0)!.GetAxisX()+1, "[red]R1[/]");
+        // ctx.Refresh();
+        // await Task.Delay(delay);
         
-        table.UpdateCell(plateauWidth-rover2Width, rover2Lenght+1, "[red]R2[/]");
-        ctx.Refresh();
-        await Task.Delay(delay);
+        
+        // table.UpdateCell(plateauWidth-rover1Width, rover1Lenght+1, "[red]R1[/]");
+        // ctx.Refresh();
+        // await Task.Delay(delay);
+        //
+        // table.UpdateCell(plateauWidth-rover2Width, rover2Lenght+1, "[red]R2[/]");
+        // ctx.Refresh();
+        // await Task.Delay(delay);
         
         table.Caption = new TableTitle("Plateau");
         table.Title = new TableTitle("\nFinal position of Rovers");

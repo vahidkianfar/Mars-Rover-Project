@@ -4,12 +4,12 @@ namespace Mars_Rover_Project.Models.Position;
 public class PositionInterpreter:IPosition
 {
     public List<int> initialPosition { get; set; }
-    public string initialDirection { get; private set; }
-    public PositionInterpreter(string? getPositionAndDirection)=>SetPositionAndDirection(getPositionAndDirection);
+    public string? initialDirection { get; private set; }
 
-    private void SetPositionAndDirection(string? getPositionAndDirection)
+    public PositionInterpreter(string? getPositionAndDirection)
     {
-        var positionArray = getPositionAndDirection.Split(" ");
+        
+        var positionArray = getPositionAndDirection!.Split(" ");
 
         initialPosition = new List<int>
         {
