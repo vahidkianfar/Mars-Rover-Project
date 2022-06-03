@@ -23,6 +23,7 @@ public class InstructionExample
     public static void ProgressBar()
     {
         //Clear();
+        ForegroundColor = ConsoleColor.Red;
         Write("\nLoading");
         for (var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
         {
@@ -32,7 +33,7 @@ public class InstructionExample
         }
         ForegroundColor = ConsoleColor.Green;
 
-        Write(" Done!\n");
+        Write(" Done!\n\n");
         ForegroundColor = ConsoleColor.White;
     }
 

@@ -30,20 +30,5 @@ public class UserInputs
         var commands = Console.ReadLine()!;
         userCommands?.Add(commands.ToUpper());
     }
-
-    public void Conversion(int plateauLenght, int plateauWidth, int rover1Lenght, int rover1Width,
-        int rover2Lenght, int rover2Width)
-    {
-        var tableDetails = new List<int>
-        {
-            plateauLenght,
-            plateauWidth,
-            rover1Lenght,
-            rover1Width,
-            rover2Lenght,
-            rover2Width
-        };
-
-    }
-
+    
 }
