@@ -1,10 +1,8 @@
-﻿using System.Diagnostics.Metrics;
-using Mars_Rover_Project.Command;
-using Mars_Rover_Project.Models.General_Interfaces;
+﻿using Mars_Rover_Project.Command;
 using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
-using Spectre.Console;
+
 
 Console.WriteLine("\n*** Mars Rover Controller ***");
 Console.WriteLine("\nPlease choice an option:");
@@ -59,16 +57,14 @@ if(int.TryParse(Console.ReadLine(), out var choice))
 
                         Console.WriteLine("\nOutput file has been created!");
 
-                        // var drawTable= new DrawPlateau();
-                        // await drawTable.LiveTable
-                        // (
-                        //     Convert.ToInt32(instructions[0]!.Split(' ')[0]),
-                        //     Convert.ToInt32(instructions[0]!.Split(' ')[1]),
-                        //     missionControl.GetRoverDetails(0)!.GetAxisX(),
-                        //     missionControl.GetRoverDetails(0)!.GetAxisY(), 
-                        //     missionControl.GetRoverDetails(1)!.GetAxisX(),
-                        //     missionControl.GetRoverDetails(1)!.GetAxisY()
-                        // );
+                        var drawTable= new DrawPlateau();
+                        await drawTable.LiveTable
+                        (
+                            Convert.ToInt32(instructions[0]!.Split(' ')[0]),
+                            Convert.ToInt32(instructions[0]!.Split(' ')[1]),
+                            missionControl,
+                            2
+                        );
 
                     }
                 }
@@ -139,7 +135,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     for(var positionCounter=0; positionCounter<MissionControl._roverList!.Count; positionCounter++)
                     {
                         Console.Write("\nRover " + (positionCounter+1) + " ");
-                        MissionControl._roverList![positionCounter]?.GetCurrentPositionForConsole();
+                        MissionControl._roverList[positionCounter]?.GetCurrentPositionForConsole();
                     }
                     
                     var drawTable= new DrawPlateau();
