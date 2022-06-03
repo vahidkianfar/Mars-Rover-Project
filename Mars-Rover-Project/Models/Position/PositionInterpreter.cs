@@ -5,9 +5,9 @@ public class PositionInterpreter:IPosition
 {
     public List<int> initialPosition { get; set; }
     public string initialDirection { get; private set; }
-    public PositionInterpreter(string getPositionAndDirection)=>SetPositionAndDirection(getPositionAndDirection);
+    public PositionInterpreter(string? getPositionAndDirection)=>SetPositionAndDirection(getPositionAndDirection);
 
-    private void SetPositionAndDirection(string getPositionAndDirection)
+    private void SetPositionAndDirection(string? getPositionAndDirection)
     {
         var positionArray = getPositionAndDirection.Split(" ");
 

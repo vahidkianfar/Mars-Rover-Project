@@ -7,7 +7,7 @@ public class MarsPlateau:ISurface
 {
     public int Lenght_X { get; set; }
     public int Width_Y { get; set; }
-    public MarsPlateau(string gridSize)
+    public MarsPlateau(string? gridSize)
     {
         if(!Validator.RectangularPlateauValidator(gridSize))
             throw new ArgumentException("Invalid grid size", nameof(gridSize));

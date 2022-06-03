@@ -4,19 +4,46 @@ namespace Mars_Rover_Project.Models.UI;
 
 public class UserInputs
 {
-    public static MarsPlateau? userPlateau{get; private set;}
-    public static MarsRover? userRover{get; private set;}
+    public static MarsPlateau? userPlateau { get; private set; }
+    public static MarsRover? userRover { get; private set; }
+
+    public List<string?>? userCommands;
+
+    public UserInputs()=> userCommands = new List<string?>();
+
+
     public static void GrabPlateauSize()
     {
         var plateauSize = Console.ReadLine()!;
         var plateau = new MarsPlateau(plateauSize);
-        userPlateau=plateau;
+        userPlateau = plateau;
     }
-    
+
     public static void GrabRoverPosition()
     {
         var roverPosition = Console.ReadLine()!;
         var rover = new MarsRover(roverPosition);
-        userRover=rover;
+        userRover = rover;
     }
+    public void GrabMovementInstructions()
+    {
+        var commands = Console.ReadLine()!;
+        userCommands?.Add(commands);
+    }
+
+    public void Conversion(int plateauLenght, int plateauWidth, int rover1Lenght, int rover1Width,
+        int rover2Lenght, int rover2Width)
+    {
+        var tableDetails = new List<int>
+        {
+            plateauLenght,
+            plateauWidth,
+            rover1Lenght,
+            rover1Width,
+            rover2Lenght,
+            rover2Width
+        };
+
+    }
+
 }

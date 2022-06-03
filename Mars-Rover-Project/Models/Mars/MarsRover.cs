@@ -13,7 +13,7 @@ public class MarsRover: IVehicle
     private MovingTheRover _movingTheRover { get; }
     private ChangeDirection _changeDirection { get; }
     public ChangeDirection.Direction roverDirection { get; set; }
-    public MarsRover(string getInitialPosition)
+    public MarsRover(string? getInitialPosition)
     {
         var roverPosition = new PositionInterpreter(getInitialPosition);
         SetAxisX(roverPosition.initialPosition[0]);
@@ -27,7 +27,7 @@ public class MarsRover: IVehicle
     public void TurnRight()=>_changeDirection.TurnRight(this);
     public void TurnAround()=>_changeDirection.TurnAround(this);
     public void Move()=>_movingTheRover.MoveForward(this);
-    public void ExecuteCommand(string getMovement)
+    public void ExecuteCommand(string? getMovement)
     {
         if (!Validator.CommandValidator(getMovement)) 
             throw new ArgumentException("Invalid movement Command");
