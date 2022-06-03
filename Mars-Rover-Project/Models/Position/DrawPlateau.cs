@@ -58,6 +58,9 @@ public class DrawPlateau
         table.UpdateCell(plateauWidth-rover2Width, rover2Lenght+1, "[red]R2[/]");
         ctx.Refresh();
         await Task.Delay(delay);
+        
+        table.Caption = new TableTitle("Plateau");
+        table.Title = new TableTitle("\nFinal position of Rovers");
       });
     
     return table;

@@ -58,14 +58,15 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                         Console.WriteLine("\nOutput file has been created!");
 
                         var drawTable= new DrawPlateau();
-                        var table = drawTable.LiveTable(Convert.ToInt32(instructions[0]!.Split(' ')[0]),
+                        await drawTable.LiveTable
+                        (
+                            Convert.ToInt32(instructions[0]!.Split(' ')[0]),
                             Convert.ToInt32(instructions[0]!.Split(' ')[1]),
                             missionControl.GetRoverDetails(0)!.GetAxisX(),
                             missionControl.GetRoverDetails(0)!.GetAxisY(), 
                             missionControl.GetRoverDetails(1)!.GetAxisX(),
-                            missionControl.GetRoverDetails(1)!.GetAxisY());
-                        // AnsiConsole.Write(table);
-                        await table;
+                            missionControl.GetRoverDetails(1)!.GetAxisY()
+                        );
 
                     }
                 }
@@ -136,11 +137,15 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                             missionControl.GetRoverDetails(1)?.GetCurrentPositionForConsole();
                             
                             var drawTable= new DrawPlateau();
-                            var table = drawTable.LiveTable(UserInputs.userPlateau!.Lenght_X, UserInputs.userPlateau.Width_Y, 
-                                missionControl.GetRoverDetails(0)!.GetAxisX(), missionControl.GetRoverDetails(0)!.GetAxisY(),
-                                missionControl.GetRoverDetails(1)!.GetAxisX(), missionControl.GetRoverDetails(1)!.GetAxisY());
-                            //AnsiConsole.Write(table);
-                            await table;
+                            await drawTable.LiveTable
+                                (
+                                UserInputs.userPlateau!.Lenght_X, 
+                                UserInputs.userPlateau.Width_Y, 
+                                missionControl.GetRoverDetails(0)!.GetAxisX(),
+                                missionControl.GetRoverDetails(0)!.GetAxisY(),
+                                missionControl.GetRoverDetails(1)!.GetAxisX(),
+                                missionControl.GetRoverDetails(1)!.GetAxisY()
+                                );
 
                             Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
                             if (Console.ReadKey().Key == ConsoleKey.Q)
