@@ -1,5 +1,11 @@
 7 5
 2 2 N
-LMM
+BMM
 3 3 E
+M
+4 4 W
+LLMMM
+2 3 N
+L
+3 5 N
 BM

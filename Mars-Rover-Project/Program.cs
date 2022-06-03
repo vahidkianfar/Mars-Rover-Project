@@ -54,18 +54,18 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 }
                 
                 InstructionExample.BeepSoundForSuccess();
+                var positions = new List<string?>();
                 for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
                 {
                     Console.Write("Rover " + (printPositionCounter+1) + " ");
                     MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForConsole();
+                    positions.Add(MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForFile());
                 }
-
-                // var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\Output.txt",
-                //             "First Rover " + missionControl.GetRoverDetails(0)?.GetCurrentPositionForFile() + "\n" + "Second Rover " + missionControl.GetRoverDetails(1)?.GetCurrentPositionForFile());
-                // writer.Write();
-                //
-                //         Console.WriteLine("\nOutput file has been created!");
-                //
+                var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\FinalPosition.txt",positions);
+                writer.Write();
+                
+                
+                
                 var drawTable= new DrawPlateau();
                 await drawTable.LiveTable
                 (

@@ -1,2 +1,0 @@
-First Rover position: 0 2 W
-Second Rover position: 2 3 W

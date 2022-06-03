@@ -11,8 +11,8 @@ public class MissionControl
     public static ISurface? Plateau { get; set; }
 
     public MissionControl()=>_roverList = new List<IVehicle?>();
-    
-    public static bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) =>
+
+    private static bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) =>
         rover2 != null && rover1 != null && rover1.GetAxisX() == rover2.GetAxisX() 
         && rover1.GetAxisY() == rover2.GetAxisY();
 
