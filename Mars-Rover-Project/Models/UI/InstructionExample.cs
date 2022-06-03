@@ -50,7 +50,7 @@ public class InstructionExample
 
     public static void BeepSoundForSuccess()
     {
-        const int freq = 4000;
+        const int freq = 2000;
         const int duration = 500;
         Beep(freq, duration);
     }

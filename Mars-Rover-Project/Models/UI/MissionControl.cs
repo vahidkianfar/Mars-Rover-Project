@@ -7,14 +7,15 @@ namespace Mars_Rover_Project.Models.UI;
 public class MissionControl
 {
     public bool IsMissionComplete { get; set; }
-    public static List<IVehicle?>? Rover;
-    public static MarsPlateau? Plateau { get; set; }
+    private static List<IVehicle?>? Rover;
+    public static ISurface? Plateau { get; set; }
 
     public MissionControl()=>Rover = new List<IVehicle?>();
     
     public static bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) =>
         rover2 != null && rover1 != null && rover1.GetAxisX() == rover2.GetAxisX() 
         && rover1.GetAxisY() == rover2.GetAxisY();
+    
     public void DeployRover(IVehicle? rover, MarsPlateau? marsPlateau)
     {
         if (rover != null && !Validator.DeploymentPositionValidator(rover.GetAxisX(), rover.GetAxisY(), marsPlateau))
@@ -22,7 +23,7 @@ public class MissionControl
         Plateau = marsPlateau;
         Rover?.Add(rover);
     }
-    public static MarsPlateau? GetPlateauDetails()=>Plateau;
+    public static ISurface? GetPlateauDetails()=>Plateau;
     public IVehicle? GetRoverDetails(int roverNumber) => Rover?[roverNumber];
     public void TurnLeft(int roverNumber)=>Rover?[roverNumber]?.TurnLeft();
     public void TurnRight(int roverNumber)=>Rover?[roverNumber]?.TurnRight();

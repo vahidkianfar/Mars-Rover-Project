@@ -1,6 +1,5 @@
 ﻿using System.Text.RegularExpressions;
 using Mars_Rover_Project.Models.Mars;
-using Mars_Rover_Project.Models.Position;
 
 namespace Mars_Rover_Project.Models.Validation;
 

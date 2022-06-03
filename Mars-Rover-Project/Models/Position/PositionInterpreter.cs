@@ -1,6 +1,4 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
-using Mars_Rover_Project.Models.Mars;
-using Mars_Rover_Project.Models.Validation;
 
 namespace Mars_Rover_Project.Models.Position;
 public class PositionInterpreter:IPosition
