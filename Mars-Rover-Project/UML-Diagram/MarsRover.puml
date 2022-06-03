@@ -46,11 +46,11 @@ class MarsRover implements IVehicle
 }
 class MissionControl
 {
-+ MarsRover marsRover
-+ MarsPlateau marsPlateau
+- List<IVehicle> _roverList
++ ISurface plateau
 
-+ CollisionDetection()
-+ DeployRover()
++ CollisionDetection(IVehicle)
++ DeployRover(IVehicle, )
 + SetMissionPlateau()
 + GetMarsPlateau()
 

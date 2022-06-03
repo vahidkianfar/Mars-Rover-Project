@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Mars_Rover_Project.Models.General_Interfaces;
 using Mars_Rover_Project.Models.Mars;
 
 namespace Mars_Rover_Project.Models.Validation;
@@ -11,8 +12,8 @@ public class Validator
                                                              direction.ToUpper() == "S" || 
                                                              direction.ToUpper() == "E" ||
                                                              direction.ToUpper() == "W";
-    public static bool DeploymentPositionValidator(int xCoordinate, int yCoordinate, MarsPlateau? plateau)=>
-        plateau != null && xCoordinate >= 0 && xCoordinate <= plateau.GetLenght() && yCoordinate >= 0 && yCoordinate <= plateau.GetWidth();
+    public static bool DeploymentPositionValidator(int xCoordinate, int yCoordinate, ISurface? plateau)=>
+        plateau != null && xCoordinate >= 0 && xCoordinate <= plateau.Lenght_X && yCoordinate >= 0 && yCoordinate <= plateau.Width_Y;
     public static bool RectangularPlateauValidator(string? plateauSize) => Regex.IsMatch(plateauSize, @"^[0-9]{1,2} [0-9]{1,2}$");
 
 }

@@ -16,7 +16,7 @@ public class MissionControl
         rover2 != null && rover1 != null && rover1.GetAxisX() == rover2.GetAxisX() 
         && rover1.GetAxisY() == rover2.GetAxisY();
     
-    public void DeployRover(IVehicle? rover, MarsPlateau? marsPlateau)
+    public void DeployRover(IVehicle? rover, ISurface? marsPlateau)
     {
         if (rover != null && !Validator.DeploymentPositionValidator(rover.GetAxisX(), rover.GetAxisY(), marsPlateau))
             throw new ArgumentException("Deployment Positions are not Valid");

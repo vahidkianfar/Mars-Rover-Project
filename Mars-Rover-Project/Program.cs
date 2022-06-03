@@ -21,36 +21,26 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
             var missionControl = new MissionControl();
             InstructionExample.ProgressBar();
-
             var readFile = new ReadFromFile();
             var lines = readFile.Read();
             var instructions = lines.ToList();
-
             var plateau = new MarsPlateau(instructions[0]);
             var rover1 = new MarsRover(instructions[1]);
-         
-            
             missionControl.DeployRover(rover1, plateau);
-            
             var rover2 = new MarsRover(instructions[3]);
-            
             missionControl.DeployRover(rover2, plateau);
-            
             if (MissionControl.CollisionDetection(rover1, rover2))
                 CollisionMessages.CollisionMessageForSamePosition();
-            
             else
             {
                 missionControl.ExecuteCommand(0,instructions[2]?.ToUpper());
                 if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                     CollisionMessages.CollisionMessageForDeploymentSecondRover();
-                
                 else
                 {
                     missionControl.ExecuteCommand(1,instructions[4]?.ToUpper());
                     if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                         CollisionMessages.CollisionMessageForSameDestination();
-                    
                     else
                     {
                         InstructionExample.BeepSoundForSuccess();
@@ -66,25 +56,17 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                         writer.Write();
 
                         Console.WriteLine("\nOutput file has been created!");
-                        
-                        
-                        //
-                        // var plateauLenght = Convert.ToInt32(instructions[0].Split(' ')[0]);
-                        // var plateauWidth = Convert.ToInt32(instructions[0].Split(' ')[1]);
-                        // var rover1Lenght = missionControl.GetRoverDetails(0)!.GetAxisX();
-                        // var rover1Width = missionControl.GetRoverDetails(0)!.GetAxisY();
-                        // var rover2Lenght = missionControl.GetRoverDetails(1)!.GetAxisX();
-                        // var rover2Width = missionControl.GetRoverDetails(1)!.GetAxisY();
-                        
+
                         var drawTable= new DrawPlateau();
-                        var table = drawTable.CreateSurfaceTable(Convert.ToInt32(instructions[0]!.Split(' ')[0]),
+                        var table = drawTable.LiveTable(Convert.ToInt32(instructions[0]!.Split(' ')[0]),
                             Convert.ToInt32(instructions[0]!.Split(' ')[1]),
                             missionControl.GetRoverDetails(0)!.GetAxisX(),
                             missionControl.GetRoverDetails(0)!.GetAxisY(), 
                             missionControl.GetRoverDetails(1)!.GetAxisX(),
                             missionControl.GetRoverDetails(1)!.GetAxisY());
-                        AnsiConsole.Write(table);
-                        
+                        // AnsiConsole.Write(table);
+                        await table;
+
                     }
                 }
             }
@@ -112,20 +94,15 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 UserInputs.GrabPlateauSize();
 
                 InstructionExample.InputExampleForDeploymentPosition();
-                
                 UserInputs.GrabRoverPosition();
-
                 
                 missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
                 
-               
                 InstructionExample.InputExampleForInstructionFirstRover();
                 user.GrabMovementInstructions();
                 
-
                 InstructionExample.InputExampleForSecondDeploymentPosition();
                 UserInputs.GrabRoverPosition();
-              
                 
                 missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
                 
@@ -143,7 +120,6 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     if (MissionControl.CollisionDetection(missionControl.GetRoverDetails(0), missionControl.GetRoverDetails(1)))
                         CollisionMessages.CollisionMessageForDeploymentSecondRover();
                     
-
                     else
                     {
                         missionControl.ExecuteCommand(1,user.userCommands?[1]);
@@ -160,10 +136,11 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                             missionControl.GetRoverDetails(1)?.GetCurrentPositionForConsole();
                             
                             var drawTable= new DrawPlateau();
-                            var table = drawTable.CreateSurfaceTable(UserInputs.userPlateau!.Lenght_X, UserInputs.userPlateau.Width_Y, 
+                            var table = drawTable.LiveTable(UserInputs.userPlateau!.Lenght_X, UserInputs.userPlateau.Width_Y, 
                                 missionControl.GetRoverDetails(0)!.GetAxisX(), missionControl.GetRoverDetails(0)!.GetAxisY(),
                                 missionControl.GetRoverDetails(1)!.GetAxisX(), missionControl.GetRoverDetails(1)!.GetAxisY());
-                            AnsiConsole.Write(table);
+                            //AnsiConsole.Write(table);
+                            await table;
 
                             Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
                             if (Console.ReadKey().Key == ConsoleKey.Q)
