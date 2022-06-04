@@ -6,34 +6,34 @@ namespace Mars_Rover_Project.Models.Mars;
 
 public class MovingTheRover:IMovementDirection
 {
-    public void MoveForward(MarsRover marsRover)
+    public void MoveForward(IVehicle rover)
     {
-        switch (marsRover.GetDirection())
+        switch (rover.GetDirection())
         {
-            case ChangeDirection.Direction.N when marsRover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y:
-                marsRover.SetAxisY(marsRover.GetAxisY() + 1);
+            case ChangeDirection.Direction.N when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y:
+                rover.SetAxisY(rover.GetAxisY() + 1);
                 break;
-            case ChangeDirection.Direction.E when marsRover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
-                marsRover.SetAxisX(marsRover.GetAxisX()+1);
+            case ChangeDirection.Direction.E when rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
+                rover.SetAxisX(rover.GetAxisX()+1);
                 break;
-            case ChangeDirection.Direction.S when marsRover.GetAxisY() > 0: marsRover.SetAxisY(marsRover.GetAxisY() - 1);
+            case ChangeDirection.Direction.S when rover.GetAxisY() > 0: rover.SetAxisY(rover.GetAxisY() - 1);
                 break;
-            case ChangeDirection.Direction.W when marsRover.GetAxisX() > 0: marsRover.SetAxisX(marsRover.GetAxisX()-1);
+            case ChangeDirection.Direction.W when rover.GetAxisX() > 0: rover.SetAxisX(rover.GetAxisX()-1);
                 break;
             default:
                 throw new ArgumentException("Movement failed!, Rover should not go further than plateau boundaries");
         }
     }
 
-    public void MoveBackward(MarsRover marsRover)
+    public void MoveBackward(IVehicle rover)
     {
         throw new NotImplementedException();
     }
-    public void MoveLeft(MarsRover marsRover)
+    public void MoveLeft(IVehicle rover)
     {
         throw new NotImplementedException();
     }
-    public void MoveRight(MarsRover marsRover)
+    public void MoveRight(IVehicle rover)
     {
         throw new NotImplementedException();
     }

@@ -4,7 +4,7 @@ using static System.Console;
 namespace Mars_Rover_Project.Models.UI;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public class InstructionExample
+public class UserGuideline
 {
     public static void InputExampleForPlateauSize() => Write("Enter the Plateau size (e.g \"5 5\"): ");
 
@@ -49,7 +49,4 @@ public class InstructionExample
         const int duration = 500;
         Beep(freq, duration);
     }
-    
-   
-
 }

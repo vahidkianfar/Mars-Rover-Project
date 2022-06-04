@@ -1,4 +1,5 @@
-﻿using Mars_Rover_Project.Models.Mars;
+﻿using Mars_Rover_Project.Models.General_Interfaces;
+using Mars_Rover_Project.Models.Mars;
 
 namespace Mars_Rover_Project.Models.Position;
 
@@ -11,59 +12,59 @@ public class ChangeDirection
         S,
         W
     } 
-    public void TurnLeft(MarsRover marsRover)
+    public void TurnLeft(IVehicle rover)
     {
-        switch (marsRover.GetDirection())
+        switch (rover.GetDirection())
         {
             case Direction.N:
-                marsRover.roverDirection+=3;
+                rover.roverDirection+=3;
                 break;
             case Direction.E:
-                marsRover.roverDirection--;
+                rover.roverDirection--;
                 break;
             case Direction.S:
-                marsRover.roverDirection--;
+                rover.roverDirection--;
                 break;
             case Direction.W:
-                marsRover.roverDirection--;
+                rover.roverDirection--;
                 break;
         }
     }
     
-    public void TurnRight(MarsRover marsRover)
+    public void TurnRight(IVehicle rover)
     {
-        switch (marsRover.GetDirection())
+        switch (rover.GetDirection())
         {
             case Direction.N:
-                marsRover.roverDirection++;
+                rover.roverDirection++;
                 break;
             case Direction.E:
-                marsRover.roverDirection++;
+                rover.roverDirection++;
                 break;
             case Direction.S:
-                marsRover.roverDirection++;
+                rover.roverDirection++;
                 break;
             case Direction.W:
-                marsRover.roverDirection-=3;
+                rover.roverDirection-=3;
                 break;
         }
     }
     
-    public void TurnAround(MarsRover marsRover)
+    public void TurnAround(IVehicle rover)
     {
-        switch (marsRover.GetDirection())
+        switch (rover.GetDirection())
         {
             case Direction.N:
-                marsRover.roverDirection += 2;
+                rover.roverDirection += 2;
                 break;
             case Direction.E:
-                marsRover.roverDirection += 2;
+                rover.roverDirection += 2;
                 break;
             case Direction.S:
-                marsRover.roverDirection -= 2;
+                rover.roverDirection -= 2;
                 break;
             case Direction.W:
-                marsRover.roverDirection -= 2;
+                rover.roverDirection -= 2;
                 break;
         }
     }

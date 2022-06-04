@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace Mars_Rover_Project.Models.Position;
 
-public class DrawPlateau
+public class DrawPlateauAndRovers
 {
   public async Task<Table> LiveTable(int plateauLenght, int plateauWidth, MissionControl missionControl, int roverCounter)
   {

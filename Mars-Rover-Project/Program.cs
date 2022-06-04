@@ -40,7 +40,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 Console.WriteLine("\nNew instructions have been saved to file.");
                 Console.ResetColor();
             }
-            InstructionExample.ProgressBar();
+            UserGuideline.ProgressBar();
             var readFile = new ReadFromFile();
             var lines = readFile.Read();
             var instructions = lines.ToList();
@@ -64,7 +64,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     missionControl.ExecuteCommand(simpleCounter,instructions[commandLineCounter]);
                     /* if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
                          {
-                             CollisionMessages.CollisionMessageForDeploymentSecondRover();
+                             CollisionMessages.CollisionMessageForDeploymentOtherRovers();
                              break;
                         }*/
                     if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
@@ -75,7 +75,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     simpleCounter++;
                 }
                 
-                InstructionExample.BeepSoundForSuccess();
+                UserGuideline.BeepSoundForSuccess();
                 var positions = new List<string?>();
                 for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
                 {
@@ -86,7 +86,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\FinalPosition.txt",positions);
                 writer.Write();
                 
-                var drawTable= new DrawPlateau();
+                var drawTable= new DrawPlateauAndRovers();
                 await drawTable.LiveTable
                 (
                     Convert.ToInt32(instructions[0]!.Split(' ')[0]),
@@ -97,7 +97,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
         }
         catch (Exception ex)
         {
-            InstructionExample.BeepSoundForError();
+            UserGuideline.BeepSoundForError();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nSystem Message:--> {0} <--", ex.Message);
             Console.ForegroundColor = ConsoleColor.White;
@@ -114,26 +114,26 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             {
                 var missionControl = new MissionControl();
                 var user = new UserInputs();
-                InstructionExample.InputExampleForPlateauSize();
-                UserInputs.GrabPlateauSize();
+                UserGuideline.InputExampleForPlateauSize();
+                UserInputs.GrabPlateauSizeFromUser();
                 Console.Write("\nEnter the number of Rovers: ");
                 var roverCounter = Convert.ToInt32(Console.ReadLine()!);
                 var roverCounterForTable=roverCounter;
                 Console.WriteLine();
                 while (roverCounter>0)
                 {
-                    InstructionExample.InputExampleForDeploymentPosition();
-                    UserInputs.GrabRoverPosition();
+                    UserGuideline.InputExampleForDeploymentPosition();
+                    UserInputs.GrabRoverPositionFromUser();
                 
                     missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
                 
-                    InstructionExample.InputExampleForInstructionFirstRover();
-                    user.GrabMovementInstructions();
+                    UserGuideline.InputExampleForInstructionFirstRover();
+                    user.GrabMovementInstructionsFromUser();
 
                     roverCounter--;
                 }
                 
-                InstructionExample.ProgressBar();
+                UserGuideline.ProgressBar();
                 
                 //**** I Assumed that the rovers are deployed and moved one by one.****
                 //But I create CollisionDetection for Same Deployment Position (JUST IN CASE)
@@ -147,14 +147,14 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     missionControl.ExecuteCommand(commandCounter,user.userCommands![commandCounter]);
                         /* if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
                          {
-                             CollisionMessages.CollisionMessageForDeploymentSecondRover();
+                             CollisionMessages.CollisionMessageForDeploymentOtherRovers();
                              break;
                          }*/
                     if (MissionControl.CollisionInnerDetection(MissionControl._roverList!)) 
                         CollisionMessages.CollisionMessageForSameDestination();
                 
                 }
-                InstructionExample.BeepSoundForSuccess();
+                UserGuideline.BeepSoundForSuccess();
 
                 for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
                 {
@@ -162,7 +162,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForConsole();
                 }
                     
-                var drawTable= new DrawPlateau();
+                var drawTable= new DrawPlateauAndRovers();
                 await drawTable.LiveTable
                     (
                     UserInputs.userPlateau!.Lenght_X, 
@@ -178,7 +178,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             
             catch (Exception ex)
             {
-                InstructionExample.BeepSoundForError();
+                UserGuideline.BeepSoundForError();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nSystem Message:--> {0} <--", ex.Message);
                 Console.ResetColor();

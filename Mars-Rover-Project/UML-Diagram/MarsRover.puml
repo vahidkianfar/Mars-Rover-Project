@@ -2,9 +2,15 @@
 
 interface IVehicle
 {
++ void TurnAround()
 + void TurnLeft()
 + void TurnRight()
 + void Move()
++ void ExecuteCommand(string getMovement)
++ void GetCurrentPositionForConsole()
++ string GetCurrentPositionForFile()
++ int SetAxisX(int axisX)
++ int SetAxisY(int axisY)
 }
 
 interface ISurface
@@ -35,24 +41,41 @@ class MarsRover implements IVehicle
 {
 + int axisX
 + int axisY
-+ ChangeDirection.Direction direction
++ ChangeDirection.Direction roverDirection
+- MovingTheRover _movingTheRover
+- ChangeDirection _changeDirection
+
 
 + MarsRover(string getInitialPosition)
 + ExecuteCommand(string getMovement)
-+ TurnLeft()
-+ TurnRight()
-+ TurnAround()
-+ MoveForward()
++ void TurnLeft()
++ voidTurnRight()
++ void TurnAround()
++ void Move()
++ void SetAxisY(int axisY)
++ void SetAxisX(int axisX)
+- void SetDirection(string direction)
++ int GetAxisY()
++ int GetAxisX()
++ Enum GetDirection()
++ void GetCurrentPositionForConsole()
++ string GetCurrentPositionForFile()
 }
 class MissionControl
 {
-- List<IVehicle> _roverList
-+ ISurface plateau
 
-+ CollisionDetection(IVehicle)
-+ DeployRover(IVehicle, )
-+ SetMissionPlateau()
-+ GetMarsPlateau()
+- List<IVehicle> _roverList
++ ISurface Plateau
++ bool IsMissionComplete
+
++ ISurface GetPlateauDetails()
++ IVehicle GetRoverDetails(int roverNumber)
++ void ExecuteCommand(int roverNumber, string getMovement)
+
++ DeployRover(IVehicle rover, ISurface plateau )
++ CollisionInnerDetection(List<IVehicle> rovers)
+- bool CollisionDetection(IVehicle)
+
 
 }
 class MarsPlateau implements ISurface
@@ -60,64 +83,101 @@ class MarsPlateau implements ISurface
 + int Lenght_X
 + int Width_Y
 + MarsPlateau(string gridSize)
++ int GetLenght()
++ int GetWidth()
+}
+class NavigateBack implements INavigation
+{
++ void RunCommand(IVehicle)
 }
 class NavigateLeft implements INavigation
 {
-+ RunCommand(IVehicle marsRover)
++ void RunCommand(IVehicle)
 }
 
 class NavigateRight implements INavigation
 {
-+ RunCommand(IVehicle marsRover)
++ void RunCommand(IVehicle)
+}
+class NavigateForward implements INavigation
+{
++ void RunCommand((IVehicle marsRover)
 }
 class PositionInterpreter implements IPosition
 {
 + List<int> initialPosition
 + string initialDirection
-- SetPositionAndDirection(string getPositionAndDirection)
 }
-class NavigateForward implements INavigation
-{
-+ RunCommand((IVehicle marsRover)
-}
+
 class NavigationInterpreter
 {
 - Dictionary<string, INavigation> NavigationDictionary
-+ SetNavigation(charNavCommands)
++ INavigation SetNavigation(char NavCommands)
 }
 class ChangeDirection
 {
-+ TurnLeft(MarsRover marsRover)
-+ TurnRight(MarsRover marsRover)
-+ TurnAround(MarsRover marsRover)
++ TurnLeft(IVehicle)
++ TurnRight(IVehicle)
++ TurnAround(IVehicle)
 }
 
 class MovingTheRover implements IMovementDirection
 {
-+ MoveForward(MarsRover marsRover)
-+ MoveBackward(MarsRover marsRover)
-+ MoveLeft(MarsRover marsRover)
-+ MoveRight(MarsRover marsRover)
++ MoveForward(IVehicle rover)
++ MoveBackward(IVehicle rover)
++ MoveLeft(IVehicle rover)
++ MoveRight(MIVehicle rover)
 }
 class Validator
 {
-+ DeploymentPositionValidator(int xCoordinate, int yCoordinate, MarsPlateau plateau)
-+ CommandValidator(string inputCommand)
-+ DirectionValidator(string direction)
-+ AxisValidator(int axis)
-+ RectangularPlateauValidator(string plateauSize)
-+ PositionValidator()
++ bool DeploymentPositionValidator(int xCoordinate, int yCoordinate, MarsPlateau plateau)
++ bool CommandValidator(string inputCommand)
++ bool DirectionValidator(string direction)
++ bool AxisValidator(int axis)
++ bool RectangularPlateauValidator(string plateauSize)
+
 }
 
+class CollisionMessages
+{
++ void SOSMorseCode()
++ void CollisionMessageForSamePosition()
++ void CollisionMessageForDeploymentOtherRovers()
++ void CollisionMessageForSameDestination()
+}
+
+class UserGuideline
+{
++ void InputExampleForPlateauSize()
++ void InputExampleForDeploymentPosition()
++ void InputExampleForInstructionFirstRover()
++ void ProgressBar()
++ void BeepSoundForError()
++ void BeepSoundForSuccess()
+}
+class UserInputs
+{
++ ISurface userPlateau
++ IVehicle userRover
++ List<string> userCommands
++ void GrabMovementInstructionsFromUser()
++ void GrabPlateauSizeFromUser()
++ void GrabRoverPositionFromUser()
+}
+class DrawPlateauAndRovers
+{
++ async Task<Table> LiveTable()
+}
 class ReadFromFile
 {
 + DirectoryInfo directory
-+ Read()
++ IEnumerable<string> Read()
 }
 class WriteOnFile
 {
 - string _path
-- Write()
+- :ist<string> _content
+- void Write()
 }
 INavigation --> IVehicle
 MarsRover <--> ChangeDirection
@@ -131,15 +191,18 @@ MarsRover --> Validator
 NavigateLeft --> IVehicle
 NavigateRight --> IVehicle
 NavigateForward --> IVehicle
+NavigateBack --> IVehicle
 
 NavigationInterpreter --> INavigation
 
 MarsPlateau --> Validator
 
-MissionControl --> MarsRover
-MissionControl --> MarsPlateau
+MissionControl --> IVehicle
+MissionControl --> ISurface
 MissionControl --> Validator
 MissionControl --> MovingTheRover
+
+DrawPlateauAndRovers --> MissionControl
 
 
 @enduml

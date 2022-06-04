@@ -11,7 +11,7 @@ public class CollisionMessages
         SOSMorseCode();
     }
 
-    public static void CollisionMessageForDeploymentSecondRover()
+    public static void CollisionMessageForDeploymentOtherRovers()
     {
         Console.WriteLine("\nSystem Message:--> Collision detected: Rovers cannot be deployed over other Rover's block. <--\n");
         SOSMorseCode();
