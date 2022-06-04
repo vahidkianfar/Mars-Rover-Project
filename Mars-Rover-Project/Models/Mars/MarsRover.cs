@@ -52,8 +52,8 @@ public class MarsRover: IVehicle
         if (!Validator.DirectionValidator(direction))
             throw new ArgumentException("Invalid Direction");
         
-        roverDirection = Enum.Parse(typeof(ChangeDirection.Direction), direction) is ChangeDirection.Direction 
-            ? (ChangeDirection.Direction)Enum.Parse(typeof(ChangeDirection.Direction), direction) : 0;
+        roverDirection = Enum.Parse(typeof(ChangeDirection.Direction), direction.ToUpper()) is ChangeDirection.Direction 
+            ? (ChangeDirection.Direction)Enum.Parse(typeof(ChangeDirection.Direction), direction.ToUpper()) : 0;
     }
     public int GetAxisX()=>_axisX;
     public int GetAxisY()=>_axisY;

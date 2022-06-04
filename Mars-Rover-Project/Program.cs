@@ -3,8 +3,9 @@ using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
 
-
-Console.WriteLine("\n*** Mars Rover Controller ***");
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.WriteLine("\n*** Rover Controller ***");
+Console.ResetColor();
 Console.WriteLine("\nPlease choice an option:\n");
 Console.WriteLine("1. Read instructions from file");
 Console.WriteLine("2. Read instructions from console (manually)");
@@ -19,7 +20,26 @@ if(int.TryParse(Console.ReadLine(), out var choice))
         try
         {
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
+            
             var missionControl = new MissionControl();
+            Console.Write("Do you want to edit the instructions file? (y/n): ");
+            var edit = Console.ReadLine()!;
+            if (edit.ToLower() == "y")
+            {
+                var openFile = new ReadFromFile();
+                var userInstructions = new List<string>();
+                Console.Write("\nHow many Rover do you want to add? ");
+                var numberOfRover = int.Parse(Console.ReadLine()!);
+                
+                Console.WriteLine("\nPlease enter the Plateau size and Instructions:\n");
+                for(var instructionCounter=0; instructionCounter<numberOfRover*2+1; instructionCounter++)
+                    userInstructions.Add(Console.ReadLine()!);
+
+                File.WriteAllLines(openFile.directoryInfo + "\\Command\\Instructions.txt",userInstructions);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\nNew instructions have been saved to file.");
+                Console.ResetColor();
+            }
             InstructionExample.ProgressBar();
             var readFile = new ReadFromFile();
             var lines = readFile.Read();
@@ -30,24 +50,26 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var rover = new MarsRover(instructions[deployLineCounter]);
                 missionControl.DeployRover(rover, plateau);
             }
-            if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
-                CollisionMessages.CollisionMessageForSamePosition();
-            else
-            {
+            //**** I Assumed that the rovers are deployed and moved one by one.****
+            //But I create CollisionDetection for Same Deployment Position (JUST IN CASE)
+            
+            /* if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                 CollisionMessages.CollisionMessageForSamePosition();
+             else
+              */
                 var commandLineCounter = 2;
                 var simpleCounter = 0;
                 while (commandLineCounter < instructions.Count)
                 {
                     missionControl.ExecuteCommand(simpleCounter,instructions[commandLineCounter]);
-                    if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
-                    {
-                        CollisionMessages.CollisionMessageForDeploymentSecondRover();
-                        break;
-                    }
+                    /* if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                         {
+                             CollisionMessages.CollisionMessageForDeploymentSecondRover();
+                             break;
+                        }*/
                     if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
                     {
                         CollisionMessages.CollisionMessageForSameDestination();
-                        break;
                     }
                     commandLineCounter += 2;
                     simpleCounter++;
@@ -74,7 +96,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     missionControl,
                     simpleCounter
                 );
-            }
+            
         }
         catch (Exception ex)
         {
@@ -114,53 +136,54 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 }
                 
                 InstructionExample.ProgressBar();
+                
+                //**** I Assumed that the rovers are deployed and moved one by one.****
+                //But I create CollisionDetection for Same Deployment Position (JUST IN CASE)
 
-                if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
-                    CollisionMessages.CollisionMessageForSamePosition();
-                else
+                /* if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                //     CollisionMessages.CollisionMessageForSamePosition();
+                else*/
+                
+                for(var commandCounter=0; commandCounter<user.userCommands!.Count; commandCounter++)
                 {
-                    for(var commandCounter=0; commandCounter<user.userCommands!.Count; commandCounter++)
-                    {
-                        missionControl.ExecuteCommand(commandCounter,user.userCommands![commandCounter]);
-                        if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
-                        {
-                            CollisionMessages.CollisionMessageForDeploymentSecondRover();
-                            break;
-                        }
-                        if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
-                        {
-                            CollisionMessages.CollisionMessageForSameDestination();
-                            break;
-                        }
-                    }
-                    InstructionExample.BeepSoundForSuccess();
+                    missionControl.ExecuteCommand(commandCounter,user.userCommands![commandCounter]);
+                        /* if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                         {
+                             CollisionMessages.CollisionMessageForDeploymentSecondRover();
+                             break;
+                         }*/
+                    if (MissionControl.CollisionInnerDetection(MissionControl._roverList!)) 
+                        CollisionMessages.CollisionMessageForSameDestination();
+                
+                }
+                InstructionExample.BeepSoundForSuccess();
 
-                    for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
-                    {
-                        Console.Write("\nRover " + (printPositionCounter+1) + " ");
-                        MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForConsole();
-                    }
+                for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
+                {
+                    Console.Write("\nRover " + (printPositionCounter+1) + " ");
+                    MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForConsole();
+                }
                     
-                    var drawTable= new DrawPlateau();
-                    await drawTable.LiveTable
-                        (
-                        UserInputs.userPlateau!.Lenght_X, 
-                        UserInputs.userPlateau.Width_Y, 
-                        missionControl,
-                        roverCounterForTable
-                        );
+                var drawTable= new DrawPlateau();
+                await drawTable.LiveTable
+                    (
+                    UserInputs.userPlateau!.Lenght_X, 
+                    UserInputs.userPlateau.Width_Y, 
+                    missionControl,
+                    roverCounterForTable
+                    );
 
-                    Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
-                    if (Console.ReadKey().Key == ConsoleKey.Q)
-                        Environment.Exit(0);
-                } 
+                Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
+                if (Console.ReadKey().Key == ConsoleKey.Q)
+                    Environment.Exit(0);
             }
+            
             catch (Exception ex)
             {
                 InstructionExample.BeepSoundForError();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nSystem Message:--> {0} <--", ex.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
                 Console.WriteLine("\nPress any key to continue... or press \'q\' to exit");
                 if (Console.ReadKey().Key == ConsoleKey.Q)
                     Environment.Exit(0);

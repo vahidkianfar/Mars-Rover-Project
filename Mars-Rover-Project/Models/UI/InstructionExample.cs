@@ -17,7 +17,7 @@ public class InstructionExample
     public static void ProgressBar()
     {
         //Clear();
-        ForegroundColor = ConsoleColor.Red;
+        ForegroundColor = ConsoleColor.DarkRed;
         Write("\nLoading");
         for (var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
         {
@@ -28,13 +28,13 @@ public class InstructionExample
         ForegroundColor = ConsoleColor.Green;
 
         Write(" Done!\n\n");
-        ForegroundColor = ConsoleColor.White;
+        ResetColor();
     }
 
     public static void BeepSoundForError()
     {
         const int freq = 200;
-        const int duration = 500;
+        const int duration = 400;
         var counter = 0;
         while (counter < 3)
         {

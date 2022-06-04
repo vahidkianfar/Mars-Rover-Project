@@ -130,7 +130,7 @@ public class Tests
         MarsRover rover = new("1 2 N");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
-        missionControl.TurnLeft(0);
+        missionControl.GetRoverDetails(0)?.ExecuteCommand("L");
         Assert.AreEqual(ChangeDirection.Direction.W, missionControl.GetRoverDetails(0)?.GetDirection());
     }
     
@@ -141,8 +141,7 @@ public class Tests
         MarsRover rover = new("1 2 N");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
-        missionControl.TurnLeft(0);
-        missionControl.Move(0);
+        missionControl.GetRoverDetails(0)?.ExecuteCommand("LM");
         Assert.AreEqual(ChangeDirection.Direction.W, missionControl.GetRoverDetails(0)?.GetDirection());
         Assert.AreEqual(0, rover.GetAxisX());
         Assert.AreEqual(2, rover.GetAxisY());
