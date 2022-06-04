@@ -30,7 +30,8 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var userInstructions = new List<string>();
                 Console.Write("\nHow many Rover do you want to add? ");
                 var numberOfRover = int.Parse(Console.ReadLine()!);
-                
+                if (numberOfRover < 1)
+                    throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than One");
                 Console.WriteLine("\nPlease enter the Plateau size and Instructions:\n");
                 for(var instructionCounter=0; instructionCounter<numberOfRover*2+1; instructionCounter++)
                     userInstructions.Add(Console.ReadLine()!);
@@ -115,8 +116,12 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var user = new UserInputs();
                 UserGuideline.InputExampleForPlateauSize();
                 UserInputs.GrabPlateauSizeFromUser();
-                Console.Write("\nEnter the number of Rovers: ");
+                Console.Write("\nHow many Rover do you want to add? ");
+                
                 var roverCounter = Convert.ToInt32(Console.ReadLine()!);
+                if (roverCounter < 1 || roverCounter >= UserInputs.userPlateau?.Lenght_X * UserInputs.userPlateau?.Width_Y)
+                    throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than 1");
+                
                 var roverCounterForTable=roverCounter;
                 Console.WriteLine();
                 while (roverCounter>0)
