@@ -10,5 +10,4 @@ public class ReadFromFile
                 ?? string.Empty)?.ToString() ?? string.Empty);
 
     public IEnumerable<string?> Read()=>File.ReadAllLines(directoryInfo + "\\Command\\Instructions.txt");
-    
 }

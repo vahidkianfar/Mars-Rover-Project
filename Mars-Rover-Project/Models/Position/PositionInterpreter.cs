@@ -8,7 +8,6 @@ public class PositionInterpreter:IPosition
 
     public PositionInterpreter(string? getPositionAndDirection)
     {
-        
         var positionArray = getPositionAndDirection!.Split(" ");
 
         initialPosition = new List<int>

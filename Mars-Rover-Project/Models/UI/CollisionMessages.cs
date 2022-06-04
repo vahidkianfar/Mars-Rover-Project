@@ -31,11 +31,11 @@ public class CollisionMessages
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\n ▄ ▄ ▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄ ▄ ▄ SOS code has been sent to the Rover Team.  ▄ ▄ ▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄ ▄ ▄  \n");
         Console.ForegroundColor = ConsoleColor.White;
-        sequence.ForEach(e => Console.Beep(650, 50));
+        sequence.ForEach(_ => Console.Beep(650, 50));
         Thread.Sleep(100);
-        sequence.ForEach(e => Console.Beep(650, 200));
+        sequence.ForEach(_ => Console.Beep(650, 200));
         Thread.Sleep(100);
-        sequence.ForEach(e => Console.Beep(650, 50));
+        sequence.ForEach(_ => Console.Beep(650, 50));
         Thread.Sleep(500);
         
     }

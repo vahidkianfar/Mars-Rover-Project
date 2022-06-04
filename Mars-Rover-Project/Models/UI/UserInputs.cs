@@ -29,5 +29,4 @@ public class UserInputs
         var commands = Console.ReadLine()!;
         userCommands?.Add(commands.ToUpper());
     }
-    
 }

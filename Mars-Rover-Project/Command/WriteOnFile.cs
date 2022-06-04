@@ -22,4 +22,3 @@ public class WriteOnFile
         file.Close();
     }
 }
- 

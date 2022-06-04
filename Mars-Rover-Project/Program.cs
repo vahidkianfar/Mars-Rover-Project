@@ -54,7 +54,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
             //**** I Assumed that the rovers are deployed and moved one by one.****
             //But I create CollisionDetection for Same Deployment Position (JUST IN CASE)
             
-            /* if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+            /* if(MissionControl.CollisionInnerDetection(MissionControl.roverList!))
                  CollisionMessages.CollisionMessageForSamePosition();
              else
               */
@@ -63,7 +63,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 while (commandLineCounter < instructions.Count)
                 {
                     missionControl.ExecuteCommand(simpleCounter,instructions[commandLineCounter]);
-                    /* if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                    /* if (MissionControl.CollisionInnerDetection(MissionControl.roverList!))
                          {
                              CollisionMessages.CollisionMessageForDeploymentOtherRovers();
                              break;
@@ -72,16 +72,16 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     commandLineCounter += 2;
                     simpleCounter++;
                 }
-                if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                if (MissionControl.CollisionInnerDetection(MissionControl.roverList!))
                     CollisionMessages.CollisionMessageForSameDestination();
 
                 UserGuideline.BeepSoundForSuccess();
                 var positions = new List<string?>();
-                for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
+                for(var printPositionCounter=0; printPositionCounter<MissionControl.roverList!.Count; printPositionCounter++)
                 {
                     Console.Write("Rover " + (printPositionCounter+1) + " ");
-                    MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForConsole();
-                    positions.Add(MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForFile());
+                    MissionControl.roverList[printPositionCounter]?.GetCurrentPositionForConsole();
+                    positions.Add(MissionControl.roverList[printPositionCounter]?.GetCurrentPositionForFile());
                 }
                 var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\FinalPosition.txt",positions);
                 writer.Write();
@@ -142,28 +142,28 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 //**** I Assumed that the rovers are deployed and moved one by one.****
                 //But I created CollisionDetection for Same Deployment Position (JUST IN CASE)
 
-                /* if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                /* if(MissionControl.CollisionInnerDetection(MissionControl.roverList!))
                 //     CollisionMessages.CollisionMessageForSamePosition();
                 else*/
                 
                 for(var commandCounter=0; commandCounter<user.userCommands!.Count; commandCounter++)
                 {
                     missionControl.ExecuteCommand(commandCounter,user.userCommands![commandCounter]);
-                        /* if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                        /* if (MissionControl.CollisionInnerDetection(MissionControl.roverList!))
                          {
                              CollisionMessages.CollisionMessageForDeploymentOtherRovers();
                              break;
                          }*/
                 }
-                if (MissionControl.CollisionInnerDetection(MissionControl._roverList!)) 
+                if (MissionControl.CollisionInnerDetection(MissionControl.roverList!)) 
                     CollisionMessages.CollisionMessageForSameDestination();
                 
                 UserGuideline.BeepSoundForSuccess();
 
-                for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
+                for(var printPositionCounter=0; printPositionCounter<MissionControl.roverList!.Count; printPositionCounter++)
                 {
                     Console.Write("\nRover " + (printPositionCounter+1) + " ");
-                    MissionControl._roverList[printPositionCounter]?.GetCurrentPositionForConsole();
+                    MissionControl.roverList[printPositionCounter]?.GetCurrentPositionForConsole();
                 }
                     
                 var drawTable= new DrawPlateauAndRovers();
