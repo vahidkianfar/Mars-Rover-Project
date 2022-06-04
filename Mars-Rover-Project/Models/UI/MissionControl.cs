@@ -6,18 +6,18 @@ namespace Mars_Rover_Project.Models.UI;
 public class MissionControl
 {
     public bool IsMissionComplete { get; set; }
-    public static List<IVehicle?>? roverList;
+    public static List<IVehicle?>? RoverList;
     public static ISurface? Plateau { get; set; }
-    public MissionControl()=>roverList = new List<IVehicle?>();
+    public MissionControl()=>RoverList = new List<IVehicle?>();
     public static ISurface? GetPlateauDetails()=>Plateau;
-    public IVehicle? GetRoverDetails(int roverNumber) => roverList?[roverNumber];
-    public void ExecuteCommand(int roverNumber, string? getMovement)=>roverList?[roverNumber]?.ExecuteCommand(getMovement);
+    public IVehicle? GetRoverDetails(int roverNumber) => RoverList?[roverNumber];
+    public void ExecuteCommand(int roverNumber, string? getMovement)=>RoverList?[roverNumber]?.ExecuteCommand(getMovement);
     public void DeployRover(IVehicle? rover, ISurface? marsPlateau)
     {
         if (rover != null && !Validator.DeploymentPositionValidator(rover.GetAxisX(), rover.GetAxisY(), marsPlateau))
             throw new ArgumentException("Deployment Positions are not Valid");
         Plateau = marsPlateau;
-        roverList?.Add(rover);
+        RoverList?.Add(rover);
     }
     
     public static bool CollisionInnerDetection(List<IVehicle> rovers)
