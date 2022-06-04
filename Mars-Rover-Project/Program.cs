@@ -3,12 +3,12 @@ using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
 
-Console.ForegroundColor = ConsoleColor.Cyan;
+Console.ForegroundColor = ConsoleColor.Blue;
 Console.WriteLine("\n*** Rover Controller ***");
 Console.ResetColor();
-Console.WriteLine("\nPlease choice an option:\n");
-Console.WriteLine("1. Read instructions from file");
-Console.WriteLine("2. Read instructions from console (manually)");
+Console.WriteLine("\nPlease choose an option:\n");
+Console.WriteLine("1. Put instructions into file (Read/Write)");
+Console.WriteLine("2. Put instructions into console (manually)");
 Console.Write("\nEnter your choice: ");
 
 if(int.TryParse(Console.ReadLine(), out var choice))
@@ -86,8 +86,6 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\FinalPosition.txt",positions);
                 writer.Write();
                 
-                
-                
                 var drawTable= new DrawPlateau();
                 await drawTable.LiveTable
                 (
@@ -96,7 +94,6 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                     missionControl,
                     simpleCounter
                 );
-            
         }
         catch (Exception ex)
         {
@@ -122,6 +119,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 Console.Write("\nEnter the number of Rovers: ");
                 var roverCounter = Convert.ToInt32(Console.ReadLine()!);
                 var roverCounterForTable=roverCounter;
+                Console.WriteLine();
                 while (roverCounter>0)
                 {
                     InstructionExample.InputExampleForDeploymentPosition();
