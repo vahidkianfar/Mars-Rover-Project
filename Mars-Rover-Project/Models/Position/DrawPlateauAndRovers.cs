@@ -8,7 +8,7 @@ public class DrawPlateauAndRovers
 {
   public async Task<Table> LiveTable(int plateauLenght, int plateauWidth, MissionControl missionControl, int roverCounter)
   {
-    var table = new Table().LeftAligned().BorderColor(Color.Blue).SquareBorder();
+    var table = new Table().LeftAligned().BorderColor(Color.Blue);
     var delayTable = 100;
     var delayRover = 200;
     await AnsiConsole.Live(table)
