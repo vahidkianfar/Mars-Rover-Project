@@ -67,14 +67,13 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                              CollisionMessages.CollisionMessageForDeploymentOtherRovers();
                              break;
                         }*/
-                    if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
-                    {
-                        CollisionMessages.CollisionMessageForSameDestination();
-                    }
+                    
                     commandLineCounter += 2;
                     simpleCounter++;
                 }
-                
+                if (MissionControl.CollisionInnerDetection(MissionControl._roverList!))
+                    CollisionMessages.CollisionMessageForSameDestination();
+
                 UserGuideline.BeepSoundForSuccess();
                 var positions = new List<string?>();
                 for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
@@ -136,7 +135,7 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                 UserGuideline.ProgressBar();
                 
                 //**** I Assumed that the rovers are deployed and moved one by one.****
-                //But I create CollisionDetection for Same Deployment Position (JUST IN CASE)
+                //But I created CollisionDetection for Same Deployment Position (JUST IN CASE)
 
                 /* if(MissionControl.CollisionInnerDetection(MissionControl._roverList!))
                 //     CollisionMessages.CollisionMessageForSamePosition();
@@ -150,10 +149,10 @@ if(int.TryParse(Console.ReadLine(), out var choice))
                              CollisionMessages.CollisionMessageForDeploymentOtherRovers();
                              break;
                          }*/
-                    if (MissionControl.CollisionInnerDetection(MissionControl._roverList!)) 
-                        CollisionMessages.CollisionMessageForSameDestination();
-                
                 }
+                if (MissionControl.CollisionInnerDetection(MissionControl._roverList!)) 
+                    CollisionMessages.CollisionMessageForSameDestination();
+                
                 UserGuideline.BeepSoundForSuccess();
 
                 for(var printPositionCounter=0; printPositionCounter<MissionControl._roverList!.Count; printPositionCounter++)
