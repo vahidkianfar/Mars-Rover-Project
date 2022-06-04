@@ -1,8 +1,15 @@
 # Mars-Rover-Project
-This Project contains two-part interactive menu:
-![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover.gif)
-1. User can enter the instruction into file or read instruction from file.
-2. User can enter the instructions manually.
+This Project contains two-part-menu:
+
+
+
+1. User can enter the instruction into file or read instruction from file:
+
+![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-File.gif)
+
+2. User can enter the instructions manually:
+
+![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Manually.gif)
 
 ## Instruction Format:
 1. User needs to set the Plateau size in form of "X X" e.g "10 10" then it creates a surface (so far, rectangular plateau) in size of 10x10.
