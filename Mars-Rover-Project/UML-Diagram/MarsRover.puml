@@ -116,6 +116,7 @@ class NavigationInterpreter
 }
 class ChangeDirection
 {
++ enum Direction
 + TurnLeft(IVehicle)
 + TurnRight(IVehicle)
 + TurnAround(IVehicle)
