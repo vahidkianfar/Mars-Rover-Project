@@ -4,5 +4,5 @@ namespace Mars_Rover_Project.Models.Navigation;
 
 public class NavigateLeft:INavigation
 {
-    public void RunCommand(IVehicle marsRover)=>marsRover.TurnLeft();
+    public void RunCommand(IVehicle rover)=>rover.TurnLeft();
 }
