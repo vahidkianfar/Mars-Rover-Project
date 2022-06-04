@@ -2,17 +2,18 @@
 ## Assumptions:
 
 I assumed the Rovers are deployed and moved one by one, but I've created methods for
-   checking "DeploymentCollision" but for now I only Use the Collision method for "SamePosition".
+   checking "DeploymentCollision" but for now I only Use the Collision method for "SamePosition" it means the Rover cannot be on the same position.
 
 ## Key Features:
 
-1. MissionControl class can store a List of Rovers.
-2. I've created methods for "CollisionDetection"
-3. Drawing Live Table, after the user created and deployed the rovers, it will draw a LiveTable of Plateau and Rovers.
-4. User can use File for creating a plateau, deploying rovers and execute movement commands.
-5. So far the project only accepts one kind of rover but with the interface "IVehicle" anyone can expand the project for other type of rovers.
-6. You can expand the Movement of the rover (Move Backward, Move Left, Move Right).
-7. You can add other directions, e.g. "NW" for North-West.
+1. This project is highly expandable (I've created interfaces for Vehicles, Surfaces, Movements, Positions, NavigationSystem).
+2. MissionControl class can store a List of Rovers.
+3. I've created methods for "CollisionDetection"
+4. Drawing Live Table, after the user created and deployed the rovers, it will draw a LiveTable of Plateau and Rovers.
+5. User can use File for creating a plateau, deploying rovers and execute movement commands.
+6. So far the project only accepts one kind of rover but with the interface "IVehicle" anyone can expand the project for other type of rovers.
+7. You can expand the Movement of the rover (Move Backward, Move Left, Move Right).
+8. You can add other directions, e.g. "NW" for North-West.
 
 
 ## Menu:
