@@ -12,13 +12,13 @@ This Project contains two-part interactive menu:
  
 4. Now user must enter the movement's instructions, e.g "BLRM":
 
-  -B: turn the rover 180 degree at the current position, e.g. (1,2,N) --"B"--> (1,2,S).
+      -B: turn the rover 180 degree at the current position, e.g. (1,2,N) --"B"--> (1,2,S).
   
-  -L: turn the rover 90 degrees to the left, e.g. (1,2,N)--"L"--> (1,2,W).
+      -L: turn the rover 90 degrees to the left, e.g. (1,2,N)--"L"--> (1,2,W).
   
-  -R: just like "L" but it turns the rover direction 90 degrees to the right e.g. "N" --"R"--> "E".
+      -R: just like "L" but it turns the rover direction 90 degrees to the right e.g. "N" --"R"--> "E".
   
-  -M: move the rover forward (based on the rover's direction) e.g. (1,2,E) --"M"--> (2,2,E).
+      -M: move the rover forward (based on the rover's direction) e.g. (1,2,E) --"M"--> (2,2,E).
  
   
   
