@@ -4,7 +4,6 @@ using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 using static System.Console;
-using static System.Drawing.Color;
 
 ForegroundColor = ConsoleColor.Blue;
 WriteLine("\n*** Rover Controller ***");
@@ -33,6 +32,7 @@ if(int.TryParse(ReadLine(), out var choice))
             UserGuideline.ProgressBar();
             var missionControl = new MissionControl();
             var readFile = new ReadFromFile();
+            
             if (!File.Exists(readFile.directoryInfo + "\\Command\\Instructions.txt"))
             {
                 ForegroundColor = ConsoleColor.Green;
@@ -40,24 +40,13 @@ if(int.TryParse(ReadLine(), out var choice))
                 ResetColor();
                 GetInstructionsSaveOnFile();
             }
-               
+            
             var lines = readFile.Read();
             var instructions = lines.ToList();
             DeployTheRoversForFile(instructions, missionControl);
-            //**** I Assumed that the rovers are deployed and moved one by one.****
-            //But I create CollisionDetection for Same Deployment Position (JUST IN CASE)
-            
-            /* if(MissionControl.CollisionInnerDetection(MissionControl.roverList!))
-                 CollisionMessages.CollisionMessageForSamePosition();
-             else
-              */
             var roverCounterFromFile= ExecuteInstructionsForFile(instructions, missionControl);
-            
-            
             UserGuideline.BeepSoundForSuccess();
-            
             PrintPositionsAndWriteOnOutputFile(readFile);
-            
             var drawTable= new DrawPlateauAndRovers(); 
             await drawTable.LiveTable
                 (
@@ -96,17 +85,11 @@ if(int.TryParse(ReadLine(), out var choice))
                 WriteLine();
                 DeployTheRovers(roverCounter, missionControl, user);
                 UserGuideline.ProgressBar();
-                
-                //**** I Assumed that the rovers are deployed and moved one by one.****
-                //But I created CollisionDetection for Same Deployment Position (JUST IN CASE)
-
-                /*if(MissionControl.CollisionInnerDetection(MissionControl.roverList!))
-                     CollisionMessages.CollisionMessageForSamePosition();*/
-                
                 ExecuteInstructions(missionControl,user);
                 UserGuideline.BeepSoundForSuccess();
                 PrintPositions();
                 var drawTable= new DrawPlateauAndRovers();
+                
                 await drawTable.LiveTable
                     (
                     UserInputs.userPlateau.Lenght_X, 
