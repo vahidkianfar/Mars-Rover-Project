@@ -13,7 +13,7 @@ This Project contains two-part-menu:
 
 ## Instruction Format:
 1. User needs to set the Plateau size in form of "X X" e.g "10 10" then it creates a surface (so far, rectangular plateau) in size of 10x10.
-2. User give the number of rovers to the Controller [number of Rovers must be between 1 and maximum number of surface blocks, if the surface is 6x6 it means the number of rovers cannot be more than 36].
+2. User gives the number of rovers to the Controller [number of Rovers must be between 1 and maximum number of surface blocks, if the surface is 6x6 it means the number of rovers cannot be more than 36].
 3. User should set the deployment coordinates and direction of the rotate "X X Compass Direction" e.g "3 5 N" it means the rover will be deploy at
    coordinates (3,5) on the surface facing to the North (N=North, W=West, S=South, E=East).
  
