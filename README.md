@@ -1,6 +1,6 @@
 # Mars-Rover-Project
 This Project contains two-part interactive menu:
-![alt text]([https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1"](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover.gif))
+![alt text]([https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover.gif])
 1. User can enter the instruction into file or read instruction from file.
 2. User can enter the instructions manually.
 
