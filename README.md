@@ -1,7 +1,7 @@
 # Mars-Rover-Project
 ## Assumptions:
 
-1. I assumed the Rovers are deployed and moved one by one, but I've created methods for
+I assumed the Rovers are deployed and moved one by one, but I've created methods for
    checking "DeploymentCollision" but for now I only Use the Collision method for "SamePosition".
 
 ## Key Features:
