@@ -4,7 +4,7 @@ public class WriteOnFile
 {
     private string _path{get;set;}
     private List<string> _content{get;set;}
-    public WriteOnFile(string path, List<string?> positions)
+    public WriteOnFile(string path, List<string> positions)
     {
         _path = path;
         _content = positions;
