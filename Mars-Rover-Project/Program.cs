@@ -2,7 +2,9 @@
 using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
+using Mars_Rover_Project.Models.Validation;
 using static System.Console;
+using static System.Drawing.Color;
 
 ForegroundColor = ConsoleColor.Blue;
 WriteLine("\n*** Rover Controller ***");
@@ -22,7 +24,6 @@ if(int.TryParse(ReadLine(), out var choice))
         {
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
             
-            
             Write("Do you want to edit the instructions file? (y/n): ");
             var edit = ReadLine()!;
             
@@ -32,11 +33,17 @@ if(int.TryParse(ReadLine(), out var choice))
             UserGuideline.ProgressBar();
             var missionControl = new MissionControl();
             var readFile = new ReadFromFile();
+            if (!File.Exists(readFile.directoryInfo + "\\Command\\Instructions.txt"))
+            {
+                ForegroundColor = ConsoleColor.Green;
+                WriteLine("Instruction File doesn't exist, you have to create it for the first time");
+                ResetColor();
+                GetInstructionsSaveOnFile();
+            }
+               
             var lines = readFile.Read();
             var instructions = lines.ToList();
-            
-            
-            DeployTheRovers(instructions, missionControl);
+            DeployTheRoversForFile(instructions, missionControl);
             //**** I Assumed that the rovers are deployed and moved one by one.****
             //But I create CollisionDetection for Same Deployment Position (JUST IN CASE)
             
@@ -44,9 +51,8 @@ if(int.TryParse(ReadLine(), out var choice))
                  CollisionMessages.CollisionMessageForSamePosition();
              else
               */
-            var roverCounterFromFile= ExecuteInstructions(instructions, missionControl);
-            if (MissionControl.CollisionInnerDetection(MissionControl.roverList!))
-                CollisionMessages.CollisionMessageForSameDestination();
+            var roverCounterFromFile= ExecuteInstructionsForFile(instructions, missionControl);
+            
             
             UserGuideline.BeepSoundForSuccess();
             
@@ -83,59 +89,27 @@ if(int.TryParse(ReadLine(), out var choice))
                 UserGuideline.InputExampleForPlateauSize();
                 UserInputs.GrabPlateauSizeFromUser();
                 Write("\nHow many Rover do you want to add? ");
-                
                 var roverCounter = Convert.ToInt32(ReadLine()!);
-                if (roverCounter < 1 || roverCounter >= UserInputs.userPlateau?.Lenght_X * UserInputs.userPlateau?.Width_Y)
+                if (Validator.NumberOfRoversValidator(roverCounter, UserInputs.userPlateau!.Lenght_X * UserInputs.userPlateau.Width_Y))
                     throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than 1");
-                
                 var roverCounterForTable=roverCounter;
                 WriteLine();
-                while (roverCounter>0)
-                {
-                    UserGuideline.InputExampleForDeploymentPosition();
-                    UserInputs.GrabRoverPositionFromUser();
-                
-                    missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
-                
-                    UserGuideline.InputExampleForInstructionFirstRover();
-                    user.GrabMovementInstructionsFromUser();
-
-                    roverCounter--;
-                }
-                
+                DeployTheRovers(roverCounter, missionControl, user);
                 UserGuideline.ProgressBar();
                 
                 //**** I Assumed that the rovers are deployed and moved one by one.****
                 //But I created CollisionDetection for Same Deployment Position (JUST IN CASE)
 
-                /* if(MissionControl.CollisionInnerDetection(MissionControl.roverList!))
-                //     CollisionMessages.CollisionMessageForSamePosition();
-                else*/
+                /*if(MissionControl.CollisionInnerDetection(MissionControl.roverList!))
+                     CollisionMessages.CollisionMessageForSamePosition();*/
                 
-                for(var commandCounter=0; commandCounter<user.userCommands!.Count; commandCounter++)
-                {
-                    missionControl.ExecuteCommand(commandCounter,user.userCommands![commandCounter]);
-                        /* if (MissionControl.CollisionInnerDetection(MissionControl.roverList!))
-                         {
-                             CollisionMessages.CollisionMessageForDeploymentOtherRovers();
-                             break;
-                         }*/
-                }
-                if (MissionControl.CollisionInnerDetection(MissionControl.roverList!)) 
-                    CollisionMessages.CollisionMessageForSameDestination();
-                
+                ExecuteInstructions(missionControl,user);
                 UserGuideline.BeepSoundForSuccess();
-
-                for(var printPositionCounter=0; printPositionCounter<MissionControl.roverList!.Count; printPositionCounter++)
-                {
-                    Write("\nRover " + (printPositionCounter+1) + " ");
-                    MissionControl.roverList[printPositionCounter]?.GetCurrentPositionForConsole();
-                }
-                    
+                PrintPositions();
                 var drawTable= new DrawPlateauAndRovers();
                 await drawTable.LiveTable
                     (
-                    UserInputs.userPlateau!.Lenght_X, 
+                    UserInputs.userPlateau.Lenght_X, 
                     UserInputs.userPlateau.Width_Y, 
                     missionControl,
                     roverCounterForTable
@@ -193,7 +167,7 @@ void GetInstructionsSaveOnFile()
     ResetColor();
 }
 
-void DeployTheRovers(List<string?> instructions, MissionControl missionControl)
+void DeployTheRoversForFile(List<string?> instructions, MissionControl missionControl)
 {
     var plateau = new MarsPlateau(instructions[0]);
     for(var deployLineCounter = 1; deployLineCounter < instructions.Count; deployLineCounter+=2)
@@ -203,7 +177,7 @@ void DeployTheRovers(List<string?> instructions, MissionControl missionControl)
     }
 }
 
-int ExecuteInstructions(List<string?> instructions, MissionControl missionControl)
+int ExecuteInstructionsForFile(List<string?> instructions, MissionControl missionControl)
 {
     var simpleCounter = 0;
     var commandLineCounter = 2;
@@ -219,7 +193,8 @@ int ExecuteInstructions(List<string?> instructions, MissionControl missionContro
         commandLineCounter += 2;
         simpleCounter++;
     }
-
+    if (MissionControl.CollisionInnerDetection(MissionControl.roverList!))
+        CollisionMessages.CollisionMessageForSameDestination();
     return simpleCounter;
 }
 
@@ -234,4 +209,44 @@ void PrintPositionsAndWriteOnOutputFile(ReadFromFile readFile)
     } 
     var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\FinalPosition.txt",positions); 
     writer.Write();
+}
+
+void DeployTheRovers(int roverCounter, MissionControl missionControl, UserInputs user)
+{
+    while (roverCounter>0)
+    {
+        UserGuideline.InputExampleForDeploymentPosition();
+        UserInputs.GrabRoverPositionFromUser();
+                
+        missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
+                
+        UserGuideline.InputExampleForInstructionFirstRover();
+        user.GrabMovementInstructionsFromUser();
+
+        roverCounter--;
+    }
+}
+
+void ExecuteInstructions(MissionControl missionControl,UserInputs user)
+{
+    for(var commandCounter=0; commandCounter<user.userCommands!.Count; commandCounter++)
+    {
+        missionControl.ExecuteCommand(commandCounter,user.userCommands![commandCounter]);
+        /* if (MissionControl.CollisionInnerDetection(MissionControl.roverList!))
+         {
+             CollisionMessages.CollisionMessageForDeploymentOtherRovers();
+             break;
+         }*/
+    }
+    if (MissionControl.CollisionInnerDetection(MissionControl.roverList!)) 
+        CollisionMessages.CollisionMessageForSameDestination();
+}
+
+void PrintPositions()
+{
+    for(var printPositionCounter=0; printPositionCounter<MissionControl.roverList!.Count; printPositionCounter++)
+    {
+        Write("Rover " + (printPositionCounter+1) + " ");
+        MissionControl.roverList[printPositionCounter]?.GetCurrentPositionForConsole();
+    }
 }

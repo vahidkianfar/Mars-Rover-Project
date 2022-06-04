@@ -16,4 +16,7 @@ public class Validator
         plateau != null && xCoordinate >= 0 && xCoordinate <= plateau.Lenght_X && yCoordinate >= 0 && yCoordinate <= plateau.Width_Y;
     public static bool RectangularPlateauValidator(string? plateauSize) => 
         Regex.IsMatch(plateauSize!, @"^[0-9]{1,2} [0-9]{1,2}$");
+
+    public static bool NumberOfRoversValidator(int roverCounter, int maxNumberOfBlocks) => 
+        roverCounter < 1 || roverCounter >= maxNumberOfBlocks;
 }
