@@ -136,6 +136,7 @@ class Validator
 + bool DirectionValidator(string direction)
 + bool AxisValidator(int axis)
 + bool RectangularPlateauValidator(string plateauSize)
++ bool NumberOfRoversValidator(int roverCounter, int maxNumberOfBlocks)
 
 }
 
