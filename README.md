@@ -36,15 +36,15 @@ I assumed the Rovers are deployed and moved one by one, but I've created methods
  
 4. Now user must enter the movement's instructions, e.g "BLRM":
 
-      -B: turn the rover 180 degree at the current position, e.g. (1,2,N) --"B"--> (1,2,S).
+      -B: Rotate the rover 180 degree at the current position, e.g. (1,2,N) --"B"--> (1,2,S).
   
-      -L: turn the rover 90 degrees to the left, e.g. (1,2,N)--"L"--> (1,2,W).
+      -L: Rotate the rover 90 degrees to the left, e.g. (1,2,N)--"L"--> (1,2,W).
   
-      -R: just like "L" but it turns the rover direction 90 degrees to the right e.g. "N" --"R"--> "E".
+      -R: Just like "L" but it rotates the rover's direction 90 degrees to the right e.g. "N" --"R"--> "E".
   
-      -M: move the rover forward (based on the rover's direction) e.g. (1,2,E) --"M"--> (2,2,E).
+      -M: Move the rover forward (based on the rover's direction) e.g. (1,2,E) --"M"--> (2,2,E).
  
   
   
-5. Then system will create a LiveTable and show the Plateau and each Rover's position.
+5. Then system will create a LiveTable and shows the Plateau and each Rover's position.
 
