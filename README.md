@@ -15,7 +15,7 @@
 1. This project is highly expandable (I've created interfaces for Vehicles, Surfaces, Movements, Positions, NavigationSystem).
 2. Rovers can move in Diagonal path for Direction [NW, NE, SW, SE].
 
-   ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Diagonal1.gif)
+   ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Diagonal.gif)
 
 4. MissionControl class can store a List of Rovers.
 5. I've created methods for "CollisionDetection"
