@@ -1,4 +1,4 @@
-﻿using Mars_Rover_Project.Models.Position;
+﻿using Mars_Rover_Project.Models.PositionAndMovement;
 
 namespace Mars_Rover_Project.Models.General_Interfaces;
 

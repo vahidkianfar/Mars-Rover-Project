@@ -1,5 +1,5 @@
 ﻿using Mars_Rover_Project.Models.Mars;
-using Mars_Rover_Project.Models.Position;
+using Mars_Rover_Project.Models.PositionAndMovement;
 using Mars_Rover_Project.Models.ReadWriteFiles;
 using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
@@ -33,7 +33,7 @@ if(int.TryParse(ReadLine(), out var choice))
             var missionControl = new MissionControl();
             var readFile = new ReadFromFile();
             
-            if (!File.Exists(readFile.directoryInfo + "\\Command\\Instructions.txt"))
+            if (!File.Exists(readFile.DirectoryInfo + "\\Command\\Instructions.txt"))
             {
                 ForegroundColor = ConsoleColor.Yellow;
                 WriteLine("Instruction File doesn't exist, you need to create it for the first time");
@@ -147,7 +147,7 @@ void GetInstructionsSaveOnFile()
     for(var instructionCounter=0; instructionCounter<numberOfRover*2+1; instructionCounter++)
         userInstructions.Add(ReadLine()!);
 
-    File.WriteAllLines(openFile.directoryInfo + "\\Command\\Instructions.txt",userInstructions);
+    File.WriteAllLines(openFile.DirectoryInfo + "\\Command\\Instructions.txt",userInstructions);
     ForegroundColor = ConsoleColor.Green;
     WriteLine("\nNew instructions have been saved to file.");
     ResetColor();
@@ -193,7 +193,7 @@ void PrintPositionsAndWriteOnOutputFile(ReadFromFile readFile, MissionControl mi
         missionControl.RoverList[printPositionCounter]?.GetCurrentPositionForConsole(); 
         positions.Add(missionControl.RoverList[printPositionCounter]!.GetCurrentPositionForFile());
     } 
-    var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\FinalPosition.txt",positions); 
+    var writer = new WriteOnFile(readFile.DirectoryInfo + "\\Command\\FinalPosition.txt",positions); 
     writer.Write();
 }
 

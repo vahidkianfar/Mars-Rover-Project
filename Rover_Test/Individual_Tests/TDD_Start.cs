@@ -1,6 +1,6 @@
 using System;
 using Mars_Rover_Project.Models.Mars;
-using Mars_Rover_Project.Models.Position;
+using Mars_Rover_Project.Models.PositionAndMovement;
 using Mars_Rover_Project.Models.UI;
 using NUnit.Framework;
 
@@ -25,8 +25,8 @@ public class TDDTests
     public void PositionInterpreter_Should_Interpret_Position_Correctly()
     {
         var roverPosition = new PositionInterpreter("1 2 N");
-        Assert.AreEqual(1, roverPosition.initialPosition[0]);
-        Assert.AreEqual(2, roverPosition.initialPosition[1]);
+        Assert.AreEqual(1, roverPosition.InitialPosition[0]);
+        Assert.AreEqual(2, roverPosition.InitialPosition[1]);
         Assert.AreEqual("N", roverPosition.initialDirection);
     }
     [Test]

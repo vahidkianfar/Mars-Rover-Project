@@ -1,7 +1,6 @@
-﻿using Mars_Rover_Project.Models.UI;
-using Spectre.Console;
+﻿using Spectre.Console;
 
-namespace Mars_Rover_Project.Models.Position;
+namespace Mars_Rover_Project.Models.UI;
 
 public class DrawPlateauAndRovers
 {

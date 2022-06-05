@@ -1,4 +1,4 @@
-﻿using Mars_Rover_Project.Models.Position;
+﻿using Mars_Rover_Project.Models.PositionAndMovement;
 using NUnit.Framework;
 
 namespace MarsRover_Test.Individual_Tests;
@@ -15,8 +15,8 @@ public class PositionInterpreterTest
         int expectedaxisY = 2;
        
         
-        Assert.AreEqual(expectedaxisX, positionAndDirection.initialPosition[0]);
-        Assert.AreEqual(expectedaxisY, positionAndDirection.initialPosition[1]);
+        Assert.AreEqual(expectedaxisX, positionAndDirection.InitialPosition[0]);
+        Assert.AreEqual(expectedaxisY, positionAndDirection.InitialPosition[1]);
         Assert.AreEqual(expectedDirection, positionAndDirection.initialDirection);
     }
 }

@@ -2,5 +2,5 @@
 
 public interface IPosition
 {
-    public List<int> initialPosition { get; set; }
+    public List<int> InitialPosition { get; set; }
 }

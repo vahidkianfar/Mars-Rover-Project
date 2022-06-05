@@ -1,8 +1,7 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
-using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
 
-namespace Mars_Rover_Project.Models.Mars;
+namespace Mars_Rover_Project.Models.PositionAndMovement;
 
 public class MovingTheRover
 {

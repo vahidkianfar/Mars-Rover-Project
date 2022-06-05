@@ -179,19 +179,14 @@ class WriteOnFile
 - :ist<string> _content
 - void Write()
 }
+
 INavigation --> IVehicle
-MarsRover <--> ChangeDirection
-MarsRover <--> MovingTheRover
-MarsRover <--> PositionInterpreter
-MarsRover --> MarsPlateau
+MarsRover --> PositionInterpreter
 MarsRover --> NavigationInterpreter
 MarsRover --> Validator
 
-
-NavigateLeft --> IVehicle
-NavigateRight --> IVehicle
-NavigateForward --> IVehicle
-NavigateBack --> IVehicle
+ChangeDirection --> IVehicle
+MovingTheRover --> IVehicle
 
 NavigationInterpreter --> INavigation
 
@@ -204,5 +199,7 @@ MissionControl --> MovingTheRover
 
 DrawPlateauAndRovers --> MissionControl
 
+UserInputs --> ISurface
+UserInputs --> IVehicle
 
 @enduml

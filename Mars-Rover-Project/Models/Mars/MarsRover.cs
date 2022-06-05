@@ -1,6 +1,6 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
 using Mars_Rover_Project.Models.Navigation;
-using Mars_Rover_Project.Models.Position;
+using Mars_Rover_Project.Models.PositionAndMovement;
 using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 
@@ -14,8 +14,8 @@ public class MarsRover: IVehicle
     public MarsRover(string? getInitialPosition)
     {
         var roverPosition = new PositionInterpreter(getInitialPosition);
-        SetAxisX(roverPosition.initialPosition[0]);
-        SetAxisY(roverPosition.initialPosition[1]);
+        SetAxisX(roverPosition.InitialPosition[0]);
+        SetAxisY(roverPosition.InitialPosition[1]);
         SetDirection(roverPosition.initialDirection!);
     }
     
