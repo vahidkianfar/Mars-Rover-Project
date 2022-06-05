@@ -11,7 +11,12 @@ public class Validator
     public static bool DirectionValidator(string direction)=>direction.ToUpper() == "N" || 
                                                              direction.ToUpper() == "S" || 
                                                              direction.ToUpper() == "E" ||
-                                                             direction.ToUpper() == "W";
+                                                             direction.ToUpper() == "W" ||
+                                                             direction.ToUpper() == "NW" ||
+                                                             direction.ToUpper() == "NE" ||
+                                                             direction.ToUpper() == "SW" ||
+                                                             direction.ToUpper() == "SE";
+    
     public static bool DeploymentPositionValidator(int xCoordinate, int yCoordinate, ISurface? plateau)=>
         plateau != null && xCoordinate >= 0 && xCoordinate <= plateau.Lenght_X && yCoordinate >= 0 && yCoordinate <= plateau.Width_Y;
     public static bool RectangularPlateauValidator(string? plateauSize) => 

@@ -9,7 +9,11 @@ public class ChangeDirection
         N=1,
         E,
         S,
-        W
+        W,
+        NW,
+        NE,
+        SW,
+        SE
     } 
     public static void TurnLeft(IVehicle rover)
     {
@@ -27,6 +31,19 @@ public class ChangeDirection
             case Direction.W:
                 rover.roverDirection--;
                 break;
+            case Direction.NW:
+                rover.roverDirection+=2;
+                break;
+            case Direction.NE:
+                rover.roverDirection--;
+                break;
+            case Direction.SW:
+                rover.roverDirection++;
+                break;
+            case Direction.SE:
+                rover.roverDirection-=2;
+                break;
+            
         }
     }
     
@@ -46,6 +63,18 @@ public class ChangeDirection
             case Direction.W:
                 rover.roverDirection-=3;
                 break;
+            case Direction.NW:
+                rover.roverDirection++;
+                break;
+            case Direction.NE:
+                rover.roverDirection+=2;
+                break;
+            case Direction.SW:
+                rover.roverDirection-=2;
+                break;
+            case Direction.SE:
+                rover.roverDirection--;
+                break;
         }
     }
     
@@ -64,6 +93,18 @@ public class ChangeDirection
                 break;
             case Direction.W:
                 rover.roverDirection -= 2;
+                break;
+            case Direction.NW:
+                rover.roverDirection += 3;
+                break;
+            case Direction.NE:
+                rover.roverDirection ++;
+                break;
+            case Direction.SW:
+                rover.roverDirection --;
+                break;
+            case Direction.SE:
+                rover.roverDirection -= 3;
                 break;
         }
     }
