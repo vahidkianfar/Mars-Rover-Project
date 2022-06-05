@@ -10,7 +10,7 @@ public interface IVehicle
     public void TurnAround();
     public void TurnLeft();
     public void TurnRight();
-    public void Move();
+    public void MoveForward();
     public void ExecuteCommand(string? getMovement);
     public Enum? GetDirection();
     public void GetCurrentPositionForConsole();

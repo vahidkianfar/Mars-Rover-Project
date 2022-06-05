@@ -43,15 +43,15 @@ class MarsRover implements IVehicle
 + int axisY
 + ChangeDirection.Direction roverDirection
 - MovingTheRover _movingTheRover
-- ChangeDirection _changeDirection
 
 
 + MarsRover(string getInitialPosition)
 + ExecuteCommand(string getMovement)
 + void TurnLeft()
-+ voidTurnRight()
++ void TurnRight()
 + void TurnAround()
-+ void Move()
++ void MoveForward()
++ void MoveBackward()
 + void SetAxisY(int axisY)
 + void SetAxisX(int axisX)
 - void SetDirection(string direction)
@@ -117,9 +117,9 @@ class NavigationInterpreter
 class ChangeDirection
 {
 + enum Direction
-+ TurnLeft(IVehicle)
-+ TurnRight(IVehicle)
-+ TurnAround(IVehicle)
++ void TurnLeft(IVehicle)
++ void TurnRight(IVehicle)
++ void TurnAround(IVehicle)
 }
 
 class MovingTheRover implements IMovementDirection

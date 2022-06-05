@@ -54,7 +54,7 @@ public class TDDTests
         MarsRover rover = new("1 2 N");
         MissionControl.Plateau = plateau;
         
-        rover.Move();
+        rover.MoveForward();
         Assert.AreEqual(1, rover.GetAxisX());
         Assert.AreEqual(3, rover.GetAxisY());
     }
@@ -68,13 +68,13 @@ public class TDDTests
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.TurnLeft();
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
-        rover3.Move();
+        rover3.MoveForward();
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         rover3.TurnLeft();
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
-        rover3.Move();
+        rover3.MoveForward();
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
-        rover3.Move();
+        rover3.MoveForward();
         
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
         Assert.AreEqual(0, rover3.GetAxisX());

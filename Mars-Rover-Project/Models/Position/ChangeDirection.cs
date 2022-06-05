@@ -11,7 +11,7 @@ public class ChangeDirection
         S,
         W
     } 
-    public void TurnLeft(IVehicle rover)
+    public static void TurnLeft(IVehicle rover)
     {
         switch (rover.GetDirection())
         {
@@ -30,7 +30,7 @@ public class ChangeDirection
         }
     }
     
-    public void TurnRight(IVehicle rover)
+    public static void TurnRight(IVehicle rover)
     {
         switch (rover.GetDirection())
         {
@@ -49,7 +49,7 @@ public class ChangeDirection
         }
     }
     
-    public void TurnAround(IVehicle rover)
+    public static void TurnAround(IVehicle rover)
     {
         switch (rover.GetDirection())
         {

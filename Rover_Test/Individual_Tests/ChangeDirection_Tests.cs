@@ -12,10 +12,9 @@ public class ChangeDirectionTests
         //Arrange
         var rover = new MarsRover("1 2 N");
         var expected = ChangeDirection.Direction.E;
-        var directionChanger = new ChangeDirection();
         
         //Act
-        directionChanger.TurnRight(rover);
+        ChangeDirection.TurnRight(rover);
       
         //Assert
         Assert.AreEqual(expected, rover.roverDirection);
@@ -26,10 +25,9 @@ public class ChangeDirectionTests
         //Arrange
         var rover = new MarsRover("1 2 N");
         var expected = ChangeDirection.Direction.W;
-        var directionChanger = new ChangeDirection();
         
         //Act
-        directionChanger.TurnLeft(rover);
+        ChangeDirection.TurnLeft(rover);
       
         //Assert
         Assert.AreEqual(expected, rover.roverDirection);
@@ -41,10 +39,9 @@ public class ChangeDirectionTests
         //Arrange
         var rover = new MarsRover("1 2 N");
         var expected = ChangeDirection.Direction.S;
-        var directionChanger = new ChangeDirection();
         
         //Act
-        directionChanger.TurnAround(rover);
+        ChangeDirection.TurnAround(rover);
       
         //Assert
         Assert.AreEqual(expected, rover.roverDirection);
