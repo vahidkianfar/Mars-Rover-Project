@@ -7,7 +7,7 @@
 2. I assumed the Rovers are deployed and moved one by one, but I've created methods for
    checking "DeploymentCollision" but for now I only Use the Collision method for "SamePosition" it means the Rover cannot be on the same position.
   
-3. I've implemented "GetRoverPosition" inside the Rover class (not the "MissionControl" class, because I'am thinking about expanding the projecr
+3. I've implemented "GetRoverPosition" inside the Rover class (not the "MissionControl" class, because I'm thinking about expanding the project
    for Obsticles, possible errors and rover's broke down.
 
 ## Key Features:
