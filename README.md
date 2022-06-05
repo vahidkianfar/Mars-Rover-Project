@@ -14,12 +14,15 @@
 
 1. This project is highly expandable (I've created interfaces for Vehicles, Surfaces, Movements, Positions, NavigationSystem).
 2. Rovers can move in Diagonal path for Direction [NW, NE, SW, SE].
-3. MissionControl class can store a List of Rovers.
-4. I've created methods for "CollisionDetection"
-5. Drawing Live Table, after the user created and deployed the rovers, it will draw a LiveTable of Plateau and Rovers.
-6. User can use File for creating a plateau, deploying rovers and execute movement commands.
-7. So far the project only accepts one kind of rover but with the interface "IVehicle" anyone can expand the project for other type of rovers.
-8. You can expand the Movement of the rover (Move Backward, Move Left, Move Right).
+
+![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Diagonal1.gif)
+
+4. MissionControl class can store a List of Rovers.
+5. I've created methods for "CollisionDetection"
+6. Drawing Live Table, after the user created and deployed the rovers, it will draw a LiveTable of Plateau and Rovers.
+7. User can use File for creating a plateau, deploying rovers and execute movement commands.
+8. So far the project only accepts one kind of rover but with the interface "IVehicle" anyone can expand the project for other type of rovers.
+9. You can expand the Movement of the rover (Move Backward, Move Left, Move Right).
 
 
 
