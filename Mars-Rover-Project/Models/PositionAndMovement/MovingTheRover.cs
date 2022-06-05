@@ -1,6 +1,5 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
 using Mars_Rover_Project.Models.RoversAndPlateau;
-using Mars_Rover_Project.Models.UI;
 
 namespace Mars_Rover_Project.Models.PositionAndMovement;
 
@@ -57,6 +56,22 @@ public class MovingTheRover
                         rover.SetAxisY(rover.GetAxisY() + 1);
                         break;
                     case ChangeDirection.Direction.W when rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
+                        rover.SetAxisX(rover.GetAxisX() + 1);
+                        break;
+                    case ChangeDirection.Direction.NE when rover.GetAxisY() > 0 && rover.GetAxisX() > 0:
+                        rover.SetAxisY(rover.GetAxisY() - 1);
+                        rover.SetAxisX(rover.GetAxisX() - 1);
+                        break;
+                    case ChangeDirection.Direction.NW when rover.GetAxisY() > 0 && rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
+                        rover.SetAxisY(rover.GetAxisY() - 1);
+                        rover.SetAxisX(rover.GetAxisX() + 1);
+                        break;
+                    case ChangeDirection.Direction.SE when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y && rover.GetAxisX() > 0:
+                        rover.SetAxisY(rover.GetAxisY() + 1);
+                        rover.SetAxisX(rover.GetAxisX() - 1);
+                        break;
+                    case ChangeDirection.Direction.SW when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y && rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
+                        rover.SetAxisY(rover.GetAxisY() + 1);
                         rover.SetAxisX(rover.GetAxisX() + 1);
                         break;
                     default:
