@@ -25,6 +25,7 @@
 ## Menu:
 
 1. User can enter the instructions into file or read instructions from file:
+<a href="url"><img src="[http://url.to/image.png](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-File.gif)" align="left" height="48" width="48" ></a>
 
 ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-File.gif =750x750 )
 
