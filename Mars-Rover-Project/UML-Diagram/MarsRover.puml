@@ -76,13 +76,17 @@ class MissionControl
 - CheckNumberOfRoversOnSpecificPlateau(List<IVehicle>)
 
 }
-class MarsPlateau implements ISurface
+class RectangularPlateau implements ISurface
 {
 + int Lenght_X
 + int Width_Y
-+ MarsPlateau(string gridSize)
++ RectangularPlateau(string gridSize)
 + int GetLenght()
 + int GetWidth()
+}
+class CircularPlateau implements ISurface
+{
+- double _radius
 }
 class NavigateBack implements INavigation
 {
@@ -129,7 +133,7 @@ class MovingTheRover
 }
 class Validator
 {
-+ bool DeploymentPositionValidator(int xCoordinate, int yCoordinate, MarsPlateau plateau)
++ bool DeploymentPositionValidator(int xCoordinate, int yCoordinate, RectangularPlateau plateau)
 + bool CommandValidator(string inputCommand)
 + bool DirectionValidator(string direction)
 + bool AxisValidator(int axis)
@@ -190,7 +194,7 @@ MovingTheRover --> IVehicle
 
 NavigationInterpreter --> INavigation
 
-MarsPlateau --> Validator
+RectangularPlateau --> Validator
 
 MissionControl --> IVehicle
 MissionControl --> ISurface

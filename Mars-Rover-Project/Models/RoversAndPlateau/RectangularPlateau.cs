@@ -1,13 +1,13 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
 using Mars_Rover_Project.Models.Validation;
 
-namespace Mars_Rover_Project.Models.Mars;
+namespace Mars_Rover_Project.Models.RoversAndPlateau;
 
-public class MarsPlateau:ISurface
+public class RectangularPlateau:ISurface
 {
     public int Lenght_X { get; set; }
     public int Width_Y { get; set; }
-    public MarsPlateau(string? gridSize)
+    public RectangularPlateau(string? gridSize)
     {
         if(!Validator.RectangularPlateauValidator(gridSize))
             throw new ArgumentException("Invalid grid size for Rectangular Plateau");

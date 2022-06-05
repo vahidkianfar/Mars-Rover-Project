@@ -1,5 +1,5 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
-using Mars_Rover_Project.Models.Mars;
+using Mars_Rover_Project.Models.RoversAndPlateau;
 
 namespace Mars_Rover_Project.Models.UI;
 
@@ -12,9 +12,24 @@ public class UserInputs
     
     public static void GrabPlateauSizeFromUser()
     {
-        var plateauSize = Console.ReadLine()!;
-        var plateau = new MarsPlateau(plateauSize);
-        userPlateau = plateau;
+        Console.WriteLine("\nPlease choose a Plateau shape:\n");
+        Console.WriteLine("1. Rectangular Plateau");
+        Console.WriteLine("2. Circular Plateau");
+        Console.Write("\nEnter your choice: ");
+        var choice = Convert.ToInt32(Console.ReadLine()!);
+        switch (choice)
+        {
+            case 1:
+                UserGuideline.InputExampleForPlateauSize();
+                var plateauSize = Console.ReadLine()!;
+                var plateau = new RectangularPlateau(plateauSize);
+                userPlateau = plateau;
+                break;
+            
+            case 2:
+                throw new NotImplementedException();
+        }
+
     }
 
     public static void GrabRoverPositionFromUser()

@@ -1,5 +1,5 @@
 ﻿using System;
-using Mars_Rover_Project.Models.Mars;
+using Mars_Rover_Project.Models.RoversAndPlateau;
 using NUnit.Framework;
 
 namespace MarsRover_Test.Individual_Tests;
@@ -15,7 +15,7 @@ public class PlateauTests
     [Test]
     public void Create_Rectangular_Plateau_With_Specific_Size()
     {
-        MarsPlateau plateau = new("7 3");
+        RectangularPlateau plateau = new("7 3");
         Assert.AreEqual(7, plateau.Lenght_X);
         Assert.AreEqual(3, plateau.Width_Y);
     }
@@ -23,18 +23,18 @@ public class PlateauTests
     [Test]
     public void Create_Rectangular_Plateau_With_Invalid_Size_Should_Throws_Argument_Exception()
     {
-        Assert.Throws<ArgumentException>(() => new MarsPlateau("5 5 5"));
-        Assert.Throws<ArgumentException>(() => new MarsPlateau("5"));
-        Assert.Throws<ArgumentException>(() => new MarsPlateau(""));
-        Assert.Throws<ArgumentException>(() => new MarsPlateau(" "));
-        Assert.Throws<ArgumentNullException>(() => new MarsPlateau(null));
+        Assert.Throws<ArgumentException>(() => new RectangularPlateau("5 5 5"));
+        Assert.Throws<ArgumentException>(() => new RectangularPlateau("5"));
+        Assert.Throws<ArgumentException>(() => new RectangularPlateau(""));
+        Assert.Throws<ArgumentException>(() => new RectangularPlateau(" "));
+        Assert.Throws<ArgumentNullException>(() => new RectangularPlateau(null));
     }
     
     [Test]
     public void Create_Plateau_With_Negative_Size_Should_Throws_Argument_Exception()
     {
-        Assert.Throws<ArgumentException>(() => new MarsPlateau("-5 8"));
-        Assert.Throws<ArgumentException>(() => new MarsPlateau("-10 -10"));
+        Assert.Throws<ArgumentException>(() => new RectangularPlateau("-5 8"));
+        Assert.Throws<ArgumentException>(() => new RectangularPlateau("-10 -10"));
     }
     
     

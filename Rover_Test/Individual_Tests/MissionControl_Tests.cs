@@ -1,6 +1,6 @@
 ﻿using System;
-using Mars_Rover_Project.Models.Mars;
 using Mars_Rover_Project.Models.PositionAndMovement;
+using Mars_Rover_Project.Models.RoversAndPlateau;
 using Mars_Rover_Project.Models.UI;
 using NUnit.Framework;
 
@@ -23,7 +23,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Store_The_Plateau_and_Rover_Deploy_Coordinates()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         MarsRover rover = new("2 2 N");
         MissionControl missionControl = new ();
         missionControl.DeployRover(rover,plateau);
@@ -35,7 +35,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Change_The_Direction_Of_The_Rover_by_The_Given_Command()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         MarsRover rover = new("2 2 N");
         MissionControl missionControl = new();
         missionControl.DeployRover(rover,plateau);
@@ -45,7 +45,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Move_The_Rover_Then_Turn_Right_by_The_Given_Command()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         MarsRover rover = new("2 2 N");
         MissionControl missionControl = new();
         missionControl.DeployRover(rover,plateau);
@@ -59,7 +59,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Accept_Multiple_Rovers_Deployment()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         
         MarsRover rover1 = new("2 2 N");
         MarsRover rover2 = new("3 3 E");
@@ -87,7 +87,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Accept_Multiple_Rovers_Deployment_And_Execute_Commands()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         
         MarsRover rover1 = new("2 2 N");
         MarsRover rover2 = new("3 3 E");
@@ -118,7 +118,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Check_For_Boundaries_of_Plateau()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         MarsRover rover = new("2 2 N");
         MissionControl missionControl = new();
         missionControl.DeployRover(rover,plateau);
@@ -128,7 +128,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Throws_Exception_When_Rover_Go_Further_Than_Plateau_Boundaries()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         
         MarsRover rover1 = new("2 2 N");
         MarsRover rover2 = new("3 3 E");
@@ -148,7 +148,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Return_TRUE_When_Collision_Happened()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         
         MarsRover rover1 = new("2 2 N");
         MarsRover rover2 = new("3 3 E");
@@ -170,7 +170,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Throws_Exception_When_Deployment_Coordinates_Not_In_The_Plateau_Boundaries()
     {
-        MarsPlateau plateau = new("5 5");
+        RectangularPlateau plateau = new("5 5");
         MarsRover rover = new("6 6 N");
         MissionControl missionControl = new();
         Assert.Throws<ArgumentException>(() =>missionControl.DeployRover(rover,plateau));
@@ -178,7 +178,7 @@ public class MissionControlTests
     [Test]
     public void MissionControl_Should_Throws_Exception_When_The_Number_Of_Rovers_More_Than_Available_Blocks()
     {
-        MarsPlateau plateau = new("2 2");
+        RectangularPlateau plateau = new("2 2");
         MarsRover rover1 = new("1 1 N");
         MarsRover rover2 = new("1 2 N");
         MarsRover rover3 = new("2 1 N");

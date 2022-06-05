@@ -1,5 +1,5 @@
-﻿using Mars_Rover_Project.Models.Mars;
-using Mars_Rover_Project.Models.PositionAndMovement;
+﻿using Mars_Rover_Project.Models.PositionAndMovement;
+using Mars_Rover_Project.Models.RoversAndPlateau;
 using NUnit.Framework;
 
 namespace MarsRover_Test.Individual_Tests;

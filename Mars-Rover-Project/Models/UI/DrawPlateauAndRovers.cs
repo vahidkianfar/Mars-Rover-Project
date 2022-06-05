@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using Mars_Rover_Project.Models.RoversAndPlateau;
+using Spectre.Console;
 
 namespace Mars_Rover_Project.Models.UI;
 

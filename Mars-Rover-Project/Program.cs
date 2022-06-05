@@ -1,6 +1,6 @@
-﻿using Mars_Rover_Project.Models.Mars;
-using Mars_Rover_Project.Models.PositionAndMovement;
+﻿using Mars_Rover_Project.Models.PositionAndMovement;
 using Mars_Rover_Project.Models.ReadWriteFiles;
+using Mars_Rover_Project.Models.RoversAndPlateau;
 using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 using static System.Console;
@@ -78,7 +78,6 @@ if(int.TryParse(ReadLine(), out var choice))
             {
                 var missionControl = new MissionControl();
                 var user = new UserInputs();
-                UserGuideline.InputExampleForPlateauSize();
                 UserInputs.GrabPlateauSizeFromUser();
                 Write("\nHow many Rover do you want to add? ");
                 var roverCounter = Convert.ToInt32(ReadLine()!);
@@ -155,7 +154,7 @@ void GetInstructionsSaveOnFile()
 
 void DeployTheRoversForFile(List<string?> instructions, MissionControl missionControl)
 {
-    var plateau = new MarsPlateau(instructions[0]);
+    var plateau = new RectangularPlateau(instructions[0]);
     for(var deployLineCounter = 1; deployLineCounter < instructions.Count; deployLineCounter+=2)
     {
         var rover = new MarsRover(instructions[deployLineCounter]);
