@@ -1,4 +1,4 @@
-﻿namespace Mars_Rover_Project.Command;
+﻿namespace Mars_Rover_Project.Models.ReadWriteFiles;
 
 public class WriteOnFile
 {
