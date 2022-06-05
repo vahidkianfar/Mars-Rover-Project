@@ -180,7 +180,7 @@ class ReadFromFile
 class WriteOnFile
 {
 - string _path
-- :ist<string> _content
+- List<string> _content
 - void Write()
 }
 
