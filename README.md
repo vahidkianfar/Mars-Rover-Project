@@ -26,7 +26,7 @@
 
 1. User can enter the instructions into file or read instructions from file:
 
-![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-File.gif)
+![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-File.gif =750x750 )
 
 2. User can enter the instructions manually:
 
