@@ -6,12 +6,15 @@ namespace Mars_Rover_Project.Models.UI;
 public class MissionControl
 {
     public bool IsMissionComplete { get; set; }
-    public static List<IVehicle?>? RoverList;
+    public List<IVehicle?>? RoverList;
     public static ISurface? Plateau { get; set; }
     public MissionControl()=>RoverList = new List<IVehicle?>();
-    public static ISurface? GetPlateauDetails()=>Plateau;
-    public IVehicle? GetRoverDetails(int roverNumber) => RoverList?[roverNumber];
-    public void ExecuteCommand(int roverNumber, string? getMovement)=>RoverList?[roverNumber]?.ExecuteCommand(getMovement);
+    public static ISurface? GetPlateauDetails()=> Plateau;
+    public IVehicle? GetRoverDetails(int roverNumber)=> RoverList?[roverNumber];
+
+    public void ExecuteCommand(int roverNumber, string? getMovement) =>
+        RoverList?[roverNumber]?.ExecuteCommand(getMovement);
+    
     public void DeployRover(IVehicle? rover, ISurface? marsPlateau)
     {
         if (rover != null && !Validator.DeploymentPositionValidator(rover.GetAxisX(), rover.GetAxisY(), marsPlateau))
@@ -20,7 +23,7 @@ public class MissionControl
         RoverList?.Add(rover);
     }
     
-    public static bool CollisionInnerDetection(List<IVehicle> rovers)
+    public bool CollisionInnerDetection(List<IVehicle> rovers)
     {
         for (var firstCounter = 0; firstCounter < rovers.Count; firstCounter++)
         {
@@ -34,6 +37,6 @@ public class MissionControl
         }
         return false;
     }
-    private static bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) => rover1!.GetAxisX() == rover2!.GetAxisX() 
+    private bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) => rover1!.GetAxisX() == rover2!.GetAxisX() 
         && rover1.GetAxisY() == rover2.GetAxisY();
 }

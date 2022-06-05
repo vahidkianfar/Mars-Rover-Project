@@ -48,7 +48,7 @@ if(int.TryParse(ReadLine(), out var choice))
             DeployTheRoversForFile(instructions, missionControl);
             var roverCounterFromFile= ExecuteInstructionsForFile(instructions, missionControl);
             UserGuideline.BeepSoundForSuccess();
-            PrintPositionsAndWriteOnOutputFile(readFile);
+            PrintPositionsAndWriteOnOutputFile(readFile, missionControl);
             var drawTable= new DrawPlateauAndRovers(); 
             
             await drawTable.LiveTable
@@ -90,7 +90,7 @@ if(int.TryParse(ReadLine(), out var choice))
                 UserGuideline.ProgressBar();
                 ExecuteInstructions(missionControl,user);
                 UserGuideline.BeepSoundForSuccess();
-                PrintPositions();
+                PrintPositions(missionControl);
                 var drawTable= new DrawPlateauAndRovers();
                 
                 await drawTable.LiveTable
@@ -179,19 +179,19 @@ int ExecuteInstructionsForFile(List<string?> instructions, MissionControl missio
         commandLineCounter += 2;
         simpleCounter++;
     }
-    if (MissionControl.CollisionInnerDetection(MissionControl.RoverList!))
+    if (missionControl.CollisionInnerDetection(missionControl.RoverList!))
         CollisionMessages.CollisionMessageForSameDestination();
     return simpleCounter;
 }
 
-void PrintPositionsAndWriteOnOutputFile(ReadFromFile readFile)
+void PrintPositionsAndWriteOnOutputFile(ReadFromFile readFile, MissionControl missionControl)
 {
     var positions = new List<string>(); 
-    for(var printPositionCounter=0; printPositionCounter<MissionControl.RoverList!.Count; printPositionCounter++) 
+    for(var printPositionCounter=0; printPositionCounter<missionControl.RoverList!.Count; printPositionCounter++) 
     { 
         Write("Rover " + (printPositionCounter+1) + " "); 
-        MissionControl.RoverList[printPositionCounter]?.GetCurrentPositionForConsole(); 
-        positions.Add(MissionControl.RoverList[printPositionCounter]!.GetCurrentPositionForFile());
+        missionControl.RoverList[printPositionCounter]?.GetCurrentPositionForConsole(); 
+        positions.Add(missionControl.RoverList[printPositionCounter]!.GetCurrentPositionForFile());
     } 
     var writer = new WriteOnFile(readFile.directoryInfo + "\\Command\\FinalPosition.txt",positions); 
     writer.Write();
@@ -224,15 +224,15 @@ void ExecuteInstructions(MissionControl missionControl,UserInputs user)
              break;
          }*/
     }
-    if (MissionControl.CollisionInnerDetection(MissionControl.RoverList!)) 
+    if (missionControl.CollisionInnerDetection(missionControl.RoverList!)) 
         CollisionMessages.CollisionMessageForSameDestination();
 }
 
-void PrintPositions()
+void PrintPositions(MissionControl missionControl)
 {
-    for(var printPositionCounter=0; printPositionCounter<MissionControl.RoverList!.Count; printPositionCounter++)
+    for(var printPositionCounter=0; printPositionCounter<missionControl.RoverList!.Count; printPositionCounter++)
     {
         Write("Rover " + (printPositionCounter+1) + " ");
-        MissionControl.RoverList[printPositionCounter]?.GetCurrentPositionForConsole();
+        missionControl.RoverList[printPositionCounter]?.GetCurrentPositionForConsole();
     }
 }

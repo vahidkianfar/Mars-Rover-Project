@@ -68,6 +68,7 @@ public class MissionControlTests
     public void MissionControl_Should_Accept_Multiple_Rovers_Deployment()
     {
         MarsPlateau plateau = new("5 5");
+        
         MarsRover rover1 = new("2 2 N");
         MarsRover rover2 = new("3 3 E");
         MarsRover rover3 = new("4 4 W");
@@ -89,6 +90,80 @@ public class MissionControlTests
         Assert.AreEqual(missionControl.GetRoverDetails(2)!.GetAxisX(),4);
         Assert.AreEqual(missionControl.GetRoverDetails(2)!.GetAxisY(),4);
         Assert.AreEqual(missionControl.GetRoverDetails(2)!.GetDirection(),ChangeDirection.Direction.W);
+    }
+    
+    [Test]
+    public void MissionControl_Should_Accept_Multiple_Rovers_Deployment_And_Execute_Commands()
+    {
+        MarsPlateau plateau = new("5 5");
+        
+        MarsRover rover1 = new("2 2 N");
+        MarsRover rover2 = new("3 3 E");
+        MarsRover rover3 = new("4 4 W");
+        
+        var missionControl = new MissionControl();
+        
+        missionControl.DeployRover(rover1,plateau);
+        missionControl.DeployRover(rover2,plateau);
+        missionControl.DeployRover(rover3,plateau);
+        
+        missionControl.ExecuteCommand(0,"MMR");
+        missionControl.ExecuteCommand(1,"BMM");
+        missionControl.ExecuteCommand(2,"MMMLM");
+        
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisX(),2);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisY(),4);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetDirection(),ChangeDirection.Direction.E);
+        
+        Assert.AreEqual(missionControl.GetRoverDetails(1)!.GetAxisX(),1);
+        Assert.AreEqual(missionControl.GetRoverDetails(1)!.GetAxisY(),3);
+        Assert.AreEqual(missionControl.GetRoverDetails(1)!.GetDirection(),ChangeDirection.Direction.W);
+        
+        Assert.AreEqual(missionControl.GetRoverDetails(2)!.GetAxisX(),1);
+        Assert.AreEqual(missionControl.GetRoverDetails(2)!.GetAxisY(),3);
+        Assert.AreEqual(missionControl.GetRoverDetails(2)!.GetDirection(),ChangeDirection.Direction.S);
+    }
+
+    [Test]
+    public void MissionControl_Should_Check_For_Boundaries_For_Multiple_Rover()
+    {
+        MarsPlateau plateau = new("5 5");
+        
+        MarsRover rover1 = new("2 2 N");
+        MarsRover rover2 = new("3 3 E");
+        MarsRover rover3 = new("4 4 W");
+        
+        var missionControl = new MissionControl();
+        
+        missionControl.DeployRover(rover1,plateau);
+        missionControl.DeployRover(rover2,plateau);
+        missionControl.DeployRover(rover3,plateau);
+        
+        Assert.Throws<ArgumentException>(() =>missionControl.ExecuteCommand(0,"MMMMMMMR"));
+        Assert.Throws<ArgumentException>(() =>missionControl.ExecuteCommand(1,"BMMMMMMMR"));
+        Assert.Throws<ArgumentException>(() =>missionControl.ExecuteCommand(2,"LMMMMMMMR"));
+    }
+
+    [Test]
+    public void MissionControl_Should_Return_TRUE_When_Collision_Happened()
+    {
+        MarsPlateau plateau = new("5 5");
+        
+        MarsRover rover1 = new("2 2 N");
+        MarsRover rover2 = new("3 3 E");
+        MarsRover rover3 = new("4 4 W");
+        
+        var missionControl = new MissionControl();
+        
+        missionControl.DeployRover(rover1,plateau);
+        missionControl.DeployRover(rover2,plateau);
+        missionControl.DeployRover(rover3,plateau);
+        missionControl.ExecuteCommand(0, "L");
+        missionControl.ExecuteCommand(1, "BMLM");
+        missionControl.ExecuteCommand(2, "RLM");
+        
+        Assert.AreEqual(true,missionControl.CollisionInnerDetection(missionControl.RoverList!));
+    
     }
     
 }
