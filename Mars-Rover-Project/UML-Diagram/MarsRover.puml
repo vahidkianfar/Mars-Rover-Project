@@ -118,7 +118,7 @@ class NavigationInterpreter
 }
 class ChangeDirection
 {
-+ enum Direction
++ enum Direction { N, E, S, W, NW, NE, SW, SE }
 + void TurnLeft(IVehicle)
 + void TurnRight(IVehicle)
 + void TurnAround(IVehicle)
