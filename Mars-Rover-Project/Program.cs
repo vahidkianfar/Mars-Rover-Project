@@ -35,8 +35,10 @@ if(int.TryParse(ReadLine(), out var choice))
             
             if (!File.Exists(readFile.directoryInfo + "\\Command\\Instructions.txt"))
             {
+                ForegroundColor = ConsoleColor.Yellow;
+                WriteLine("Instruction File doesn't exist, you need to create it for the first time");
                 ForegroundColor = ConsoleColor.Green;
-                WriteLine("Instruction File doesn't exist, you have to create it for the first time");
+                WriteLine("Creating the Instructions File...!");
                 ResetColor();
                 GetInstructionsSaveOnFile();
             }
@@ -48,6 +50,7 @@ if(int.TryParse(ReadLine(), out var choice))
             UserGuideline.BeepSoundForSuccess();
             PrintPositionsAndWriteOnOutputFile(readFile);
             var drawTable= new DrawPlateauAndRovers(); 
+            
             await drawTable.LiveTable
                 (
                 Convert.ToInt32(instructions[0]!.Split(' ')[0]),
