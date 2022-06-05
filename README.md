@@ -2,10 +2,12 @@
 
 ## Assumptions:
 
-1. I assumed the Rovers are deployed and moved one by one, but I've created methods for
+1. For Rectangular Plateau: size "0 0" means only One block, and 0 is the starting point.
+
+2. I assumed the Rovers are deployed and moved one by one, but I've created methods for
    checking "DeploymentCollision" but for now I only Use the Collision method for "SamePosition" it means the Rover cannot be on the same position.
   
-2. I've implemented "GetRoverPosition" inside the Rover class (not the "MissionControl" class, because I'am thinking about expanding the projecr
+3. I've implemented "GetRoverPosition" inside the Rover class (not the "MissionControl" class, because I'am thinking about expanding the projecr
    for Obsticles, possible errors and rover's broke down.
 
 ## Key Features:
@@ -33,7 +35,7 @@
 
 ## Instruction Format:
 
-1. User needs to set the Plateau size in form of "X X" e.g "10 10" then it creates a surface (so far, rectangular plateau) in size of 10x10.
+1. User needs to set the Plateau size in form of "X Y" e.g "10 10" then it creates a surface (so far, rectangular plateau) in size of 10x10.
 2. User gives the number of rovers to the Controller [number of Rovers must be between 1 and maximum number of surface blocks, if the surface is 6x6 it means the number of rovers cannot be more than 36].
 3. User should set the deployment coordinates and direction of the Rover "X X Compass Direction" e.g "3 5 N" it means the rover will be deploy at
    coordinates (3,5) on the surface facing to the North (N=North, W=West, S=South, E=East).
