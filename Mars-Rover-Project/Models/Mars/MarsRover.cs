@@ -10,7 +10,6 @@ public class MarsRover: IVehicle
 {
     private int _axisX { get; set; }
     private int _axisY { get; set; }
-    private MovingTheRover _movingTheRover { get; }
     public ChangeDirection.Direction roverDirection { get; set; }
     public MarsRover(string? getInitialPosition)
     {
@@ -18,16 +17,15 @@ public class MarsRover: IVehicle
         SetAxisX(roverPosition.initialPosition[0]);
         SetAxisY(roverPosition.initialPosition[1]);
         SetDirection(roverPosition.initialDirection!);
-         _movingTheRover = new MovingTheRover();
     }
     
     public void TurnLeft()=>ChangeDirection.TurnLeft(this);
     public void TurnRight()=>ChangeDirection.TurnRight(this);
     public void TurnAround()=>ChangeDirection.TurnAround(this);
-    public void MoveForward()=>_movingTheRover.MoveForward(this);
-    public void MoveBackward()=>_movingTheRover.MoveBackward(this);
-    public void MoveLeft()=>_movingTheRover.MoveLeft(this);
-    public void MoveRight()=>_movingTheRover.MoveRight(this);
+    public void MoveForward()=>MovingTheRover.MoveForward(this);
+    public void MoveBackward()=>MovingTheRover.MoveBackward(this);
+    public void MoveLeft()=>MovingTheRover.MoveLeft(this);
+    public void MoveRight()=>MovingTheRover.MoveRight(this);
     public void ExecuteCommand(string? getMovement)
     {
         if (!Validator.CommandValidator(getMovement)) 

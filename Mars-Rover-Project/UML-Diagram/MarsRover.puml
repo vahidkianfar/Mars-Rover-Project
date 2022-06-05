@@ -42,11 +42,9 @@ class MarsRover implements IVehicle
 + int axisX
 + int axisY
 + ChangeDirection.Direction roverDirection
-- MovingTheRover _movingTheRover
-
 
 + MarsRover(string getInitialPosition)
-+ ExecuteCommand(string getMovement)
++ void ExecuteCommand(string getMovement)
 + void TurnLeft()
 + void TurnRight()
 + void TurnAround()
@@ -122,12 +120,12 @@ class ChangeDirection
 + void TurnAround(IVehicle)
 }
 
-class MovingTheRover implements IMovementDirection
+class MovingTheRover
 {
-+ MoveForward(IVehicle rover)
-+ MoveBackward(IVehicle rover)
-+ MoveLeft(IVehicle rover)
-+ MoveRight(MIVehicle rover)
++ void MoveForward(IVehicle rover)
++ void MoveBackward(IVehicle rover)
++ void MoveLeft(IVehicle rover)
++ void MoveRight(MIVehicle rover)
 }
 class Validator
 {

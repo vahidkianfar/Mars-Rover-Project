@@ -4,9 +4,9 @@ using Mars_Rover_Project.Models.UI;
 
 namespace Mars_Rover_Project.Models.Mars;
 
-public class MovingTheRover:IMovementDirection
+public class MovingTheRover
 {
-    public void MoveForward(IVehicle rover)
+    public static void MoveForward(IVehicle rover)
     {
         switch (rover.GetDirection())
         {
@@ -16,16 +16,18 @@ public class MovingTheRover:IMovementDirection
             case ChangeDirection.Direction.E when rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
                 rover.SetAxisX(rover.GetAxisX()+1);
                 break;
-            case ChangeDirection.Direction.S when rover.GetAxisY() > 0: rover.SetAxisY(rover.GetAxisY() - 1);
+            case ChangeDirection.Direction.S when rover.GetAxisY() > 0:
+                rover.SetAxisY(rover.GetAxisY() - 1);
                 break;
-            case ChangeDirection.Direction.W when rover.GetAxisX() > 0: rover.SetAxisX(rover.GetAxisX()-1);
+            case ChangeDirection.Direction.W when rover.GetAxisX() > 0:
+                rover.SetAxisX(rover.GetAxisX()-1);
                 break;
             default:
                 throw new ArgumentException("Movement failed!, Rover should not go further than plateau boundaries");
         }
     }
 
-    public void MoveBackward(IVehicle rover)
+    public static void  MoveBackward(IVehicle rover)
     {
         switch (rover.GetDirection())
                 {
@@ -35,19 +37,21 @@ public class MovingTheRover:IMovementDirection
                     case ChangeDirection.Direction.E when rover.GetAxisX() > 0:
                         rover.SetAxisX(rover.GetAxisX() - 1);
                         break;
-                    case ChangeDirection.Direction.S when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y: rover.SetAxisY(rover.GetAxisY() + 1);
+                    case ChangeDirection.Direction.S when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y:
+                        rover.SetAxisY(rover.GetAxisY() + 1);
                         break;
-                    case ChangeDirection.Direction.W when rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X: rover.SetAxisX(rover.GetAxisX() + 1);
+                    case ChangeDirection.Direction.W when rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
+                        rover.SetAxisX(rover.GetAxisX() + 1);
                         break;
                     default:
                         throw new ArgumentException("Movement failed!, Rover should not go further than plateau boundaries");
                 }
     }
-    public void MoveLeft(IVehicle rover)
+    public static void MoveLeft(IVehicle rover)
     {
         throw new NotImplementedException();
     }
-    public void MoveRight(IVehicle rover)
+    public static void MoveRight(IVehicle rover)
     {
         throw new NotImplementedException();
     }
