@@ -196,4 +196,18 @@ public class MissionControlTests
         Assert.Throws<ArgumentException>(() =>missionControl.DeployRover(rover5,plateau));
     }
     
+    [Test]
+    public void MissionControl_Should_Move_The_Rover_With_Diagonal_Direction()
+    {
+        RectangularPlateau plateau = new("5 5");
+        MarsRover rover = new("1 1 NE");
+        MissionControl missionControl = new();
+        missionControl.DeployRover(rover,plateau);
+        missionControl.ExecuteCommand(0,"MMB");
+        
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisX(), 3);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisY(), 3);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetDirection(), ChangeDirection.Direction.SW);
+    }
+    
 }

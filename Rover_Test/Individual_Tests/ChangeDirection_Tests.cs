@@ -47,7 +47,7 @@ public class ChangeDirectionTests
         Assert.AreEqual(expected, rover.roverDirection);
     }
     [Test]
-    public void ChangeDirection_Should_Change_The_Direction_Of_The_Rover_90_Degrees_Left_For_NE()
+    public void ChangeDirection_Should_Change_The_Direction_Of_The_Rover_90_Degrees_Left_For_Diagonal_Direction()
     {
         //Arrange
         var rover = new MarsRover("1 2 NE");
@@ -60,7 +60,7 @@ public class ChangeDirectionTests
         Assert.AreEqual(expected, rover.roverDirection);
     }
     [Test]
-    public void ChangeDirection_Should_Change_The_Direction_Of_The_Rover_90_Degrees_Right_For_NE()
+    public void ChangeDirection_Should_Change_The_Direction_Of_The_Rover_90_Degrees_Right_For_Diagonal_Direction()
     {
         //Arrange
         var rover = new MarsRover("1 2 NE");
@@ -73,7 +73,7 @@ public class ChangeDirectionTests
         Assert.AreEqual(expected, rover.roverDirection);
     }
     [Test]
-    public void ChangeDirection_Should_Change_The_Direction_Of_The_Rover_180_Degrees_For_NE()
+    public void ChangeDirection_Should_Change_The_Direction_Of_The_Rover_180_Degrees_For_Diagonal_Direction()
     {
         //Arrange
         var rover = new MarsRover("1 2 NE");
