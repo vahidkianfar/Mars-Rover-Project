@@ -19,8 +19,10 @@ public class MissionControl
     {
         if (rover != null && !Validator.DeploymentPositionValidator(rover.GetAxisX(), rover.GetAxisY(), marsPlateau))
             throw new ArgumentException("Deployment Positions are not Valid");
+        
         Plateau = marsPlateau;
         RoverList?.Add(rover);
+        CheckNumberOfRoversOnSpecificPlateau(RoverList);
     }
     
     public bool CollisionInnerDetection(List<IVehicle> rovers)
@@ -37,6 +39,12 @@ public class MissionControl
         }
         return false;
     }
-    private bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) => rover1!.GetAxisX() == rover2!.GetAxisX() 
+    private static bool CollisionDetection(IVehicle? rover1, IVehicle? rover2) => rover1!.GetAxisX() == rover2!.GetAxisX() 
         && rover1.GetAxisY() == rover2.GetAxisY();
+
+    private void CheckNumberOfRoversOnSpecificPlateau(List<IVehicle?>? roverList)
+    {
+        if (roverList?.Count > Plateau?.Lenght_X * Plateau?.Width_Y || roverList?.Count < 1)
+            throw new ArgumentException("Number of Rovers on Plateau is greater than the number of available positions");
+    }
 }

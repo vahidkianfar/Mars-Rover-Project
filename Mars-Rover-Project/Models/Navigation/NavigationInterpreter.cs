@@ -4,7 +4,7 @@ namespace Mars_Rover_Project.Models.Navigation;
 
 public class NavigationInterpreter
 {
-    private static readonly Dictionary<string, INavigation> NavigationDictionary = new()
+    public static readonly Dictionary<string, INavigation> NavigationDictionary = new()
     {
         { "L", new NavigateLeft() },
         { "R", new NavigateRight() },

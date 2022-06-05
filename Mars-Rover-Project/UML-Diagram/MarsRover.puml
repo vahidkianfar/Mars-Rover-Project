@@ -75,7 +75,7 @@ class MissionControl
 + DeployRover(IVehicle rover, ISurface plateau )
 + CollisionInnerDetection(List<IVehicle> rovers)
 - bool CollisionDetection(IVehicle)
-
+- CheckNumberOfRoversOnSpecificPlateau(List<IVehicle>)
 
 }
 class MarsPlateau implements ISurface

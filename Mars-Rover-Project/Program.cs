@@ -82,8 +82,8 @@ if(int.TryParse(ReadLine(), out var choice))
                 UserInputs.GrabPlateauSizeFromUser();
                 Write("\nHow many Rover do you want to add? ");
                 var roverCounter = Convert.ToInt32(ReadLine()!);
-                if (Validator.NumberOfRoversValidator(roverCounter, UserInputs.userPlateau!.Lenght_X * UserInputs.userPlateau.Width_Y))
-                    throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than 1");
+                if(Validator.NumberOfRoversValidator(roverCounter, UserInputs.userPlateau!.Lenght_X * UserInputs.userPlateau.Width_Y))
+                             throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than 1");
                 var roverCounterForTable=roverCounter;
                 WriteLine();
                 DeployTheRovers(roverCounter, missionControl, user);
@@ -203,9 +203,7 @@ void DeployTheRovers(int roverCounter, MissionControl missionControl, UserInputs
     {
         UserGuideline.InputExampleForDeploymentPosition();
         UserInputs.GrabRoverPositionFromUser();
-                
         missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
-                
         UserGuideline.InputExampleForInstructionFirstRover();
         user.GrabMovementInstructionsFromUser();
 

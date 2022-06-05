@@ -4,7 +4,7 @@ using Mars_Rover_Project.Models.Position;
 using Mars_Rover_Project.Models.UI;
 using NUnit.Framework;
 
-namespace MarsRover_Test;
+namespace MarsRover_Test.Individual_Tests;
 
 public class TDDTests
 {
@@ -50,7 +50,7 @@ public class TDDTests
     [Test]
     public void Move_Rover_Forward()
     {
-        MarsPlateau? plateau = new("5 5");
+        MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         MissionControl.Plateau = plateau;
         
@@ -62,7 +62,7 @@ public class TDDTests
     [Test]
     public void Rover_Must_Go_To_Point_0_0_and_Direction_South_With_Details()
     {
-        MarsPlateau? plateau3 = new("6 6");
+        MarsPlateau plateau3 = new("6 6");
         MarsRover rover3 = new("1 2 N");
         MissionControl.Plateau = plateau3;
         Console.WriteLine(rover3.GetAxisX() + " " + rover3.GetAxisY() + " " + rover3.GetDirection());
@@ -92,7 +92,7 @@ public class TDDTests
     [Test]
     public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly_For_First_Rover()
     {
-        MarsPlateau? plateau = new("5 5");
+        MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         MissionControl.Plateau = plateau;
         rover.ExecuteCommand("LMLMLMLMM");
@@ -103,7 +103,7 @@ public class TDDTests
     [Test]
     public void ExecuteCommand_Must_Interpret_Command_With_Movement_Correctly_For_Second_Rover()
     {
-        MarsPlateau? plateau = new("5 5");
+        MarsPlateau plateau = new("5 5");
         MarsRover rover = new("3 3 E");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
@@ -115,7 +115,7 @@ public class TDDTests
     [Test]
     public void Rover_Should_Handle_Out_of_Boundaries_Error()
     {
-        MarsPlateau? plateau = new("5 5");
+        MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
@@ -125,7 +125,7 @@ public class TDDTests
     [Test]
     public void MissionControl_Should_Turn_The_Rover_Direction()
     {
-        MarsPlateau? plateau = new("5 5");
+        MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
@@ -136,7 +136,7 @@ public class TDDTests
     [Test]
     public void MissionControl_Should_Turn_The_Rover_Direction_and_Move_The_Rover_Correctly()
     {
-        MarsPlateau? plateau = new("5 5");
+        MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);
@@ -150,7 +150,7 @@ public class TDDTests
     
     public void MissionControl_Should_Execute_Command_For_Rover()
     {
-            MarsPlateau? plateau = new("5 5");
+            MarsPlateau plateau = new("5 5");
             MarsRover rover = new("1 2 N");
             var missionControl = new MissionControl();
             missionControl.DeployRover(rover,plateau);
@@ -182,7 +182,7 @@ public class TDDTests
     
     public void MissionControl_Should_Turn_The_Rover_180_Degree_With_B_Command()
     {
-        MarsPlateau? plateau = new("5 5");
+        MarsPlateau plateau = new("5 5");
         MarsRover rover = new("1 2 N");
         var missionControl = new MissionControl();
         missionControl.DeployRover(rover,plateau);

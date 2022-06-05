@@ -2,7 +2,7 @@
 using Mars_Rover_Project.Models.Mars;
 using NUnit.Framework;
 
-namespace MarsRover_Test;
+namespace MarsRover_Test.Individual_Tests;
 
 public class PlateauTests
 {
@@ -25,14 +25,17 @@ public class PlateauTests
     {
         Assert.Throws<ArgumentException>(() => new MarsPlateau("5 5 5"));
         Assert.Throws<ArgumentException>(() => new MarsPlateau("5"));
+        Assert.Throws<ArgumentException>(() => new MarsPlateau(""));
+        Assert.Throws<ArgumentException>(() => new MarsPlateau(" "));
+        Assert.Throws<ArgumentNullException>(() => new MarsPlateau(null));
     }
     
     [Test]
     public void Create_Plateau_With_Negative_Size_Should_Throws_Argument_Exception()
     {
         Assert.Throws<ArgumentException>(() => new MarsPlateau("-5 8"));
+        Assert.Throws<ArgumentException>(() => new MarsPlateau("-10 -10"));
     }
     
-   
- 
+    
 }
