@@ -17,12 +17,13 @@
 
    ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Diagonal.gif)
 
+3. Rovers can move in Backward (I've implemented the method,but I'll add the instruction for MoveBackward later.)
 4. MissionControl class can store a List of Rovers.
 5. I've created methods for "CollisionDetection"
 6. Drawing Live Table, after the user created and deployed the rovers, it will draw a LiveTable of Plateau and Rovers.
 7. User can use File for creating a plateau, deploying rovers and execute movement commands.
 8. So far the project only accepts one kind of rover but with the interface "IVehicle" anyone can expand the project for other type of rovers.
-9. You can expand the Movement of the rover (Move Backward, Move Left, Move Right).
+9. You can expand the Movement of the rover (Move Left, Move Right).
 
 
 
