@@ -38,12 +38,14 @@ public class MarsRover: IVehicle
     {
         if(!Validator.AxisValidator(axisX) && axisX<=MissionControl.Plateau?.Lenght_X)
             throw new ArgumentException("Invalid Axis X");
+        
         _axisX = axisX;
     }
     public void SetAxisY(int axisY)
     {
         if(!Validator.AxisValidator(axisY) && axisY<=MissionControl.Plateau?.Width_Y)
             throw new ArgumentException("Invalid Axis Y");
+        
         _axisY = axisY;
     }
     private void SetDirection(string direction)
