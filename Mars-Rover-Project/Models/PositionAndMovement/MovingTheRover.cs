@@ -21,7 +21,8 @@ public class MovingTheRover
             case ChangeDirection.Direction.W when rover.GetAxisX() > 0:
                 rover.SetAxisX(rover.GetAxisX()-1);
                 break;
-            case ChangeDirection.Direction.NE when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y && rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
+            case ChangeDirection.Direction.NE when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y && rover.GetAxisX()
+                < MissionControl.GetPlateauDetails()!.Lenght_X:
                 rover.SetAxisY(rover.GetAxisY()+1);
                 rover.SetAxisX(rover.GetAxisX()+1);
                 break;
