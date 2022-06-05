@@ -1,5 +1,4 @@
-﻿using Mars_Rover_Project.Models.PositionAndMovement;
-using Mars_Rover_Project.Models.ReadWriteFiles;
+﻿using Mars_Rover_Project.Models.ReadWriteFiles;
 using Mars_Rover_Project.Models.RoversAndPlateau;
 using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
