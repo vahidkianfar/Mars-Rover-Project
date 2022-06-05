@@ -24,7 +24,7 @@
 
 ## Menu:
 
-1. User can enter the instruction into file or read instruction from file:
+1. User can enter the instructions into file or read instructions from file:
 
 ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-File.gif)
 
@@ -33,7 +33,7 @@
 ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Manually.gif)
 
 
-## Instruction Format:
+## Instructions Format:
 
 1. User needs to set the Plateau size in form of "X Y" e.g "10 10" then it creates a surface (so far, rectangular plateau) in size of 10x10.
 2. User gives the number of rovers to the Controller [number of Rovers must be between 1 and maximum number of surface blocks, if the surface is 6x6 it means the number of rovers cannot be more than 36].
