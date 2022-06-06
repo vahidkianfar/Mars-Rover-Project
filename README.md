@@ -13,11 +13,13 @@
 ## Key Features:
 
 1. This project is highly expandable (I've created interfaces for Vehicles, Surfaces, Movements, Positions, NavigationSystem).
-2. Rovers can move in Diagonal path for Direction [NW, NE, SW, SE].
+2. Rovers can move Backward ("V") and Forward ("M").
+3. Rovers can rotate 180 degrees ("B").
+4. Rovers can move (Backward and Forward) in Diagonal path for Direction [NW, NE, SW, SE].
 
    ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Diagonal.gif)
 
-3. Rovers can move in Backward (I've implemented the method,but I'll add the instruction for MoveBackward later.)
+
 4. MissionControl class can store a List of Rovers.
 5. I've created methods for "CollisionDetection"
 6. Drawing Live Table, after the user created and deployed the rovers, it will draw a LiveTable of Plateau and Rovers.
@@ -45,7 +47,7 @@
 3. User should set the deployment coordinates and direction of the Rover "X Y CompassDirection" e.g "3 5 N" it means the rover will be deploy at
    coordinates (3,5) on the surface facing to the North (N=North, W=West, S=South, E=East, NW=North West, NE=North East, SW=South West, SE= South East).
  
-4. Now user must enter the movement's instructions, e.g "BLRM":
+4. Now user must enter the movement's instructions, e.g "BLRMV":
 
       -B: Rotate the rover 180 degree at the current position, e.g. (1,2,N) --B--> (1,2,S).
   
@@ -54,6 +56,8 @@
       -R: Just like "L" but it rotates the rover's direction 90 degrees to the right e.g. "N" --R--> "E".
   
       -M: Move the rover forward (based on the rover's direction) e.g. (1,2,E) --M--> (2,2,E).
+      
+      -V: Move the rover backward (based on the rover's direction) e.g. (1,1,N) --V--> (1,0,N).
  
   
   
