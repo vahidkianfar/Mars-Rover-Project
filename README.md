@@ -47,7 +47,7 @@
 3. User should set the deployment coordinates and direction of the Rover "X Y CompassDirection" e.g "3 5 N" it means the rover will be deploy at
    coordinates (3,5) on the surface facing to the North (N=North, W=West, S=South, E=East, NW=North West, NE=North East, SW=South West, SE= South East).
  
-4. Now user must enter the movement's instructions, e.g "BLRM":
+4. Now user must enter the movement's instructions, e.g "BLRMV":
 
       -B: Rotate the rover 180 degree at the current position, e.g. (1,2,N) --B--> (1,2,S).
   
