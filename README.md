@@ -13,11 +13,12 @@
 ## Key Features:
 
 1. This project is highly expandable (I've created interfaces for Vehicles, Surfaces, Movements, Positions, NavigationSystem).
-2. Rovers can move in Diagonal path for Direction [NW, NE, SW, SE].
+2. Rovers can move Backward and Forward.
+3. Rovers can move in Diagonal path for Direction [NW, NE, SW, SE].
 
    ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Diagonal.gif)
 
-3. Rovers can move in Backward (I've implemented the method,but I'll add the instruction for MoveBackward later.)
+
 4. MissionControl class can store a List of Rovers.
 5. I've created methods for "CollisionDetection"
 6. Drawing Live Table, after the user created and deployed the rovers, it will draw a LiveTable of Plateau and Rovers.
@@ -54,6 +55,8 @@
       -R: Just like "L" but it rotates the rover's direction 90 degrees to the right e.g. "N" --R--> "E".
   
       -M: Move the rover forward (based on the rover's direction) e.g. (1,2,E) --M--> (2,2,E).
+      
+      -V: Move the rover backward (based on the rover's direction) e.g. (1,1,N) --V--> (1,0,N).
  
   
   
