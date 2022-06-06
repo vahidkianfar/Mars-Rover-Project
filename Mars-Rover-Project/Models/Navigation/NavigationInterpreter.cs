@@ -9,7 +9,8 @@ public class NavigationInterpreter
         { "L", new NavigateLeft() },
         { "R", new NavigateRight() },
         { "B", new NavigateBack() },
-        { "M", new NavigateForward() }
+        { "M", new NavigateForward() },
+        {"V", new NavigateBackward()}
     };
 
     public static INavigation SetNavigation(char navCommands)

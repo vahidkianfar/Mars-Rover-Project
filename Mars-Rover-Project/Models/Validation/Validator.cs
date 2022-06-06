@@ -6,7 +6,7 @@ namespace Mars_Rover_Project.Models.Validation;
 public class Validator
 {
     public static bool CommandValidator(string? inputCommand) =>
-        Regex.IsMatch(inputCommand!.ToUpper(), @"^[LRMB]+$");
+        Regex.IsMatch(inputCommand!.ToUpper(), @"^[LRMBV]+$");
     public static bool AxisValidator(int axis) => axis >= 0;
     public static bool DirectionValidator(string direction)=>direction.ToUpper() == "N" || 
                                                              direction.ToUpper() == "S" || 

@@ -11,6 +11,8 @@ interface IVehicle
 + string GetCurrentPositionForFile()
 + int SetAxisX(int axisX)
 + int SetAxisY(int axisY)
++ void MoveForward()
++ void MoveBackward()
 }
 
 interface ISurface

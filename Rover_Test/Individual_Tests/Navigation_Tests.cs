@@ -35,6 +35,13 @@ public class NavigationTests
 
     }
     [Test]
+    public void NavigationInterpreter_Should_Interpret_Command_V_Into_Executable_Tasks()
+    {
+        var navigateBackward = NavigationInterpreter.SetNavigation('V');
+        Assert.AreEqual(NavigationInterpreter.NavigationDictionary["V"], navigateBackward);
+
+    }
+    [Test]
     public void NavigationInterpreter_Should_Throws_Exception_For_Invalid_Command()
     {
         Assert.Throws<ArgumentException>(() => NavigationInterpreter.SetNavigation('X'));

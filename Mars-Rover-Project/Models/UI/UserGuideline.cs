@@ -12,7 +12,7 @@ public class UserGuideline
         Write("Enter the Deployment Position of the Rover (e.g \"1 1 N\"): ");
     
     public static void InputExampleForInstructionFirstRover() =>
-        Write("Enter movement instructions for the Rover (e.g \"RLMB\"): ");
+        Write("Enter movement instructions for the Rover (e.g \"RLBMV\"): ");
 
     public static void ProgressBar()
     {

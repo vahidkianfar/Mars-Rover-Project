@@ -11,6 +11,7 @@ public interface IVehicle
     public void TurnLeft();
     public void TurnRight();
     public void MoveForward();
+    public void MoveBackward();
     public void ExecuteCommand(string? getMovement);
     public Enum? GetDirection();
     public void GetCurrentPositionForConsole();
