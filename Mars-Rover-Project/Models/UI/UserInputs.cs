@@ -14,7 +14,7 @@ public class UserInputs
     {
         Console.WriteLine("\nPlease choose a Plateau shape:\n");
         Console.WriteLine("1. Rectangular Plateau");
-        Console.WriteLine("2. Circular Plateau");
+        Console.WriteLine("2. Circular Plateau (Not yet implemented)");
         Console.Write("\nEnter your choice: ");
         var choice = Convert.ToInt32(Console.ReadLine()!);
         switch (choice)
