@@ -13,8 +13,9 @@
 ## Key Features:
 
 1. This project is highly expandable (I've created interfaces for Vehicles, Surfaces, Movements, Positions, NavigationSystem).
-2. Rovers can move Backward and Forward.
-3. Rovers can move in Diagonal path for Direction [NW, NE, SW, SE].
+2. Rovers can move Backward ("V") and Forward ("M").
+3. Rovers can rotate 180 degrees ("B").
+4. Rovers can move in Diagonal path for Direction [NW, NE, SW, SE].
 
    ![](https://github.com/vahidkianfar/Mars-Rover-Project/blob/master/Mars-Rover-Project/Gif/Rover-Diagonal.gif)
 
