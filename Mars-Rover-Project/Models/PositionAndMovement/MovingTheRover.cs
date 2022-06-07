@@ -40,36 +40,31 @@ public class MovingTheRover
 
     public static void  MoveBackward(IVehicle rover)
     {
-        //****Too Complex, I'll change it****
         switch (rover.GetDirection())
                 {
-                    case ChangeDirection.Direction.N when rover.GetAxisY() > 0:
-                        rover.SetAxisY(rover.GetAxisY() - 1);
+                    case ChangeDirection.Direction.N:
+                        MovingBackwardWhenDirectionIsNorth(rover);
                         break;
-                    case ChangeDirection.Direction.E when rover.GetAxisX() > 0:
-                        rover.SetAxisX(rover.GetAxisX() - 1);
+                    case ChangeDirection.Direction.E:
+                        MovingBackwardWhenDirectionIsEast(rover);
                         break;
-                    case ChangeDirection.Direction.S when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y:
-                        rover.SetAxisY(rover.GetAxisY() + 1);
+                    case ChangeDirection.Direction.S:
+                        MovingBackwardWhenDirectionIsSouth(rover);
                         break;
-                    case ChangeDirection.Direction.W when rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
-                        rover.SetAxisX(rover.GetAxisX() + 1);
+                    case ChangeDirection.Direction.W:
+                        MovingBackwardWhenDirectionIsWest(rover);
                         break;
-                    case ChangeDirection.Direction.NE when rover.GetAxisY() > 0 && rover.GetAxisX() > 0:
-                        rover.SetAxisY(rover.GetAxisY() - 1);
-                        rover.SetAxisX(rover.GetAxisX() - 1);
+                    case ChangeDirection.Direction.NE:
+                        MovingBackwardWhenDirectionIsNorthEast(rover);
                         break;
-                    case ChangeDirection.Direction.NW when rover.GetAxisY() > 0 && rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
-                        rover.SetAxisY(rover.GetAxisY() - 1);
-                        rover.SetAxisX(rover.GetAxisX() + 1);
+                    case ChangeDirection.Direction.NW:
+                        MovingBackwardWhenDirectionIsNorthWest(rover);
                         break;
-                    case ChangeDirection.Direction.SE when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y && rover.GetAxisX() > 0:
-                        rover.SetAxisY(rover.GetAxisY() + 1);
-                        rover.SetAxisX(rover.GetAxisX() - 1);
+                    case ChangeDirection.Direction.SE:
+                        MovingBackwardWhenDirectionIsSouthEast(rover);
                         break;
-                    case ChangeDirection.Direction.SW when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y && rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X:
-                        rover.SetAxisY(rover.GetAxisY() + 1);
-                        rover.SetAxisX(rover.GetAxisX() + 1);
+                    case ChangeDirection.Direction.SW:
+                        MovingBackwardWhenDirectionIsSouthWest(rover);
                         break;
                     default:
                         throw new ArgumentException("Movement failed!, Rover should not go further than plateau boundaries");
@@ -84,6 +79,7 @@ public class MovingTheRover
         throw new NotImplementedException();
     }
 
+    // Methods for moving forward for different Direction
     private static void MovingForwardWhenDirectionIsNorth(IVehicle rover)
     {
         if(rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y)
@@ -140,4 +136,66 @@ public class MovingTheRover
             rover.SetAxisX(rover.GetAxisX()-1);
         }
     }
+    
+    // Methods for moving backward for different Direction
+    
+    private static void MovingBackwardWhenDirectionIsNorth(IVehicle rover)
+    {
+        if(rover.GetAxisY() > 0)
+            rover.SetAxisY(rover.GetAxisY() - 1);
+    }
+
+    private static void MovingBackwardWhenDirectionIsEast(IVehicle rover)
+    {
+        if(rover.GetAxisX() > 0)
+            rover.SetAxisX(rover.GetAxisX() - 1);
+    }
+    private static void MovingBackwardWhenDirectionIsSouth(IVehicle rover)
+    {
+        if(rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y)
+            rover.SetAxisY(rover.GetAxisY() + 1);
+    }
+    private static void MovingBackwardWhenDirectionIsWest(IVehicle rover)
+    {
+        if(rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X)
+            rover.SetAxisX(rover.GetAxisX() + 1);
+    }
+    private static void MovingBackwardWhenDirectionIsNorthEast(IVehicle rover)
+    {
+        if (rover.GetAxisY() > 0 && rover.GetAxisX() > 0)
+        {
+            rover.SetAxisY(rover.GetAxisY() - 1);
+            rover.SetAxisX(rover.GetAxisX() - 1);
+        }
+        
+    }
+    private static void MovingBackwardWhenDirectionIsNorthWest(IVehicle rover)
+    {
+        if (rover.GetAxisY() > 0 && rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X)
+        {
+            rover.SetAxisY(rover.GetAxisY() - 1);
+            rover.SetAxisX(rover.GetAxisX() + 1);
+        }
+        
+    }
+    private static void MovingBackwardWhenDirectionIsSouthEast(IVehicle rover)
+    {
+        if (rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y && rover.GetAxisX() > 0)
+        {
+            rover.SetAxisY(rover.GetAxisY() + 1);
+            rover.SetAxisX(rover.GetAxisX() - 1);
+        }
+        
+    }
+    private static void MovingBackwardWhenDirectionIsSouthWest(IVehicle rover)
+    {
+        if (rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y &&
+            rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X)
+        {
+            rover.SetAxisY(rover.GetAxisY() + 1);
+            rover.SetAxisX(rover.GetAxisX() + 1);
+        }
+        
+    }
+    
 }
