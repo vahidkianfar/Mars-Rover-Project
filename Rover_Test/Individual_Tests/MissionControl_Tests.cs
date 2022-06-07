@@ -197,7 +197,7 @@ public class MissionControlTests
     }
     
     [Test]
-    public void MissionControl_Should_Move_The_Rover_With_Diagonal_Direction()
+    public void MissionControl_Should_Move_Forward_The_Rover_With_Diagonal_Direction()
     {
         RectangularPlateau plateau = new("5 5");
         MarsRover rover = new("1 1 NE");
@@ -209,5 +209,30 @@ public class MissionControlTests
         Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisY(), 3);
         Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetDirection(), ChangeDirection.Direction.SW);
     }
-    
+    [Test]
+    public void MissionControl_Should_Move_Backward_The_Rover_With_Diagonal_Direction()
+    {
+        RectangularPlateau plateau = new("5 5");
+        MarsRover rover = new("2 2 NE");
+        MissionControl missionControl = new();
+        missionControl.DeployRover(rover,plateau);
+        missionControl.ExecuteCommand(0,"V");
+        
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisX(), 1);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisY(), 1);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetDirection(), ChangeDirection.Direction.NE);
+    }
+    [Test]
+    public void MissionControl_Should_Move_Backward_The_Rover_With_Straight_Direction()
+    {
+        RectangularPlateau plateau = new("5 5");
+        MarsRover rover = new("2 2 N");
+        MissionControl missionControl = new();
+        missionControl.DeployRover(rover,plateau);
+        missionControl.ExecuteCommand(0,"V");
+        
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisX(), 2);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetAxisY(), 1);
+        Assert.AreEqual(missionControl.GetRoverDetails(0)!.GetDirection(), ChangeDirection.Direction.N);
+    }
 }
