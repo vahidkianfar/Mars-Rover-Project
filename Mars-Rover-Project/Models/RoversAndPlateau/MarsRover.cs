@@ -1,7 +1,6 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
 using Mars_Rover_Project.Models.Navigation;
 using Mars_Rover_Project.Models.PositionAndMovement;
-using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 
 namespace Mars_Rover_Project.Models.RoversAndPlateau;
