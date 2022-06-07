@@ -21,7 +21,7 @@ public class UserInputs
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write(RoverBanner.design);
                 Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 UserGuideline.InputExampleForPlateauSize();
                 var plateauSize = Console.ReadLine()!;
                 var plateau = new RectangularPlateau(plateauSize);

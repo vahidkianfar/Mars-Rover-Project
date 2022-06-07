@@ -18,7 +18,7 @@ switch (selectInstructionOption)
             ForegroundColor = ConsoleColor.DarkRed;
             Write(RoverBanner.design);
             ResetColor();
-            ForegroundColor = ConsoleColor.Blue;
+            ForegroundColor = ConsoleColor.DarkCyan;
             Write("\nDo you want to edit the instructions file? (y/n): ");
             var edit = ReadLine()!;
             
