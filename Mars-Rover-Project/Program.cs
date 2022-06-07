@@ -68,8 +68,8 @@ switch (selectInstructionOption)
 
     case 1:
     {
-        while (true)
-        {
+        // while (true)
+        // {
             try
             {
                 var missionControl = new MissionControl();
@@ -95,9 +95,12 @@ switch (selectInstructionOption)
                     roverCounterForTable
                     );
 
-                WriteLine("\nPress any key to continue... or press \'q\' to exit");
-                if (ReadKey().Key == ConsoleKey.Q)
-                    Environment.Exit(0);
+                ForegroundColor = ConsoleColor.Blue;
+                Write("\nDo you want to deploy another rover? (y/n) ");
+                var deployRover = ReadLine()!;
+                if (deployRover.ToLower() == "y")
+                    await DeployLastRover(roverCounterForTable,missionControl,user);
+                goto case 2;
             }
             
             catch (Exception ex)
@@ -110,7 +113,8 @@ switch (selectInstructionOption)
                 if (ReadKey().Key == ConsoleKey.Q)
                     Environment.Exit(0);
             }
-        }
+        
+        break;
     }
         case 2:
             WriteLine(RoverBanner.GoodbyeMessage);
@@ -127,11 +131,7 @@ switch (selectInstructionOption)
                 WriteLine("Invalid choice, please enter a valid number");
             }
             break;
-}
-// else
-// {
-//     WriteLine("Invalid choice, please enter a valid number");
-// }
+    }
 
 void GetInstructionsSaveOnFile()
 {
@@ -202,6 +202,8 @@ void DeployTheRovers(int roverCounter, MissionControl missionControl, UserInputs
         UserGuideline.InputExampleForDeploymentPosition();
         UserInputs.GrabRoverPositionFromUser();
         missionControl.DeployRover(UserInputs.userRover, UserInputs.userPlateau);
+        if (missionControl.CollisionInnerDetection(missionControl.RoverList!))
+            CollisionMessages.CollisionMessageForDeploymentOtherRovers();
         UserGuideline.InputExampleForInstructionFirstRover();
         user.GrabMovementInstructionsFromUser();
 
@@ -228,7 +230,33 @@ void PrintPositions(MissionControl missionControl)
 {
     for(var printPositionCounter=0; printPositionCounter<missionControl.RoverList!.Count; printPositionCounter++)
     {
+        WriteLine();
         Write("Rover " + (printPositionCounter+1) + " ");
         missionControl.RoverList[printPositionCounter]?.GetCurrentPositionForConsole();
     }
+}
+void ExecuteInstructionsForLastRover(MissionControl missionControl,UserInputs user)
+{
+    missionControl.ExecuteCommand(missionControl.RoverList!.Count-1,user.userCommands![user.userCommands.Count-1]);
+    if (missionControl.CollisionInnerDetection(missionControl.RoverList!)) 
+        CollisionMessages.CollisionMessageForSameDestination();
+}
+
+async Task DeployLastRover(int roverCounterForTable, MissionControl missionControl, UserInputs user)
+{
+    roverCounterForTable++;
+    DeployTheRovers(1, missionControl, user);
+    UserGuideline.ProgressBar();
+    ExecuteInstructionsForLastRover(missionControl,user);
+    UserGuideline.BeepSoundForSuccess();
+    PrintPositions(missionControl);
+    var drawTable1= new DrawPlateauAndRovers();
+                
+    await drawTable1.LiveTable
+    (
+        UserInputs.userPlateau!.Lenght_X, 
+        UserInputs.userPlateau.Width_Y, 
+        missionControl,
+        roverCounterForTable
+    );
 }

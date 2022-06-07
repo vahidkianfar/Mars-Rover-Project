@@ -10,6 +10,7 @@ public class CollisionMessages
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\nSystem Message:--> Collision detected: Rovers have been deployed at the same position. <--\n");
         SOSMorseCode();
+        Environment.Exit(0);
     }
 
     public static void CollisionMessageForDeploymentOtherRovers()
@@ -17,6 +18,7 @@ public class CollisionMessages
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\nSystem Message:--> Collision detected: Rovers cannot be deployed over other Rover's block. <--\n");
         SOSMorseCode();
+        Environment.Exit(0);
     }
 
     public static void CollisionMessageForSameDestination()
