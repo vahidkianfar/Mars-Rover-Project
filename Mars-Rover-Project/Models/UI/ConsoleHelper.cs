@@ -5,7 +5,7 @@ public class ConsoleHelper
     public static int MultipleChoice(bool canCancel, params string[] options)
     {
         const int startX = 0;
-        const int startY = 3;
+        const int startY = 13;
         const int optionsPerLine = 1;
         const int spacingPerLine = 14;
 
@@ -19,7 +19,7 @@ public class ConsoleHelper
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("\n*** Rover Controller ***\n");
+            Console.Write(RoverBanner.design);
             Console.ResetColor();
 
             for (var optionCounter = 0; optionCounter < options.Length; optionCounter++)

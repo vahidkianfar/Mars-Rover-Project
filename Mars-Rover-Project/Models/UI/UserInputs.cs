@@ -18,6 +18,9 @@ public class UserInputs
         switch (selectPlateau)
         {
             case 0:
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(RoverBanner.design);
+                Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 UserGuideline.InputExampleForPlateauSize();
                 var plateauSize = Console.ReadLine()!;

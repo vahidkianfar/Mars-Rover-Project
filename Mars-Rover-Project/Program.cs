@@ -15,8 +15,11 @@ switch (selectInstructionOption)
         try
         {
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
-            
-            Write("Do you want to edit the instructions file? (y/n): ");
+            ForegroundColor = ConsoleColor.DarkRed;
+            Write(RoverBanner.design);
+            ResetColor();
+            ForegroundColor = ConsoleColor.Blue;
+            Write("\nDo you want to edit the instructions file? (y/n): ");
             var edit = ReadLine()!;
             
             if (edit.ToLower() == "y") 
