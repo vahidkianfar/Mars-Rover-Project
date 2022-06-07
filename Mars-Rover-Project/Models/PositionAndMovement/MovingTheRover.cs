@@ -79,26 +79,46 @@ public class MovingTheRover
         throw new NotImplementedException();
     }
 
+    private static void BoundaryError()
+    {
+        throw new ArgumentException("Movement failed!, Rover should not go further than plateau boundaries");
+    }
     // Methods for moving forward for different Direction
     private static void MovingForwardWhenDirectionIsNorth(IVehicle rover)
     {
         if(rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y)
             rover.SetAxisY(rover.GetAxisY() + 1);
+        else
+        {
+            BoundaryError();
+        }
     }
     private static void MovingForwardWhenDirectionIsEast(IVehicle rover)
     {
         if(rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X)
             rover.SetAxisX(rover.GetAxisX()+1);
+        else
+        {
+            BoundaryError();
+        }
     }
     private static void MovingForwardWhenDirectionIsSouth(IVehicle rover)
     {
         if(rover.GetAxisY() > 0)
             rover.SetAxisY(rover.GetAxisY() - 1);
+        else
+        {
+            BoundaryError();
+        }
     }
     private static void MovingForwardWhenDirectionIsWest(IVehicle rover)
     {
         if(rover.GetAxisX() > 0)
             rover.SetAxisX(rover.GetAxisX()-1);
+        else
+        {
+            BoundaryError();
+        }
     }
 
     private static void MovingForwardWhenDirectionIsNorthEast(IVehicle rover)
@@ -109,6 +129,10 @@ public class MovingTheRover
             rover.SetAxisY(rover.GetAxisY()+1);
             rover.SetAxisX(rover.GetAxisX()+1);
         }
+        else
+        {
+            BoundaryError();
+        }
     }
     private static void MovingForwardWhenDirectionIsNorthWest(IVehicle rover)
     {
@@ -116,6 +140,10 @@ public class MovingTheRover
         {
             rover.SetAxisY(rover.GetAxisY()+1);
             rover.SetAxisX(rover.GetAxisX()-1);
+        }
+        else
+        {
+            BoundaryError();
         }
     }
 
@@ -126,6 +154,10 @@ public class MovingTheRover
             rover.SetAxisY(rover.GetAxisY()-1);
             rover.SetAxisX(rover.GetAxisX()+1);
         }
+        else
+        {
+            BoundaryError();
+        }
             
     }
     private static void MovingForwardWhenDirectionIsSouthWest(IVehicle rover)
@@ -135,6 +167,10 @@ public class MovingTheRover
             rover.SetAxisY(rover.GetAxisY()-1);
             rover.SetAxisX(rover.GetAxisX()-1);
         }
+        else
+        {
+            BoundaryError();
+        }
     }
     
     // Methods for moving backward for different Direction
@@ -143,22 +179,38 @@ public class MovingTheRover
     {
         if(rover.GetAxisY() > 0)
             rover.SetAxisY(rover.GetAxisY() - 1);
+        else
+        {
+            BoundaryError();
+        }
     }
 
     private static void MovingBackwardWhenDirectionIsEast(IVehicle rover)
     {
         if(rover.GetAxisX() > 0)
             rover.SetAxisX(rover.GetAxisX() - 1);
+        else
+        {
+            BoundaryError();
+        }
     }
     private static void MovingBackwardWhenDirectionIsSouth(IVehicle rover)
     {
         if(rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y)
             rover.SetAxisY(rover.GetAxisY() + 1);
+        else
+        {
+            BoundaryError();
+        }
     }
     private static void MovingBackwardWhenDirectionIsWest(IVehicle rover)
     {
         if(rover.GetAxisX() < MissionControl.GetPlateauDetails()!.Lenght_X)
             rover.SetAxisX(rover.GetAxisX() + 1);
+        else
+        {
+            BoundaryError();
+        }
     }
     private static void MovingBackwardWhenDirectionIsNorthEast(IVehicle rover)
     {
@@ -166,6 +218,10 @@ public class MovingTheRover
         {
             rover.SetAxisY(rover.GetAxisY() - 1);
             rover.SetAxisX(rover.GetAxisX() - 1);
+        }
+        else
+        {
+            BoundaryError();
         }
         
     }
@@ -176,6 +232,10 @@ public class MovingTheRover
             rover.SetAxisY(rover.GetAxisY() - 1);
             rover.SetAxisX(rover.GetAxisX() + 1);
         }
+        else
+        {
+            BoundaryError();
+        }
         
     }
     private static void MovingBackwardWhenDirectionIsSouthEast(IVehicle rover)
@@ -184,6 +244,10 @@ public class MovingTheRover
         {
             rover.SetAxisY(rover.GetAxisY() + 1);
             rover.SetAxisX(rover.GetAxisX() - 1);
+        }
+        else
+        {
+            BoundaryError();
         }
         
     }
@@ -194,6 +258,10 @@ public class MovingTheRover
         {
             rover.SetAxisY(rover.GetAxisY() + 1);
             rover.SetAxisX(rover.GetAxisX() + 1);
+        }
+        else
+        {
+            BoundaryError();
         }
         
     }
