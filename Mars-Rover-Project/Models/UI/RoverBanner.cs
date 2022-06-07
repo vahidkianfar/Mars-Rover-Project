@@ -2,8 +2,7 @@
 
 public class RoverBanner
 {
- 
-    public static string design = @" *** Rover Controller ***
+ public static string design = @" *** Rover Controller ***
   __,_,
   [_|_/ 
    //
@@ -12,7 +11,7 @@ public class RoverBanner
  \ \__ \--/ __
   \o__|----|  |   __
       \ }{ /\ )_ / _\
-      /\__/\ \__O (__
+      /\__/\ \__O (__ 
      (--/\--)    \__/
      _)(  )(_
     `---''---`                                                                   

@@ -35,7 +35,7 @@ public class DrawPlateauAndRovers
         while(counter<roverCounter)
         {
           table.UpdateCell(plateauWidth - missionControl.GetRoverDetails(counter)!.GetAxisY(),
-            missionControl.GetRoverDetails(counter)!.GetAxisX()+1, $"[red]R{counter+1}[/] [green]{missionControl.GetRoverDetails(counter)!.roverDirection}[/]");
+            missionControl.GetRoverDetails(counter)!.GetAxisX()+1, $"[red]R{counter+1}[/] [yellow]{missionControl.GetRoverDetails(counter)!.roverDirection}[/]");
           ctx.Refresh();
           await Task.Delay(delayRover);
           counter++;

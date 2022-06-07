@@ -29,6 +29,9 @@ public class UserInputs
                 break;
             
             case 1:
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(RoverBanner.design);
+                Console.ResetColor();
                 throw new NotImplementedException();
         }
     }

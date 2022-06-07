@@ -50,7 +50,7 @@ public class MissionControl
     }
     public string GetRoverArrow(int roverNumber)
     {
-        switch (RoverList?[roverNumber].roverDirection)
+        switch (RoverList?[roverNumber]!.roverDirection)
         {
             case ChangeDirection.Direction.N:
                 return "↑";
@@ -61,7 +61,7 @@ public class MissionControl
             case ChangeDirection.Direction.W:
                 return "←";
             case ChangeDirection.Direction.NE:
-                return "⬀";
+                return "⬈";
             case ChangeDirection.Direction.NW:
                 return "⇱";
             case ChangeDirection.Direction.SW:

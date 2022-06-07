@@ -8,11 +8,8 @@ public class ConsoleHelper
         const int startY = 13;
         const int optionsPerLine = 1;
         const int spacingPerLine = 14;
-
-        int currentSelection = 0;
-
+        var currentSelection = 0;
         ConsoleKey key;
-
         Console.CursorVisible = false;
 
         do
@@ -21,21 +18,15 @@ public class ConsoleHelper
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(RoverBanner.design);
             Console.ResetColor();
-
             for (var optionCounter = 0; optionCounter < options.Length; optionCounter++)
             {
                 Console.SetCursorPosition(startX + (optionCounter % optionsPerLine) * spacingPerLine, startY + optionCounter / optionsPerLine);
-
-                if(optionCounter == currentSelection)
+                if (optionCounter == currentSelection)
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-
                 Console.Write(options[optionCounter]);
-
                 Console.ResetColor();
             }
-
             key = Console.ReadKey(true).Key;
-
             switch (key)
             {
                 case ConsoleKey.LeftArrow:
@@ -71,9 +62,7 @@ public class ConsoleHelper
             }
             Console.Clear();
         } while (key != ConsoleKey.Enter);
-
         Console.CursorVisible = true;
-
         return currentSelection;
     }
 }
