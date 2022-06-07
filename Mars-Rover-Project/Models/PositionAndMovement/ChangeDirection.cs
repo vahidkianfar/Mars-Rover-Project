@@ -19,29 +19,21 @@ public class ChangeDirection
     {
         switch (rover.GetDirection())
         {
-            case Direction.N:
-                rover.roverDirection+=3;
+            case Direction.N: rover.roverDirection = Direction.W;
                 break;
-            case Direction.E:
-                rover.roverDirection--;
+            case Direction.E: rover.roverDirection = Direction.N;
                 break;
-            case Direction.S:
-                rover.roverDirection--;
+            case Direction.S: rover.roverDirection = Direction.E;
                 break;
-            case Direction.W:
-                rover.roverDirection--;
+            case Direction.W: rover.roverDirection = Direction.S;
                 break;
-            case Direction.NW:
-                rover.roverDirection+=2;
+            case Direction.NW: rover.roverDirection=Direction.SW;
                 break;
-            case Direction.NE:
-                rover.roverDirection--;
+            case Direction.NE: rover.roverDirection = Direction.NW;
                 break;
-            case Direction.SW:
-                rover.roverDirection++;
+            case Direction.SW: rover.roverDirection=Direction.SE;
                 break;
-            case Direction.SE:
-                rover.roverDirection-=2;
+            case Direction.SE: rover.roverDirection=Direction.NE;
                 break;
             
         }
@@ -51,29 +43,21 @@ public class ChangeDirection
     {
         switch (rover.GetDirection())
         {
-            case Direction.N:
-                rover.roverDirection++;
+            case Direction.N: rover.roverDirection=Direction.E;
                 break;
-            case Direction.E:
-                rover.roverDirection++;
+            case Direction.E: rover.roverDirection=Direction.S;
                 break;
-            case Direction.S:
-                rover.roverDirection++;
+            case Direction.S: rover.roverDirection=Direction.W;
                 break;
-            case Direction.W:
-                rover.roverDirection-=3;
+            case Direction.W: rover.roverDirection=Direction.N;
                 break;
-            case Direction.NW:
-                rover.roverDirection++;
+            case Direction.NW: rover.roverDirection=Direction.NE;
                 break;
-            case Direction.NE:
-                rover.roverDirection+=2;
+            case Direction.NE: rover.roverDirection=Direction.SE;
                 break;
-            case Direction.SW:
-                rover.roverDirection-=2;
+            case Direction.SW: rover.roverDirection=Direction.NW;
                 break;
-            case Direction.SE:
-                rover.roverDirection--;
+            case Direction.SE: rover.roverDirection=Direction.SW;
                 break;
         }
     }
@@ -82,29 +66,21 @@ public class ChangeDirection
     {
         switch (rover.GetDirection())
         {
-            case Direction.N:
-                rover.roverDirection += 2;
+            case Direction.N: rover.roverDirection=Direction.S;
                 break;
-            case Direction.E:
-                rover.roverDirection += 2;
+            case Direction.E: rover.roverDirection=Direction.W;
                 break;
-            case Direction.S:
-                rover.roverDirection -= 2;
+            case Direction.S: rover.roverDirection=Direction.N;
                 break;
-            case Direction.W:
-                rover.roverDirection -= 2;
+            case Direction.W: rover.roverDirection=Direction.E;
                 break;
-            case Direction.NW:
-                rover.roverDirection += 3;
+            case Direction.NW: rover.roverDirection=Direction.SE;
                 break;
-            case Direction.NE:
-                rover.roverDirection ++;
+            case Direction.NE: rover.roverDirection=Direction.SW;
                 break;
-            case Direction.SW:
-                rover.roverDirection --;
+            case Direction.SW: rover.roverDirection=Direction.NE;
                 break;
-            case Direction.SE:
-                rover.roverDirection -= 3;
+            case Direction.SE: rover.roverDirection=Direction.NW;
                 break;
         }
     }
