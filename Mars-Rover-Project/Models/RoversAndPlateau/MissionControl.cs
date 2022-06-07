@@ -1,4 +1,5 @@
 ﻿using Mars_Rover_Project.Models.General_Interfaces;
+using Mars_Rover_Project.Models.PositionAndMovement;
 using Mars_Rover_Project.Models.Validation;
 
 namespace Mars_Rover_Project.Models.RoversAndPlateau;
@@ -47,4 +48,28 @@ public class MissionControl
         if (roverList?.Count > Plateau?.Lenght_X * Plateau?.Width_Y || roverList?.Count < 1)
             throw new ArgumentException("Number of Rovers on Plateau is greater than the number of available positions");
     }
+    public string GetRoverArrow(int roverNumber)
+    {
+        switch (RoverList?[roverNumber].roverDirection)
+        {
+            case ChangeDirection.Direction.N:
+                return "↑";
+            case ChangeDirection.Direction.S:
+                return "↓";
+            case ChangeDirection.Direction.E:
+                return "→";
+            case ChangeDirection.Direction.W:
+                return "←";
+            case ChangeDirection.Direction.NE:
+                return "⬀";
+            case ChangeDirection.Direction.NW:
+                return "⇱";
+            case ChangeDirection.Direction.SW:
+                return "🡧";
+            case ChangeDirection.Direction.SE:
+                return "🡦";
+            default:
+                return "" ;
+        }
+    } 
 }
