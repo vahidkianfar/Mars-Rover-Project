@@ -6,7 +6,8 @@ namespace Mars_Rover_Project.Models.PositionAndMovement;
 public class MovingTheRover
 {
     public static void MoveForward(IVehicle rover)
-    {
+    { 
+        //****Too Complex, I'll change it****
         switch (rover.GetDirection())
         {
             case ChangeDirection.Direction.N when rover.GetAxisY() < MissionControl.GetPlateauDetails()!.Width_Y:
@@ -45,6 +46,7 @@ public class MovingTheRover
 
     public static void  MoveBackward(IVehicle rover)
     {
+        //****Too Complex, I'll change it****
         switch (rover.GetDirection())
                 {
                     case ChangeDirection.Direction.N when rover.GetAxisY() > 0:
