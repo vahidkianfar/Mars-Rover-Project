@@ -18,7 +18,7 @@ public class UserInputs
         switch (selectPlateau)
         {
             case 0:
-                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write(RoverBanner.design);
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.DarkCyan;

@@ -18,7 +18,7 @@ public class ConsoleHelper
         do
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(RoverBanner.design);
             Console.ResetColor();
 
