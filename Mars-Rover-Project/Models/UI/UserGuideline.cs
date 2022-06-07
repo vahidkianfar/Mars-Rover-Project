@@ -6,13 +6,14 @@ namespace Mars_Rover_Project.Models.UI;
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public class UserGuideline
 {
-    public static void InputExampleForPlateauSize() => Write("Enter the Plateau size (e.g \"5 5\"): ");
+    
+    public static void InputExampleForPlateauSize() => Write("\n\n\nEnter the Plateau size (e.g \"5 5\"): ");
 
     public static void InputExampleForDeploymentPosition() =>
-        Write("Enter the Deployment Position of the Rover (e.g \"1 1 N\"): ");
+        Write("\nEnter the Deployment Position of the Rover (e.g \"1 1 N\"): ");
     
     public static void InputExampleForInstructionFirstRover() =>
-        Write("Enter movement instructions for the Rover (e.g \"RLBMV\"): ");
+        Write("\nEnter movement instructions for the Rover (e.g \"RLBMV\"): ");
 
     public static void ProgressBar()
     {

@@ -4,19 +4,13 @@ using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 using static System.Console;
 
+var selectedClass = ConsoleHelper.MultipleChoice(true, "Put instructions into file (Read/Write)",
+    "Put instructions into console (manually)");
 ForegroundColor = ConsoleColor.Blue;
-WriteLine("\n*** Rover Controller ***");
-ResetColor();
-WriteLine("\nPlease choose an option:\n");
-WriteLine("1. Put instructions into file (Read/Write)");
-WriteLine("2. Put instructions into console (manually)");
-Write("\nEnter your choice: ");
 
-if(int.TryParse(ReadLine(), out var choice))
-
-    switch (choice)
+    switch (selectedClass)
 {
-    case 1:
+    case 0:
     {
         try
         {
@@ -69,7 +63,7 @@ if(int.TryParse(ReadLine(), out var choice))
         break;
     }
 
-    case 2:
+    case 1:
     {
         while (true)
         {
@@ -83,7 +77,7 @@ if(int.TryParse(ReadLine(), out var choice))
                 if(Validator.NumberOfRoversValidator(roverCounter, UserInputs.userPlateau!.Lenght_X * UserInputs.userPlateau.Width_Y))
                              throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than 1");
                 var roverCounterForTable=roverCounter;
-                WriteLine();
+               // WriteLine();
                 DeployTheRovers(roverCounter, missionControl, user);
                 UserGuideline.ProgressBar();
                 ExecuteInstructions(missionControl,user);
@@ -128,10 +122,10 @@ if(int.TryParse(ReadLine(), out var choice))
             }
             break;
 }
-else
-{
-    WriteLine("Invalid choice, please enter a valid number");
-}
+// else
+// {
+//     WriteLine("Invalid choice, please enter a valid number");
+// }
 
 void GetInstructionsSaveOnFile()
 {
