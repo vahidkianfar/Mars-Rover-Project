@@ -2,7 +2,7 @@
 
 public class RoverBanner
 {
- public static string design = @" *** Rover Controller ***
+ public const string Design = @" *** Rover Controller ***
   __,_,
   [_|_/ 
    //

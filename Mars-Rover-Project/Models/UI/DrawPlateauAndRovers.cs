@@ -40,7 +40,6 @@ public class DrawPlateauAndRovers
           await Task.Delay(delayRover);
           counter++;
         }
-        
         table.Title = new TableTitle("\nFinal position of Rovers");
         table.Caption = new TableTitle("Plateau");
       });

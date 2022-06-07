@@ -19,7 +19,7 @@ public class UserInputs
         {
             case 0:
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write(RoverBanner.design);
+                Console.Write(RoverBanner.Design);
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 UserGuideline.InputExampleForPlateauSize();
@@ -30,7 +30,7 @@ public class UserInputs
             
             case 1:
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write(RoverBanner.design);
+                Console.Write(RoverBanner.Design);
                 Console.ResetColor();
                 throw new NotImplementedException();
         }

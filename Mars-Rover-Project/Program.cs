@@ -16,7 +16,7 @@ switch (selectInstructionOption)
         {
             //Instruction text file is in Project folder --> ...\Command\Instructions.text
             ForegroundColor = ConsoleColor.DarkYellow;
-            Write(RoverBanner.design);
+            Write(RoverBanner.Design);
             ResetColor();
             ForegroundColor = ConsoleColor.DarkCyan;
             Write("\nDo you want to edit the instructions file? (y/n): ");

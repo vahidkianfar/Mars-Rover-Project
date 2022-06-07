@@ -16,7 +16,7 @@ public class ConsoleHelper
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write(RoverBanner.design);
+            Console.Write(RoverBanner.Design);
             Console.ResetColor();
             for (var optionCounter = 0; optionCounter < options.Length; optionCounter++)
             {
