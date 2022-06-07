@@ -13,9 +13,9 @@ public class UserInputs
     
     public static void GrabPlateauSizeFromUser()
     {
-        var selectedOption = ConsoleHelper.MultipleChoice(true, "Rectangular Plateau",
+        var selectPlateau = ConsoleHelper.MultipleChoice(true, "Rectangular Plateau",
             "Circular Plateau (Not yet implemented)");
-        switch (selectedOption)
+        switch (selectPlateau)
         {
             case 0:
                 Console.ForegroundColor = ConsoleColor.Blue;

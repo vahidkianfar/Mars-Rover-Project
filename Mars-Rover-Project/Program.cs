@@ -4,11 +4,11 @@ using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 using static System.Console;
 
-var selectedClass = ConsoleHelper.MultipleChoice(true, "Put instructions into file (Read/Write)",
+var selectInstructionOption = ConsoleHelper.MultipleChoice(true, "Put instructions into file (Read/Write)",
     "Put instructions into console (manually)");
 ForegroundColor = ConsoleColor.Blue;
 
-    switch (selectedClass)
+switch (selectInstructionOption)
 {
     case 0:
     {
@@ -77,7 +77,6 @@ ForegroundColor = ConsoleColor.Blue;
                 if(Validator.NumberOfRoversValidator(roverCounter, UserInputs.userPlateau!.Lenght_X * UserInputs.userPlateau.Width_Y))
                              throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than 1");
                 var roverCounterForTable=roverCounter;
-               // WriteLine();
                 DeployTheRovers(roverCounter, missionControl, user);
                 UserGuideline.ProgressBar();
                 ExecuteInstructions(missionControl,user);
