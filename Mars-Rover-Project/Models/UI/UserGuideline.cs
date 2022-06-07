@@ -23,7 +23,7 @@ public class UserGuideline
         for (var loadingCounter = 0; loadingCounter < 10; loadingCounter++)
         {
             Thread.Sleep(100);
-            ForegroundColor = ConsoleColor.Blue;
+            ForegroundColor = ConsoleColor.DarkBlue;
             Write(" ▄ ");
         }
         ForegroundColor = ConsoleColor.Green;
