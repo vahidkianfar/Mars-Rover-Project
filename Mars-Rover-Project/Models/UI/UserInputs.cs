@@ -13,8 +13,8 @@ public class UserInputs
     
     public static void GrabPlateauSizeFromUser()
     {
-        var selectPlateau = ConsoleHelper.MultipleChoice(true, "Rectangular Plateau",
-            "Circular Plateau (Not yet implemented)");
+        var selectPlateau = ConsoleHelper.MultipleChoice(true, "1. Rectangular Plateau",
+            "2. Circular Plateau (Not yet implemented)");
         switch (selectPlateau)
         {
             case 0:

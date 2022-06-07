@@ -4,8 +4,8 @@ using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 using static System.Console;
 
-var selectInstructionOption = ConsoleHelper.MultipleChoice(true, "Put instructions into file (Read/Write)",
-    "Put instructions into console (manually)");
+var selectInstructionOption = ConsoleHelper.MultipleChoice(true, "1. Put instructions into file (Read/Write)",
+    "2. Put instructions into console (manually)", "3. Exit");
 ForegroundColor = ConsoleColor.Blue;
 
 switch (selectInstructionOption)
@@ -112,6 +112,10 @@ switch (selectInstructionOption)
             }
         }
     }
+        case 2:
+            WriteLine(RoverBanner.GoodbyeMessage);
+            break;
+            
     default:
             try
             {
