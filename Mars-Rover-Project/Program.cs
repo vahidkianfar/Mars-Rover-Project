@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using Mars_Rover_Project.Models.ReadWriteFiles;
+﻿using Mars_Rover_Project.Models.ReadWriteFiles;
 using Mars_Rover_Project.Models.RoversAndPlateau;
 using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
@@ -131,6 +130,7 @@ while (true)
         }
         case 2:
             WriteLine(RoverBanner.GoodbyeMessage);
+            Environment.Exit(0);
             break;
 
         default:

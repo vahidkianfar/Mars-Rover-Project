@@ -7,8 +7,8 @@ namespace Mars_Rover_Project.Models.RoversAndPlateau;
 
 public class MarsRover: IVehicle
 {
-    private int _axisX { get; set; }
-    private int _axisY { get; set; }
+    private int _axisX;
+    private int _axisY;
     public ChangeDirection.Direction roverDirection { get; set; }
     public MarsRover(string? getInitialPosition)
     {

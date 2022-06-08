@@ -10,7 +10,7 @@ public class NavigationInterpreter
         { "R", new NavigateRight() },
         { "B", new NavigateBack() },
         { "M", new NavigateForward() },
-        {"V", new NavigateBackward()}
+        { "V", new NavigateBackward() }
     };
 
     public static INavigation SetNavigation(char navCommands)
