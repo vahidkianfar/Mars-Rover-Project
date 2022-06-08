@@ -97,12 +97,18 @@ while (true)
                         roverCounterForTable
                     );
 
+                    DeployRovers:
                     ForegroundColor = ConsoleColor.Blue;
                     Write("\nDo you want to deploy another rover? (y/n) ");
                     var deployRover = ReadLine()!;
                     if (deployRover.ToLower() == "y")
+                    {
+                        roverCounterForTable++;
                         await DeployLastRover(roverCounterForTable, missionControl, user);
-                    WriteLine("\nPress any key to continue... or press \'q\' to exit");
+                        goto DeployRovers;
+                    }
+                        
+                    WriteLine("\nPress any key to back to Main Menu... or press \'q\' to exit");
                     if (ReadKey().Key == ConsoleKey.Q)
                         Environment.Exit(0);
                     goto StartMenu;
@@ -250,7 +256,6 @@ void ExecuteInstructionsForLastRover(MissionControl missionControl,UserInputs us
 
 async Task DeployLastRover(int roverCounterForTable, MissionControl missionControl, UserInputs user)
 {
-    roverCounterForTable++;
     DeployTheRovers(1, missionControl, user);
     UserGuideline.ProgressBar();
     ExecuteInstructionsForLastRover(missionControl,user);
