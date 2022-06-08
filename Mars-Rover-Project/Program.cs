@@ -57,6 +57,9 @@ while (true)
                     missionControl,
                     roverCounterFromFile
                 );
+                WriteLine("\nPress any key to back to Main Menu... or press \'q\' to exit");
+                if (ReadKey().Key == ConsoleKey.Q)
+                    Environment.Exit(0);
                 goto StartMenu;
             }
             catch (Exception ex)
