@@ -1,126 +1,130 @@
-﻿using Mars_Rover_Project.Models.ReadWriteFiles;
+﻿using System.Linq.Expressions;
+using Mars_Rover_Project.Models.ReadWriteFiles;
 using Mars_Rover_Project.Models.RoversAndPlateau;
 using Mars_Rover_Project.Models.UI;
 using Mars_Rover_Project.Models.Validation;
 using static System.Console;
-
+StartMenu:
 var selectInstructionOption = ConsoleHelper.MultipleChoice(true, "1. Put instructions into file (Read/Write)",
     "2. Put instructions into console (manually)", "3. Exit");
 ForegroundColor = ConsoleColor.Blue;
 
-switch (selectInstructionOption)
+while (true)
 {
-    case 0:
+    switch (selectInstructionOption)
     {
-        try
+        case 0:
         {
-            //Instruction text file is in Project folder --> ...\Command\Instructions.text
-            ForegroundColor = ConsoleColor.DarkYellow;
-            Write(RoverBanner.Design);
-            ResetColor();
-            ForegroundColor = ConsoleColor.DarkCyan;
-            Write("\nDo you want to edit the instructions file? (y/n): ");
-            var edit = ReadLine()!;
-            
-            if (edit.ToLower() == "y") 
-                GetInstructionsSaveOnFile();
-            
-            UserGuideline.ProgressBar();
-            var missionControl = new MissionControl();
-            var readFile = new ReadFromFile();
-            
-            if (!File.Exists(readFile.DirectoryInfo + "\\Command\\Instructions.txt"))
-            {
-                ForegroundColor = ConsoleColor.Yellow;
-                WriteLine("Instruction File doesn't exist, you need to create it for the first time");
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("Creating the Instructions File...!");
-                ResetColor();
-                GetInstructionsSaveOnFile();
-            }
-            
-            var lines = readFile.Read();
-            var instructions = lines.ToList();
-            DeployTheRoversForFile(instructions, missionControl);
-            var roverCounterFromFile= ExecuteInstructionsForFile(instructions, missionControl);
-            UserGuideline.BeepSoundForSuccess();
-            PrintPositionsAndWriteOnOutputFile(readFile, missionControl);
-            var drawTable= new DrawPlateauAndRovers(); 
-            
-            await drawTable.LiveTable
-                (
-                Convert.ToInt32(instructions[0]!.Split(' ')[0]),
-                Convert.ToInt32(instructions[0]!.Split(' ')[1]), 
-                missionControl, 
-                roverCounterFromFile
-                );
-        }
-        catch (Exception ex)
-        {
-            UserGuideline.BeepSoundForError();
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine("\nSystem Message:--> {0} <--", ex.Message);
-            ForegroundColor = ConsoleColor.White;
-           
-        }
-        break;
-    }
-
-    case 1:
-    {
-        // while (true)
-        // {
             try
             {
-                var missionControl = new MissionControl();
-                var user = new UserInputs();
-                UserInputs.GrabPlateauSizeFromUser();
-                Write("\nHow many Rover do you want to add? ");
-                var roverCounter = Convert.ToInt32(ReadLine()!);
-                if(Validator.NumberOfRoversValidator(roverCounter, UserInputs.userPlateau!.Lenght_X * UserInputs.userPlateau.Width_Y))
-                             throw new ArgumentException("Number of Rovers cannot be more than Plateau's Blocks or less than 1");
-                var roverCounterForTable=roverCounter;
-                DeployTheRovers(roverCounter, missionControl, user);
-                UserGuideline.ProgressBar();
-                ExecuteInstructions(missionControl,user);
-                UserGuideline.BeepSoundForSuccess();
-                PrintPositions(missionControl);
-                var drawTable= new DrawPlateauAndRovers();
-                
-                await drawTable.LiveTable
-                    (
-                    UserInputs.userPlateau.Lenght_X, 
-                    UserInputs.userPlateau.Width_Y, 
-                    missionControl,
-                    roverCounterForTable
-                    );
+                //Instruction text file is in Project folder --> ...\Command\Instructions.text
+                ForegroundColor = ConsoleColor.DarkYellow;
+                Write(RoverBanner.Design);
+                ResetColor();
+                ForegroundColor = ConsoleColor.DarkCyan;
+                Write("\nDo you want to edit the instructions file? (y/n): ");
+                var edit = ReadLine()!;
 
-                ForegroundColor = ConsoleColor.Blue;
-                Write("\nDo you want to deploy another rover? (y/n) ");
-                var deployRover = ReadLine()!;
-                if (deployRover.ToLower() == "y")
-                    await DeployLastRover(roverCounterForTable,missionControl,user);
-                goto case 2;
+                if (edit.ToLower() == "y")
+                    GetInstructionsSaveOnFile();
+
+                UserGuideline.ProgressBar();
+                var missionControl = new MissionControl();
+                var readFile = new ReadFromFile();
+
+                if (!File.Exists(readFile.DirectoryInfo + "\\Command\\Instructions.txt"))
+                {
+                    ForegroundColor = ConsoleColor.Yellow;
+                    WriteLine("Instruction File doesn't exist, you need to create it for the first time");
+                    ForegroundColor = ConsoleColor.Green;
+                    WriteLine("Creating the Instructions File...!");
+                    ResetColor();
+                    GetInstructionsSaveOnFile();
+                }
+
+                var lines = readFile.Read();
+                var instructions = lines.ToList();
+                DeployTheRoversForFile(instructions, missionControl);
+                var roverCounterFromFile = ExecuteInstructionsForFile(instructions, missionControl);
+                UserGuideline.BeepSoundForSuccess();
+                PrintPositionsAndWriteOnOutputFile(readFile, missionControl);
+                var drawTable = new DrawPlateauAndRovers();
+
+                await drawTable.LiveTable
+                (
+                    Convert.ToInt32(instructions[0]!.Split(' ')[0]),
+                    Convert.ToInt32(instructions[0]!.Split(' ')[1]),
+                    missionControl,
+                    roverCounterFromFile
+                );
+                goto StartMenu;
             }
-            
             catch (Exception ex)
             {
                 UserGuideline.BeepSoundForError();
                 ForegroundColor = ConsoleColor.Red;
                 WriteLine("\nSystem Message:--> {0} <--", ex.Message);
-                ResetColor();
-                WriteLine("\nPress any key to continue... or press \'q\' to exit");
-                if (ReadKey().Key == ConsoleKey.Q)
-                    Environment.Exit(0);
+                ForegroundColor = ConsoleColor.White;
             }
-        
-        break;
-    }
+            break;
+        }
+        case 1:
+        {
+            try
+            {
+                    var missionControl = new MissionControl();
+                    var user = new UserInputs();
+                    UserInputs.GrabPlateauSizeFromUser();
+                    Write("\nHow many Rover do you want to add? ");
+                    var roverCounter = Convert.ToInt32(ReadLine()!);
+                    if (Validator.NumberOfRoversValidator(roverCounter,
+                            UserInputs.userPlateau!.Lenght_X * UserInputs.userPlateau.Width_Y))
+                        throw new ArgumentException(
+                            "Number of Rovers cannot be more than Plateau's Blocks or less than 1");
+                    var roverCounterForTable = roverCounter;
+                    DeployTheRovers(roverCounter, missionControl, user);
+                    UserGuideline.ProgressBar();
+                    ExecuteInstructions(missionControl, user);
+                    UserGuideline.BeepSoundForSuccess();
+                    PrintPositions(missionControl);
+                    var drawTable = new DrawPlateauAndRovers();
+
+                    await drawTable.LiveTable
+                    (
+                        UserInputs.userPlateau.Lenght_X,
+                        UserInputs.userPlateau.Width_Y,
+                        missionControl,
+                        roverCounterForTable
+                    );
+
+                    ForegroundColor = ConsoleColor.Blue;
+                    Write("\nDo you want to deploy another rover? (y/n) ");
+                    var deployRover = ReadLine()!;
+                    if (deployRover.ToLower() == "y")
+                        await DeployLastRover(roverCounterForTable, missionControl, user);
+                    WriteLine("\nPress any key to continue... or press \'q\' to exit");
+                    if (ReadKey().Key == ConsoleKey.Q)
+                        Environment.Exit(0);
+                    goto StartMenu;
+            }
+            catch (Exception ex)
+            {
+                    UserGuideline.BeepSoundForError();
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine("\nSystem Message:--> {0} <--", ex.Message);
+                    ResetColor();
+                    WriteLine("\nPress any key to continue... or press \'q\' to exit");
+                    if (ReadKey().Key == ConsoleKey.Q)
+                        Environment.Exit(0);
+            }
+            //}
+            break;
+        }
         case 2:
             WriteLine(RoverBanner.GoodbyeMessage);
             break;
-            
-    default:
+
+        default:
             try
             {
                 if (int.TryParse(args[0], out _))
@@ -130,8 +134,10 @@ switch (selectInstructionOption)
             {
                 WriteLine("Invalid choice, please enter a valid number");
             }
+
             break;
     }
+}
 
 void GetInstructionsSaveOnFile()
 {
