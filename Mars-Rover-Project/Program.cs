@@ -16,6 +16,13 @@ while (true)
         {
             try
             {
+                
+                /*
+                     NOT a good idea to use Try/Catch here. (I Didn't have time to change it)
+                    :D (good old Yahoo Messenger Emoticons)
+                     I Know my main menu is a mess.
+                */
+                
                 //Instruction text file is in Project folder --> ...\Command\Instructions.text
                 ForegroundColor = ConsoleColor.DarkYellow;
                 Write(RoverBanner.Design);
