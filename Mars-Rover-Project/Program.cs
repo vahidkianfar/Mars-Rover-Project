@@ -19,7 +19,7 @@ while (true)
                 
                 /*
                  Hi Everyone,
-                     NOT a good idea to use Try/Catch here. (I didn't have enough time, but I will change it)
+                     NOT a good idea to use Try/Catch and Hardcoded menu here (I didn't have enough time, but I will change it)
                     :D (good old Yahoo Messenger Emoticons)
                      I Know my main menu is a mess.
                 */
@@ -67,7 +67,7 @@ while (true)
                 WriteLine("\nPress any key to back to Main Menu... or press \'q\' to exit");
                 if (ReadKey().Key == ConsoleKey.Q)
                     Environment.Exit(0);
-                goto StartMenu;
+                goto StartMenu; // OLD SCHOOL PASCAL-C-STYLE GOTO (it's a BAD idea to use it)
             }
             catch (Exception ex)
             {
