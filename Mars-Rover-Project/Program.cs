@@ -18,7 +18,8 @@ while (true)
             {
                 
                 /*
-                     NOT a good idea to use Try/Catch here. (I Didn't have time to change it)
+                 Hi Everyone,
+                     NOT a good idea to use Try/Catch here. (I didn't have enough time, but I will change it)
                     :D (good old Yahoo Messenger Emoticons)
                      I Know my main menu is a mess.
                 */
